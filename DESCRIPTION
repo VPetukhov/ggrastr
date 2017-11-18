@@ -1,0 +1,18 @@
+Package: ggrastr
+Type: Package
+Title: Raster layers for ggplot2
+Version: 0.1.0
+Authors@R: c(person("Viktor", "Petukhov", email = "viktor.s.petukhov@ya.ru", role = c("cre", "aut")))
+Description: Raster geoms for ggplot2
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+  ggplot2 (>= 2.1.0),
+  Cairo (>= 1.5.9),
+Depends:
+  R (>= 3.2.2)
+RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
