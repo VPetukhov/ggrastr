@@ -7,8 +7,8 @@ DrawGeomBoxplotJitter <- function(data, panel_params, coord, ...,
                                   outlier.size = 1.5,
                                   outlier.stroke = 0.5,
                                   outlier.alpha = NULL,
-                                  raster=FALSE,
-                                  raster.dpi=300
+                                  raster=FALSE, raster.dpi=300,
+                                  raster.width=NULL, raster.height=NULL
                                   ) {
   boxplot_grob <- ggplot2::GeomBoxplot$draw_group(data, panel_params, coord, ...)
   point_grob <- grep("geom_point.*", names(boxplot_grob$children))
@@ -44,7 +44,8 @@ DrawGeomBoxplotJitter <- function(data, panel_params, coord, ...,
   )
 
   if (raster) {
-    boxplot_grob$children[[point_grob]] <- GeomPointRast$draw_panel(outliers, panel_params, coord)
+    boxplot_grob$children[[point_grob]] <- GeomPointRast$draw_panel(outliers, panel_params, coord, width=raster.width,
+                                                                    height=raster.height, dpi=raster.dpi)
   } else {
     boxplot_grob$children[[point_grob]] <- ggplot2::GeomPoint$draw_panel(outliers, panel_params, coord)
   }
@@ -78,7 +79,8 @@ geom_boxplot_jitter <- function(mapping = NULL, data = NULL,
                                 inherit.aes = TRUE, ...,
                                 outlier.jitter.width=NULL,
                                 outlier.jitter.height=0,
-                                raster=FALSE, raster.dpi=300
+                                raster=FALSE, raster.dpi=300,
+                                raster.width=NULL, raster.height=NULL
                                 ) {
   ggplot2::layer(
     geom = GeomBoxplotJitter, mapping = mapping, data = data, stat = stat,
@@ -87,5 +89,6 @@ geom_boxplot_jitter <- function(mapping = NULL, data = NULL,
                   outlier.jitter.width=outlier.jitter.width,
                   outlier.jitter.height=outlier.jitter.height,
                   raster=raster, raster.dpi=raster.dpi,
+                  raster.width=raster.width, raster.height=raster.height,
                   ...))
 }
