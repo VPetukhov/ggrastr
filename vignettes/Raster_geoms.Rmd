@@ -17,7 +17,8 @@ knitr::opts_chunk$set(
 ```
 
 # Raster points
-Sometimes you need to publish a figure in a fector format. But your figure contains thousands of points:
+## Points
+Sometimes you need to publish a figure in a vector format. But sometimes your figure contains thousands of points:
 ```{r, fig.width=4, fig.height=4}
 library(ggplot2)
 
@@ -61,22 +62,17 @@ PrintFileSize(gg_rast, 'Raster')
 PrintFileSize(gg_vec, 'Vector')
 ```
 
-## Troubleshooting
-In current version, legends can raster disturbe plots:
-```{r, fig.width=2, fig.height=4}
-points_num <- 10000
-df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5)
+## Tile
+Heatmaps also don't work well with vector formats:
+```{r}
+coords <- expand.grid(1:100, 1:100)
+coords$Value <- 1 / apply(as.matrix(coords), 1, function(x) sum((x - c(50, 50))^2)^0.01)
+ggplot(coords) + geom_tile(aes(x=Var1, y=Var2, fill=Value))
+ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
 ```
 
-To restore sides ratio, parameters width and height can be used:
-```{r, fig.width=2, fig.height=4}
-points_num <- 10000
-df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5, width = 1)
-```
 
-# Boxplot outliers
+## Boxplot outliers
 Another type of plots with potentially large number of small objects is geom_boxplot:
 ```{r, fig.width=5, fig.height=4}
 points_num <- 1000000
@@ -104,3 +100,17 @@ PrintFileSize(gg_rast, 'Raster')
 PrintFileSize(gg_vec, 'Vector')
 ```
 
+# Troubleshooting
+In current version, legends can raster disturbe plots:
+```{r, fig.width=2, fig.height=4}
+points_num <- 10000
+df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
+ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5)
+```
+
+To restore sides ratio, parameters width and height can be used:
+```{r, fig.width=2, fig.height=4}
+points_num <- 10000
+df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
+ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5, width = 1)
+```

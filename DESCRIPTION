@@ -1,7 +1,7 @@
 Package: ggrastr
 Type: Package
 Title: Raster layers for ggplot2
-Version: 0.1.0
+Version: 0.1.5
 Authors@R: c(person("Viktor", "Petukhov", email = "viktor.s.petukhov@ya.ru", role = c("cre", "aut")))
 Description: Raster geoms for ggplot2
 License: MIT

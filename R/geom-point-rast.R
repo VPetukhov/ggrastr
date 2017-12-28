@@ -11,7 +11,7 @@ DrawGeomPointRast <- function(data, panel_params, coord, na.rm = FALSE, width=NU
   dev_id <- Cairo::Cairo(type='raster', width=width*dpi, height=height*dpi, dpi=dpi, units='px', bg="transparent")[1]
   grid::pushViewport(grid::viewport(width=1, height=1))
   grid::grid.points(x=p$x, y=p$y, pch = p$pch, size = p$size,
-              name = p$name, gp = p$gp, vp = p$vp, draw = T)
+                    name = p$name, gp = p$gp, vp = p$vp, draw = T)
   grid::popViewport()
   cap <- grid::grid.cap()
   dev.off(dev_id)
