@@ -9,6 +9,7 @@ devtools::install_github('VPetukhov/ggrastr')
 ## New geoms:
 * `geom_point_rast`: raster scatterplots
 * `geom_boxplot_jitter`: boxplots that allows to jitter and rasterize outlier points
+* `geom_tile_rast`: raster heatmap
 
 ## Troubleshooting
 ### Cairo
