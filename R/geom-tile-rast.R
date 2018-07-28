@@ -7,6 +7,8 @@ DrawGeomTileRast <- function(data, panel_params, coord, na.rm = FALSE, width=NUL
     height <- par('fin')[2]
   }
 
+  prev_dev_id <- dev.cur()
+
   p <- ggplot2::GeomTile$draw_panel(data, panel_params, coord)
   dev_id <- Cairo::Cairo(type='raster', width=width*dpi, height=height*dpi,
                          dpi=dpi, units='px', bg="transparent")[1]
@@ -16,6 +18,7 @@ DrawGeomTileRast <- function(data, panel_params, coord, na.rm = FALSE, width=NUL
   grid::popViewport()
   cap <- grid::grid.cap()
   dev.off(dev_id)
+  dev.set(prev_dev_id)
 
   grid::rasterGrob(cap, x=0, y=0, width = 1,
                    height = 1, default.units = "native",
