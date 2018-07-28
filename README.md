@@ -12,6 +12,8 @@ devtools::install_github('VPetukhov/ggrastr')
 * `geom_boxplot_jitter`: boxplots that allows to jitter and rasterize outlier points
 * `geom_tile_rast`: raster heatmap
 
+For more details see [vignette](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/inst/doc/Raster_geoms.html).
+
 ## Troubleshooting
 If your rsession crashes when you try to render rasterized plot, probably your version of Cairo was built for another 
 version of R (see [Upgrading to a new version of R](http://shiny.rstudio.com/articles/upgrade-R.html)). To ensure that 
