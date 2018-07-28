@@ -16,11 +16,11 @@ For more details see [vignette](https://htmlpreview.github.io/?https://raw.githu
 
 ## Troubleshooting
 If your rsession crashes when you try to render rasterized plot, probably your version of Cairo was built for another 
-version of R (see [Upgrading to a new version of R](http://shiny.rstudio.com/articles/upgrade-R.html)). To ensure that 
+version of R (see [Upgrading to a new version of R](http://shiny.rstudio.com/articles/upgrade-R.html)). To check if 
 you use a proper version run the command below and ensure that "Built" version is the same as your R version.
 ```r
 pkgs <- as.data.frame(installed.packages(), stringsAsFactors = F, row.names = F)
 pkgs[pkgs$Package == 'Cairo', c("Package", "LibPath", "Version", "Built")]
 ```
 
-To ensure that your Cairo works just run `Cairo::Cairo(type='raster'); dev.off()` and check if it crashes R session.
+To ensure that your Cairo works, just run `Cairo::Cairo(type='raster'); dev.off()` and check if it crashes R session.
