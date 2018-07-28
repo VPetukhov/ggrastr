@@ -31,10 +31,10 @@ GeomTileRast <- ggplot2::ggproto(
   draw_panel = DrawGeomTileRast
 )
 
-#' This geom is similar to \code{\link[ggplot2]{geom_point}}, but creates a raster layer
+#' This geom is similar to \code{\link[ggplot2]{geom_tile}}, but creates a raster layer
 #'
-#' @inheritParams ggplot2::geom_point
-#' @inheritSection ggplot2::geom_point Aesthetics
+#' @inheritParams ggplot2::geom_tile
+#' @inheritSection ggplot2::geom_tile Aesthetics
 #'
 #' @param width Width of the result image (in inches). Default: deterined by the current device parameters.
 #' @param height Height of the result image (in inches). Default: deterined by the current device parameters.
@@ -54,7 +54,7 @@ geom_tile_rast <- function(mapping = NULL,
                            na.rm = FALSE,
                            show.legend = NA,
                            inherit.aes = TRUE,
-                           width=NULL, height=NULL, dpi=300) {
+                           dpi=300) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
@@ -63,10 +63,6 @@ geom_tile_rast <- function(mapping = NULL,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list(na.rm = na.rm,
-                  width=width,
-                  height=height,
-                  dpi=dpi,
-                  ...)
+    params = list(na.rm = na.rm, dpi=dpi, ...)
   )
 }
