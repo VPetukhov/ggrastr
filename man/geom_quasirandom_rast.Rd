@@ -2,7 +2,7 @@
 % Please edit documentation in R/geom-quasirandom-rast.R
 \name{geom_quasirandom_rast}
 \alias{geom_quasirandom_rast}
-\title{This geom is similar to \code{\link[ggplot2]{geom_point}}, but creates a raster layer}
+\title{This geom is similar to \code{\link[ggbeeswarm]{geom_quasirandom}}, but creates a raster layer}
 \usage{
 geom_quasirandom_rast(mapping = NULL, data = NULL, stat = "identity",
   position = "quasirandom", varwidth = FALSE, bandwidth = 0.5,
@@ -75,7 +75,7 @@ the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 \item{dpi}{Resolution of the result image.}
 }
 \description{
-This geom is similar to \code{\link[ggplot2]{geom_point}}, but creates a raster layer
+This geom is similar to \code{\link[ggbeeswarm]{geom_quasirandom}}, but creates a raster layer
 }
 \section{Aesthetics}{
 
@@ -97,6 +97,6 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 }
 
 \examples{
-ggplot() + geom_point_rast(aes(x=rnorm(1000), y=rnorm(1000)), dpi=600)
+ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), dpi = 600)
 
 }

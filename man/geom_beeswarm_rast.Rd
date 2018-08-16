@@ -2,7 +2,7 @@
 % Please edit documentation in R/geom-beeswarm-rast.R
 \name{geom_beeswarm_rast}
 \alias{geom_beeswarm_rast}
-\title{This geom is similar to \code{\link[ggplot2]{geom_point}}, but creates a raster layer}
+\title{This geom is similar to \code{\link[ggbeeswarm]{geom_beeswarm}}, but creates a raster layer}
 \usage{
 geom_beeswarm_rast(mapping = NULL, data = NULL, stat = "identity",
   position = "quasirandom", priority = c("ascending", "descending",
@@ -70,7 +70,7 @@ the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 \item{dpi}{Resolution of the result image.}
 }
 \description{
-This geom is similar to \code{\link[ggplot2]{geom_point}}, but creates a raster layer
+This geom is similar to \code{\link[ggbeeswarm]{geom_beeswarm}}, but creates a raster layer
 }
 \section{Aesthetics}{
 
@@ -92,6 +92,6 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 }
 
 \examples{
-ggplot() + geom_point_rast(aes(x=rnorm(1000), y=rnorm(1000)), dpi=600)
+ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), dpi = 600, cex = 1.5)
 
 }

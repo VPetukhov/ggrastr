@@ -1,37 +1,4 @@
-DrawGeomPointRast <- function(data, panel_params, coord, na.rm = FALSE, width=NULL, height=NULL, dpi=300) {
-  if (is.null(width)) {
-    width <- par('fin')[1]
-  }
-
-  if (is.null(height)) {
-    height <- par('fin')[2]
-  }
-
-  prev_dev_id <- dev.cur()
-
-  p <- ggplot2::GeomPoint$draw_panel(data, panel_params, coord)
-  dev_id <- Cairo::Cairo(type='raster', width=width*dpi, height=height*dpi, dpi=dpi, units='px', bg="transparent")[1]
-
-  grid::pushViewport(grid::viewport(width=1, height=1))
-  grid::grid.points(x=p$x, y=p$y, pch = p$pch, size = p$size,
-                    name = p$name, gp = p$gp, vp = p$vp, draw = T)
-  grid::popViewport()
-  cap <- grid::grid.cap()
-  dev.off(dev_id)
-  dev.set(prev_dev_id)
-
-  grid::rasterGrob(cap, x=0, y=0, width = 1,
-                   height = 1, default.units = "native",
-                   just = c("left","bottom"))
-}
-
-GeomPointRast <- ggplot2::ggproto(
-  "GeomPointRast",
-  ggplot2::GeomPoint,
-  draw_panel = DrawGeomPointRast
-)
-
-#' This geom is similar to \code{\link[ggplot2]{geom_point}}, but creates a raster layer
+#' This geom is similar to \code{\link[ggbeeswarm]{geom_beeswarm}}, but creates a raster layer
 #'
 #' @inheritParams ggplot2::geom_point
 #' @inheritParams ggbeeswarm::position_beeswarm
@@ -42,8 +9,9 @@ GeomPointRast <- ggplot2::ggproto(
 #' @param dpi Resolution of the result image.
 #'
 #' @examples
-#' ggplot() + geom_point_rast(aes(x=rnorm(1000), y=rnorm(1000)), dpi=600)
+#' ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), dpi = 600, cex = 1.5)
 #'
+
 #' @export
 geom_beeswarm_rast <- function(
   mapping = NULL,
@@ -59,7 +27,11 @@ geom_beeswarm_rast <- function(
   show.legend = NA,
   inherit.aes = TRUE,
   width=NULL, height=NULL, dpi=300
-  ) {
+) {
+
+  if (!requireNamespace('ggbeeswarm', quietly = T)) {
+    stop('Install \"ggbeeswarm\" to use this function', call. = F)
+  }
 
   position <- ggbeeswarm::position_beeswarm(priority = priority, cex = cex,
                                             groupOnX = groupOnX, dodge.width = dodge.width)
