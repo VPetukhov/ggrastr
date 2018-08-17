@@ -1,7 +1,7 @@
 Package: ggrastr
 Type: Package
 Title: Raster layers for ggplot2
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: c(person("Viktor", "Petukhov", email = "viktor.s.petukhov@ya.ru", role = c("cre", "aut")))
 Description: Raster geoms for ggplot2
 License: MIT
@@ -13,6 +13,8 @@ Imports:
 Depends:
   R (>= 3.2.2)
 RoxygenNote: 6.0.1
-Suggests: knitr,
-    rmarkdown
+Suggests:
+  ggbeeswarm,
+  knitr,
+  rmarkdown
 VignetteBuilder: knitr
