@@ -1,17 +1,17 @@
-DrawGeomTileRast <- function(data, panel_params, coord, na.rm = FALSE, width=NULL, height=NULL, dpi=300) {
-  if (is.null(width)) {
-    width <- par('fin')[1]
+DrawGeomTileRast <- function(data, panel_params, coord, na.rm = FALSE, raster.width=NULL, raster.height=NULL, raster.dpi=300) {
+  if (is.null(raster.width)) {
+    raster.width <- par('fin')[1]
   }
 
-  if (is.null(height)) {
-    height <- par('fin')[2]
+  if (is.null(raster.height)) {
+    raster.height <- par('fin')[2]
   }
 
   prev_dev_id <- dev.cur()
 
   p <- ggplot2::GeomTile$draw_panel(data, panel_params, coord)
-  dev_id <- Cairo::Cairo(type='raster', width=width*dpi, height=height*dpi,
-                         dpi=dpi, units='px', bg="transparent")[1]
+  dev_id <- Cairo::Cairo(type='raster', width=raster.width*raster.dpi, height=raster.height*raster.dpi,
+                         dpi=raster.dpi, units='px', bg="transparent")[1]
   grid::pushViewport(grid::viewport(width=1, height=1))
   grid::grid.rect(p$x, p$y, width=p$width, height=p$height, just=p$just, hjust=p$hjust,
                   vjust=p$vjust, name=p$name, gp=p$gp, vp=p$vp, draw=T)
@@ -36,9 +36,9 @@ GeomTileRast <- ggplot2::ggproto(
 #' @inheritParams ggplot2::geom_tile
 #' @inheritSection ggplot2::geom_tile Aesthetics
 #'
-#' @param width Width of the result image (in inches). Default: deterined by the current device parameters.
-#' @param height Height of the result image (in inches). Default: deterined by the current device parameters.
-#' @param dpi Resolution of the result image.
+#' @param raster.width Width of the result image (in inches). Default: deterined by the current device parameters.
+#' @param raster.height Height of the result image (in inches). Default: deterined by the current device parameters.
+#' @param raster.dpi Resolution of the result image.
 #'
 #' @examples
 #' coords <- expand.grid(1:100, 1:100)
@@ -54,7 +54,9 @@ geom_tile_rast <- function(mapping = NULL,
                            na.rm = FALSE,
                            show.legend = NA,
                            inherit.aes = TRUE,
-                           dpi=300) {
+                           raster.width=NULL,
+                           raster.height=NULL,
+                           raster.dpi=300) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
@@ -63,6 +65,10 @@ geom_tile_rast <- function(mapping = NULL,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list(na.rm = na.rm, dpi=dpi, ...)
+    params = list(na.rm = na.rm,
+                  raster.dpi=raster.dpi,
+                  raster.width = raster.width,
+                  raster.height = raster.height,
+                  ...)
   )
 }

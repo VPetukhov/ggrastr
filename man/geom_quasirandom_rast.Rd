@@ -5,10 +5,11 @@
 \title{This geom is similar to \code{\link[ggbeeswarm]{geom_quasirandom}}, but creates a raster layer}
 \usage{
 geom_quasirandom_rast(mapping = NULL, data = NULL, stat = "identity",
-  position = "quasirandom", varwidth = FALSE, bandwidth = 0.5,
-  nbins = NULL, method = "quasirandom", groupOnX = NULL,
-  dodge.width = 0, ..., na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, width = NULL, height = NULL, dpi = 300)
+  position = "quasirandom", width = NULL, varwidth = FALSE,
+  bandwidth = 0.5, nbins = NULL, method = "quasirandom",
+  groupOnX = NULL, dodge.width = 0, ..., na.rm = FALSE,
+  show.legend = NA, inherit.aes = TRUE, raster.width = NULL,
+  raster.height = NULL, raster.dpi = 300)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -35,6 +36,8 @@ layer, as a string.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
+
+\item{width}{the maximum amount of spread (default: 0.4)}
 
 \item{varwidth}{vary the width by the relative size of each group}
 
@@ -68,11 +71,11 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 
-\item{width}{Width of the result image (in inches). Default: deterined by the current device parameters.}
+\item{raster.width}{Width of the result image (in inches). Default: deterined by the current device parameters.}
 
-\item{height}{Height of the result image (in inches). Default: deterined by the current device parameters.}
+\item{raster.height}{Height of the result image (in inches). Default: deterined by the current device parameters.}
 
-\item{dpi}{Resolution of the result image.}
+\item{raster.dpi}{Resolution of the result image.}
 }
 \description{
 This geom is similar to \code{\link[ggbeeswarm]{geom_quasirandom}}, but creates a raster layer
@@ -97,6 +100,6 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 }
 
 \examples{
-ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), dpi = 600)
+ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
 
 }

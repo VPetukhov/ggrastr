@@ -6,7 +6,8 @@
 \usage{
 geom_point_rast(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", ..., na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, width = NULL, height = NULL, dpi = 300)
+  inherit.aes = TRUE, raster.width = NULL, raster.height = NULL,
+  raster.dpi = 300)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -53,11 +54,11 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 
-\item{width}{Width of the result image (in inches). Default: deterined by the current device parameters.}
+\item{raster.width}{Width of the result image (in inches). Default: deterined by the current device parameters.}
 
-\item{height}{Height of the result image (in inches). Default: deterined by the current device parameters.}
+\item{raster.height}{Height of the result image (in inches). Default: deterined by the current device parameters.}
 
-\item{dpi}{Resolution of the result image.}
+\item{raster.dpi}{Resolution of the result image.}
 }
 \description{
 This geom is similar to \code{\link[ggplot2]{geom_point}}, but creates a raster layer
@@ -82,6 +83,6 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 }
 
 \examples{
-ggplot() + geom_point_rast(aes(x=rnorm(1000), y=rnorm(1000)), dpi=600)
+ggplot() + geom_point_rast(aes(x=rnorm(1000), y=rnorm(1000)), raster.dpi=600)
 
 }

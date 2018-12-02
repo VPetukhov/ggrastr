@@ -6,7 +6,8 @@
 \usage{
 geom_tile_rast(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", ..., na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, dpi = 300)
+  inherit.aes = TRUE, raster.width = NULL, raster.height = NULL,
+  raster.dpi = 300)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -53,11 +54,11 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 
-\item{dpi}{Resolution of the result image.}
+\item{raster.width}{Width of the result image (in inches). Default: deterined by the current device parameters.}
 
-\item{width}{Width of the result image (in inches). Default: deterined by the current device parameters.}
+\item{raster.height}{Height of the result image (in inches). Default: deterined by the current device parameters.}
 
-\item{height}{Height of the result image (in inches). Default: deterined by the current device parameters.}
+\item{raster.dpi}{Resolution of the result image.}
 }
 \description{
 This geom is similar to \code{\link[ggplot2]{geom_tile}}, but creates a raster layer

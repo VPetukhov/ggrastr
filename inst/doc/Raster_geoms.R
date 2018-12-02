@@ -71,5 +71,5 @@ ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5)
 ## ---- fig.width=2, fig.height=4------------------------------------------
 points_num <- 10000
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5, width = 1)
+ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5, raster.width = 1)
 

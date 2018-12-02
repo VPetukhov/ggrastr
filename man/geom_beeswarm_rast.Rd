@@ -6,9 +6,10 @@
 \usage{
 geom_beeswarm_rast(mapping = NULL, data = NULL, stat = "identity",
   position = "quasirandom", priority = c("ascending", "descending",
-  "density", "random", "none"), cex = 1, groupOnX = NULL, dodge.width = 0,
-  ..., na.rm = FALSE, show.legend = NA, inherit.aes = TRUE,
-  width = NULL, height = NULL, dpi = 300)
+  "density", "random", "none"), cex = 1, groupOnX = NULL,
+  dodge.width = 0, ..., na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE, raster.width = NULL, raster.height = NULL,
+  raster.dpi = 300)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -63,11 +64,11 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 
-\item{width}{Width of the result image (in inches). Default: deterined by the current device parameters.}
+\item{raster.width}{Width of the result image (in inches). Default: deterined by the current device parameters.}
 
-\item{height}{Height of the result image (in inches). Default: deterined by the current device parameters.}
+\item{raster.height}{Height of the result image (in inches). Default: deterined by the current device parameters.}
 
-\item{dpi}{Resolution of the result image.}
+\item{raster.dpi}{Resolution of the result image.}
 }
 \description{
 This geom is similar to \code{\link[ggbeeswarm]{geom_beeswarm}}, but creates a raster layer
@@ -92,6 +93,6 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 }
 
 \examples{
-ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), dpi = 600, cex = 1.5)
+ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600, cex = 1.5)
 
 }

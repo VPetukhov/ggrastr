@@ -44,8 +44,8 @@ DrawGeomBoxplotJitter <- function(data, panel_params, coord, ...,
   )
 
   if (raster) {
-    boxplot_grob$children[[point_grob]] <- GeomPointRast$draw_panel(outliers, panel_params, coord, width=raster.width,
-                                                                    height=raster.height, dpi=raster.dpi)
+    boxplot_grob$children[[point_grob]] <- GeomPointRast$draw_panel(outliers, panel_params, coord, raster.width=raster.width,
+                                                                    raster.height=raster.height, raster.dpi=raster.dpi)
   } else {
     boxplot_grob$children[[point_grob]] <- ggplot2::GeomPoint$draw_panel(outliers, panel_params, coord)
   }
@@ -67,7 +67,9 @@ GeomBoxplotJitter <- ggplot2::ggproto("GeomBoxplotJitter",
 #' @param outlier.jitter.height Amount of horizontal jitter. The jitter is added in both positive and negative directions,
 #' so the total spread is twice the value specified here. Default: 0.
 #' @param raster Should outlier points be rastered?.
-#' @param dpi Resolution of the rastered image. Ignored if \code{raster == FALSE}.
+#' @param raster.dpi Resolution of the rastered image. Ignored if \code{raster == FALSE}.
+#' @param raster.width Width of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.
+#' @param raster.height Height of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.
 #'
 #' @examples
 #' ggplot() + geom_boxplot_jitter(aes(y=rt(1000, df=3), x=as.factor(1:1000 %% 2)), outlier.jitter.width = 0.1, raster = T)

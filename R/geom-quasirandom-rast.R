@@ -1,15 +1,11 @@
 #' This geom is similar to \code{\link[ggbeeswarm]{geom_quasirandom}}, but creates a raster layer
 #'
-#' @inheritParams ggplot2::geom_point
+#' @inheritParams geom_point_rast
 #' @inheritParams ggbeeswarm::position_quasirandom
 #' @inheritSection ggplot2::geom_point Aesthetics
 #'
-#' @param width Width of the result image (in inches). Default: deterined by the current device parameters.
-#' @param height Height of the result image (in inches). Default: deterined by the current device parameters.
-#' @param dpi Resolution of the result image.
-#'
 #' @examples
-#' ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), dpi = 600)
+#' ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
 #'
 
 #' @export
@@ -18,6 +14,7 @@ geom_quasirandom_rast <- function(
   data = NULL,
   stat = 'identity',
   position = 'quasirandom',
+  width=NULL,
   varwidth = FALSE,
   bandwidth=.5,
   nbins=NULL,
@@ -28,7 +25,7 @@ geom_quasirandom_rast <- function(
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
-  width=NULL, height=NULL, dpi=300
+  raster.width=NULL, raster.height=NULL, raster.dpi=300
 ) {
 
   if (!requireNamespace('ggbeeswarm', quietly = T)) {
@@ -47,9 +44,9 @@ geom_quasirandom_rast <- function(
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(na.rm = na.rm,
-                  width = width,
-                  height = height,
-                  dpi = dpi,
+                  raster.width = raster.width,
+                  raster.height = raster.height,
+                  raster.dpi = raster.dpi,
                   ...)
   )
 }
