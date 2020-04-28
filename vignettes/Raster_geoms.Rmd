@@ -100,7 +100,7 @@ PrintFileSize(gg_vec, 'Vector')
 ```
 
 ## Troubleshooting
-In current version, legends can disturbe raster plots:
+In current version, legends can disturb raster plots:
 ```{r, fig.width=2, fig.height=4}
 points_num <- 10000
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
