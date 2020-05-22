@@ -25,10 +25,6 @@ geom_beeswarm_rast <- function(
   raster.width=NULL, raster.height=NULL, raster.dpi=300
 ) {
 
-  if (!requireNamespace('ggbeeswarm', quietly = T)) {
-    stop('Install \"ggbeeswarm\" to use this function', call. = F)
-  }
-
   position <- ggbeeswarm::position_beeswarm(priority = priority, cex = cex,
                                             groupOnX = groupOnX, dodge.width = dodge.width)
 

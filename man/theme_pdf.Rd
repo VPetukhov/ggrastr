@@ -4,7 +4,7 @@
 \alias{theme_pdf}
 \title{Pretty theme}
 \usage{
-theme_pdf(show.ticks = T, legend.pos = NULL)
+theme_pdf(show.ticks = TRUE, legend.pos = NULL)
 }
 \arguments{
 \item{show.ticks}{Show x- and y- ticks.}

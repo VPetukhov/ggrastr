@@ -28,10 +28,6 @@ geom_quasirandom_rast <- function(
   raster.width=NULL, raster.height=NULL, raster.dpi=300
 ) {
 
-  if (!requireNamespace('ggbeeswarm', quietly = T)) {
-    stop('Install \"ggbeeswarm\" to use this function', call. = F)
-  }
-
   position <- ggbeeswarm::position_quasirandom(width = width, varwidth = varwidth, bandwidth = bandwidth, nbins = nbins,
                                                method = method, groupOnX = groupOnX, dodge.width = dodge.width)
 
