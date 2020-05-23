@@ -4,11 +4,16 @@
 #' @param legend.pos Vector with x and y position of the legend.
 #'
 #' @examples
-#' ggplot() + geom_point(aes(x=rnorm(1000), y=rnorm(1000), color=(1:1000 / 1000))) + theme_pdf(F, legend.pos=c(1, 1))
+#' library(ggplot2)
+#' library(ggrastr)
+#' 
+#' data = rnorm(100)
+#' colors = (1:100/100)
+#' ggplot() + geom_point(aes(x=data, y=data, color=colors)) + theme_pdf(FALSE, legend.pos=c(1, 1))
 #'
 #' @export
-theme_pdf <- function(show.ticks=T, legend.pos=NULL) {
-  r <- ggplot2::theme(axis.line = ggplot2::element_line(size=.7, color = "black"),
+theme_pdf <- function(show.ticks=TRUE, legend.pos=NULL) {
+  r <- ggplot2::theme(axis.line = ggplot2::element_line(size=0.7, color = "black"),
                       axis.text=ggplot2::element_text(size=12),
                       axis.title.x=ggplot2::element_text(margin=ggplot2::margin(t=3, unit='pt')),
                       axis.title.y=ggplot2::element_text(margin=ggplot2::margin(r=3, unit='pt')),
@@ -31,5 +36,6 @@ theme_pdf <- function(show.ticks=T, legend.pos=NULL) {
   if (!is.null(legend.pos)) {
     r <- r + ggplot2::theme(legend.position=legend.pos, legend.justification=legend.pos)
   }
+  
   return(r)
 }

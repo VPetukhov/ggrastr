@@ -5,32 +5,30 @@
 #' @inheritSection ggplot2::geom_point Aesthetics
 #'
 #' @examples
+#' library(ggplot2)
+#' library(ggrastr)
+#'
 #' ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
 #'
-
 #' @export
 geom_quasirandom_rast <- function(
   mapping = NULL,
   data = NULL,
   stat = 'identity',
   position = 'quasirandom',
-  width=NULL,
+  width = NULL,
   varwidth = FALSE,
-  bandwidth=.5,
-  nbins=NULL,
+  bandwidth =0.5,
+  nbins = NULL,
   method = 'quasirandom',
-  groupOnX=NULL,
-  dodge.width=0,
+  groupOnX = NULL,
+  dodge.width = 0,
   ...,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
-  raster.width=NULL, raster.height=NULL, raster.dpi=300
+  raster.width = NULL, raster.height = NULL, raster.dpi = 300
 ) {
-
-  if (!requireNamespace('ggbeeswarm', quietly = T)) {
-    stop('Install \"ggbeeswarm\" to use this function', call. = F)
-  }
 
   position <- ggbeeswarm::position_quasirandom(width = width, varwidth = varwidth, bandwidth = bandwidth, nbins = nbins,
                                                method = method, groupOnX = groupOnX, dodge.width = dodge.width)

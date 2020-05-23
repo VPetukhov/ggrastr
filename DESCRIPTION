@@ -1,20 +1,23 @@
 Package: ggrastr
 Type: Package
 Title: Raster layers for ggplot2
-Version: 0.1.7
+Version: 0.1.8
 Authors@R: c(person("Viktor", "Petukhov", email = "viktor.s.petukhov@ya.ru", role = c("cre", "aut")))
-Description: Raster geoms for ggplot2
-License: MIT
+Description: ggrastr provides a set of geoms to rasterize only specific layers of the plot while simultaneously keeping all labels and text in vector format. The package allows to keep your plots within the reasonable size limit without loosing vector properties of the scale-sensitive information. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
   ggplot2 (>= 2.1.0),
   Cairo (>= 1.5.9),
+  ggbeeswarm
 Depends:
   R (>= 3.2.2)
-RoxygenNote: 6.1.0
+RoxygenNote: 7.1.0
 Suggests:
-  ggbeeswarm,
-  knitr,
-  rmarkdown
+  rmarkdown,
+  knitr
 VignetteBuilder: knitr
+URL: https://github.com/VPetukhov/ggrastr
+BugReports: https://github.com/VPetukhov/ggrastr/issues
+NeedsCompilation: no
