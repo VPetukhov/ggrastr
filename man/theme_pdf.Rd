@@ -15,6 +15,6 @@ theme_pdf(show.ticks = TRUE, legend.pos = NULL)
 Pretty theme
 }
 \examples{
-ggplot() + geom_point(aes(x=rnorm(1000), y=rnorm(1000), color=(1:1000 / 1000))) + theme_pdf(F, legend.pos=c(1, 1))
+ggplot2::ggplot() + geom_point(aes(x=rnorm(1000), y=rnorm(1000), color=(1:1000 / 1000))) + theme_pdf(F, legend.pos=c(1, 1))
 
 }

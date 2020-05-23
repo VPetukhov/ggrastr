@@ -7,7 +7,6 @@
 #' @examples
 #' ggplot2::ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
 #'
-#' @import ggplot2
 #' @export
 geom_quasirandom_rast <- function(
   mapping = NULL,

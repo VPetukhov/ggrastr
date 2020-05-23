@@ -5,9 +5,9 @@
 #' @inheritSection ggplot2::geom_point Aesthetics
 #'
 #' @examples
-#' ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600, cex = 1.5)
+#' ggplot2::ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600, cex = 1.5)
 #'
-#' @import ggplot2
+#' 
 #' @export
 geom_beeswarm_rast <- function(
   mapping = NULL,

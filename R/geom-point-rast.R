@@ -43,7 +43,6 @@ GeomPointRast <- ggplot2::ggproto(
 #' @examples
 #' ggplot2::ggplot() + geom_point_rast(aes(x=rnorm(1000), y=rnorm(1000)), raster.dpi=600)
 #'
-#' @import ggplot2
 #' @export
 geom_point_rast <- function(mapping = NULL,
                         data = NULL,

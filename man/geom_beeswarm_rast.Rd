@@ -105,6 +105,7 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 }
 
 \examples{
-ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600, cex = 1.5)
+ggplot2::ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600, cex = 1.5)
+
 
 }
