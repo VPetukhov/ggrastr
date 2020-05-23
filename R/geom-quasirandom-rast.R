@@ -5,7 +5,10 @@
 #' @inheritSection ggplot2::geom_point Aesthetics
 #'
 #' @examples
-#' ggplot2::ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
+#' library(ggplot2)
+#' library(ggrastr)
+#'
+#' ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
 #'
 #' @export
 geom_quasirandom_rast <- function(

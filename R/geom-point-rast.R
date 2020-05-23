@@ -1,3 +1,5 @@
+#' @importFrom grDevices dev.cur dev.off dev.set
+#' @importFrom graphics par
 DrawGeomPointRast <- function(data, panel_params, coord, na.rm = FALSE, raster.width=NULL, raster.height=NULL, raster.dpi=300) {
   if (is.null(raster.width)) {
     raster.width <- par('fin')[1]
@@ -36,12 +38,16 @@ GeomPointRast <- ggplot2::ggproto(
 #' @inheritParams ggplot2::geom_point
 #' @inheritSection ggplot2::geom_point Aesthetics
 #'
+#' @import ggplot2
 #' @param raster.width Width of the result image (in inches). Default: deterined by the current device parameters.
 #' @param raster.height Height of the result image (in inches). Default: deterined by the current device parameters.
 #' @param raster.dpi Resolution of the result image.
 #'
 #' @examples
-#' ggplot2::ggplot() + geom_point_rast(aes(x=rnorm(1000), y=rnorm(1000)), raster.dpi=600)
+#' library(ggplot2)
+#' library(ggrastr)
+#'
+#' ggplot() + geom_point_rast(aes(x=rnorm(1000), y=rnorm(1000)), raster.dpi=600)
 #'
 #' @export
 geom_point_rast <- function(mapping = NULL,

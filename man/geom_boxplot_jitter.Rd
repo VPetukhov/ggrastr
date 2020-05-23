@@ -109,6 +109,11 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 }
 
 \examples{
-ggplot2::ggplot() + geom_boxplot_jitter(aes(y=rt(1000, df=3), x=as.factor(1:1000 \%\% 2)), outlier.jitter.width = 0.1, raster = TRUE)
+library(ggplot2)
+library(ggrastr)
+
+yvalues = rt(1000, df=3)
+xvalues = as.factor(1:1000 \%\% 2)
+ggplot() + geom_boxplot_jitter(aes(y=yvalues, x=xvalues), outlier.jitter.width = 0.1, raster = TRUE)
 
 }

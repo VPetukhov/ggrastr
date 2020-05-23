@@ -4,7 +4,12 @@
 #' @param legend.pos Vector with x and y position of the legend.
 #'
 #' @examples
-#' ggplot2::ggplot() + geom_point(aes(x=rnorm(1000), y=rnorm(1000), color=(1:1000 / 1000))) + theme_pdf(F, legend.pos=c(1, 1))
+#' library(ggplot2)
+#' library(ggrastr)
+#' 
+#' data = rnorm(100)
+#' colors = (1:100/100)
+#' ggplot() + geom_point(aes(x=data, y=data, color=colors)) + theme_pdf(FALSE, legend.pos=c(1, 1))
 #'
 #' @export
 theme_pdf <- function(show.ticks=TRUE, legend.pos=NULL) {

@@ -94,8 +94,11 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 }
 
 \examples{
+library(ggplot2)
+library(ggrastr)
+
 coords <- expand.grid(1:100, 1:100)
 coords$Value <- 1 / apply(as.matrix(coords), 1, function(x) sum((x - c(50, 50))^2)^0.01)
-ggplot2::ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
+ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
 
 }
