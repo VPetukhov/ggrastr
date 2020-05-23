@@ -2,7 +2,7 @@ Package: ggrastr
 Type: Package
 Title: Raster layers for ggplot2
 Version: 0.1.8
-Authors@R: c(person("Viktor", "Petukhov", email = "viktor.s.petukhov@ya.ru", role = c("cre", "aut"), "Evan", "Biederstedt", email="evan.biederstedt@gmail.com", role=("aut"))
+Authors@R: c(person("Viktor", "Petukhov", email = "viktor.s.petukhov@ya.ru", role = c("cre", "aut")), person("Evan", "Biederstedt", email = "evan.biederstedt@gmail.com", role=("aut")))
 Description: ggrastr provides a set of geoms to rasterize only specific layers of the plot while simultaneously keeping all labels and text in vector format. The package allows to keep your plots within the reasonable size limit without loosing vector properties of the scale-sensitive information. 
 License: MIT + file LICENSE
 Encoding: UTF-8
