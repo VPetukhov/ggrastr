@@ -72,7 +72,7 @@ GeomBoxplotJitter <- ggplot2::ggproto("GeomBoxplotJitter",
 #' @param raster.height Height of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.
 #'
 #' @examples
-#' ggplot() + geom_boxplot_jitter(aes(y=rt(1000, df=3), x=as.factor(1:1000 %% 2)), outlier.jitter.width = 0.1, raster = TRUE)
+#' ggplot2::ggplot() + geom_boxplot_jitter(aes(y=rt(1000, df=3), x=as.factor(1:1000 %% 2)), outlier.jitter.width = 0.1, raster = TRUE)
 #'
 #' @export
 geom_boxplot_jitter <- function(mapping = NULL, data = NULL,

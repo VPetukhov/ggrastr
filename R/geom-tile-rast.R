@@ -45,6 +45,7 @@ GeomTileRast <- ggplot2::ggproto(
 #' coords$Value <- 1 / apply(as.matrix(coords), 1, function(x) sum((x - c(50, 50))^2)^0.01)
 #' ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
 #'
+#' @import ggplot2
 #' @export
 geom_tile_rast <- function(mapping = NULL,
                            data = NULL,
