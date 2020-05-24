@@ -1,3 +1,0 @@
---- re-building ‘Raster_geoms.Rmd’ using rmarkdown
-Warning in engine$weave(file, quiet = quiet, encoding = enc) :
-  Pandoc (>= 1.12.3) and/or pandoc-citeproc not available. Falling back to R Markdown v1.
