@@ -1,0 +1,7 @@
+name	user	system	elapsed
+geom_beeswarm_rast	2.954	0.190	3.195	
+geom_boxplot_jitter	1.862	0.095	1.986	
+geom_point_rast	3.756	0.216	4.048	
+geom_quasirandom_rast	3.463	0.188	3.748	
+geom_tile_rast	3.142	0.126	3.360	
+theme_pdf	0.298	0.011	0.368	
