@@ -1,0 +1,6 @@
+geom_beeswarm_rast	geom_beeswarm_rast
+geom_boxplot_jitter	geom_boxplot_jitter
+geom_point_rast	geom_point_rast
+geom_quasirandom_rast	geom_quasirandom_rast
+geom_tile_rast	geom_tile_rast
+theme_pdf	theme_pdf

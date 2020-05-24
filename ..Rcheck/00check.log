@@ -1,0 +1,234 @@
+* using log directory ‘/Users/evanbiederstedt/ggrastr/..Rcheck’
+* using R version 4.0.0 (2020-04-24)
+* using platform: x86_64-apple-darwin19.4.0 (64-bit)
+* using session charset: UTF-8
+* using option ‘--as-cran’
+* checking for file ‘./DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ggrastr’ version ‘0.1.8’
+* package encoding: UTF-8
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: ‘Evan Biederstedt <evan.biederstedt@gmail.com>’
+
+New submission
+
+License components with restrictions and base license permitting such:
+  MIT + file LICENSE
+File 'LICENSE':
+  License: MIT + file LICENSE
+  
+  Copyright (c) 2017, Viktor Petukhov
+  
+  Permission is hereby granted, free of charge, to any person obtaining
+  a copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to
+  the following conditions:
+  
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Package has a VignetteBuilder field but no prebuilt vignette index.
+
+The Description field should not start with the package name,
+  'This package' or similar.
+
+The build time stamp is missing.
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... WARNING
+Found the following executable files:
+  .git/objects/00/a7f4205121c236031b9916ea7cfd6e34343059
+  .git/objects/01/3e20a82947ece23f320d8a10d1e6c7532a365b
+  .git/objects/05/db43c98958e1e9d89ce4085f6533dffd80ecce
+  .git/objects/09/69dadf44ea3cb0ca9ccf6e7b5490375345f1ac
+  .git/objects/12/076e48deb884595eae1c68c62bcac9fba6bb8d
+  .git/objects/15/125810c56f580e8f81d72877da658bf0c940b5
+  .git/objects/1b/73c23071322045d530e8e4099a0d52f5557841
+  .git/objects/1e/9428277db03adb9f51a520a50cfc3ad3261446
+  .git/objects/1f/e25aa9844d4e43d3e42b1dafc1bab7d7113849
+  .git/objects/21/2984623119d6a3e26376a8c4bc9fd421858f0d
+  .git/objects/22/9b7a0251414d42943cb213bf9ec0c7b63fae5d
+  .git/objects/25/085cf1ca62d8d0ccabbf5f4cf85e52561f3991
+  .git/objects/29/c21d181dee6d8070f91ace5b0fc2f178dcd999
+  .git/objects/2a/b888e208718134b144a07b277606e7403a690f
+  .git/objects/2e/04c3bbfd1c389bddc7d422fcc4014e23059052
+  .git/objects/2f/fe5f64ae6804138021daf5456113e8cdd2273f
+  .git/objects/32/77247a64dbd62dea827021ec2147e8990b4f9a
+  .git/objects/32/f19081aeda6586feed46c5ccd997fe8e8ca974
+  .git/objects/37/915bb3b6b58e142a1f0e05a197562270ff431f
+  .git/objects/3c/9002d8b181f9f908fcafd77119271f618b37c0
+  .git/objects/41/c8486ac657b7c4635e026088ff9eb859d04a40
+  .git/objects/41/cb7923dc48dbfb9466996a6fe53780a31568b6
+  .git/objects/42/f7c5ba4f00d66e51e3ff9c5aba473c6afd5aff
+  .git/objects/44/2c045dd4e1ea163ce6ce31c1c07f46beaaea7e
+  .git/objects/47/035e4a2aeab1438485e417940f07c4c5f48efd
+  .git/objects/50/7c6ce34e36c3f0023dd1658d9c774889d34282
+  .git/objects/50/cad0c1ec929cf02492d9b5b8916f798c10a6b0
+  .git/objects/52/6181a8179cbc0b6bd68d9ac9d84f2112400ea3
+  .git/objects/53/28f3983e8e3900e7751f6f86bb009a4f5bd5eb
+  .git/objects/59/a227e3ef2f1ac655a33cb9610871b380f7e32c
+  .git/objects/5d/9700f7aced82665971d24de89899149c67209a
+  .git/objects/5e/2c64935d4bb8c4b5df3f735cc3cda71826e127
+  .git/objects/62/a8931be2e39e6003318fa6f9bc2ab7ff1df4d1
+  .git/objects/62/f692328a9288fe14df8843e866547f868a1a6f
+  .git/objects/65/8a2090e9eaf523d76970d1475f1ce1f7715a4a
+  .git/objects/69/0f5e364951573468f5aa24a464eab8b66462f2
+  .git/objects/6e/cd6afa16e0f4662d83d8cc8ed90c728a77d6db
+  .git/objects/72/5c458c6cbea64ffc0d640e4978601842097f2d
+  .git/objects/76/83af9ccb6cdb5791b396f5ec03f47f6674ca38
+  .git/objects/77/5c9de27f32515a8a5377cb9bda95a63688e6fd
+  .git/objects/7d/731d4525fade4e48910b0f2e9eabc9c77f0b77
+  .git/objects/7d/a9f1bf701a75594a696becb78771adfbf3b269
+  .git/objects/7e/aa7eff9a191f9f220befbae4ed7ae20091e6b7
+  .git/objects/7f/9f080c8a5ed5652673a887da2be80cd4d506d1
+  .git/objects/81/4de3a2b4745fa435d6053b5b9d76ee21c8878d
+  .git/objects/84/3562dfde8f92fac8bb3dc9facecbdf84ca5c2b
+  .git/objects/85/91988096b38a45b855c264319c6b238a452d6b
+  .git/objects/88/774bd9829f4834a0c2db0fbac0ffae3eeb852f
+  .git/objects/8c/26ff2e70aba63d481151f3080a8ac4af28d36a
+  .git/objects/8c/45b5e39024cebaff13e6796efff00679566180
+  .git/objects/8c/6a86d0dda3ef9e78c93c464c63e66bde299019
+  .git/objects/90/71b3dc73e23ffdcaf541c24c80ee5b67b6cadc
+  .git/objects/91/9bfb35f54a1edb11763b121c5ed76c0a90f5cc
+  .git/objects/91/9cbef6151d498509bb9acad82b6307ea648eba
+  .git/objects/97/eea90309525cead9e6f67a16db72201d31e186
+  .git/objects/98/90b581296967f0a6d1b0b283392cb0feeadb5d
+  .git/objects/98/ad4da594f6b857c87531a92ac62593c74fb940
+  .git/objects/9a/d2f1e2689accf110ffadb46a3daaaef6f25593
+  .git/objects/9a/f73f164f6e73cc89d9866902c397dc215fefea
+  .git/objects/9b/a85166578fc702fb79dfa96dc12729b5bdc3c1
+  .git/objects/9c/15ed26d6b725cb2acab4cf5870798d5f6c4658
+  .git/objects/9d/3dc3322a1bc3821d08026ba953e55badca045e
+  .git/objects/a1/67a05ec946f6ecf1fb19596ade13fba19a3cc5
+  .git/objects/a2/01ed14d15d1fa55850ca99cb9e1c71e50cb11a
+  .git/objects/a3/ced5efc6d1db283f21a038fb097426d7dbe7fd
+  .git/objects/a9/376f568412c0403b00d9d1fca25d137f5b66ca
+  .git/objects/aa/a581aabcace11e99e59f5faae52c52de172b88
+  .git/objects/ab/3ee10dc4e3c409c15c0e28804f1c6447abf698
+  .git/objects/ad/e6ae57faa85df14ae2293af8dd1b4fd99834ec
+  .git/objects/b0/602487d76c02ca60e810f70930055fc51a9d92
+  .git/objects/b9/210b92d8db1eee1c22c067e0757240f4cc9c7f
+  .git/objects/b9/e7885d5ee4604e7d270e3a98717541aea1d2a3
+  .git/objects/ba/9193e1f4ebf074bf697c7201ab2bd6cafbc267
+  .git/objects/bf/f323c2b525d53dfa77601fece53d0208411801
+  .git/objects/c0/22bd3501a9aa5bc86b8d3ad6d50adcacee586f
+  .git/objects/c1/80a7127222ba8ffc42da5a89d361073249b287
+  .git/objects/c2/99db7eb375e375fd0f27a1b08a732b1f4c6147
+  .git/objects/c3/39c27e96ae87fbf0d319b3ccd048b04068ab6a
+  .git/objects/ca/b8022ed4f40908f66d1de241247d23438acc4e
+  .git/objects/cd/389a3022f216f20f8dca1b27476c90e3281a79
+  .git/objects/cd/4c6292bd49a2def4f793da1045ea14c8b46174
+  .git/objects/d0/66ea537f96c82116d2cec6479886dbfe834807
+  .git/objects/d0/7e11471cf829cfeac134fb818a5c284e33990f
+  .git/objects/d0/88d8b8bdd78d7b6b423510d8a2eaf73f6d3a99
+  .git/objects/d4/81cb3a20720a59574386986daf47f68cf416a5
+  .git/objects/d8/69409d8e7cd41ca4454f693d63b9b1204eecbe
+  .git/objects/d8/a60d0fc033cef174d502e7532ce0b019d60bfd
+  .git/objects/e1/1d1d56befeb65649817ec81241c8314063cae8
+  .git/objects/e7/1fb08165d23b2fa261e916042856de82480a38
+  .git/objects/e9/f12cefaa9a0bb0ada07d71e1019687a2a8c4ba
+  .git/objects/eb/0d976091890b8ea3b94fceabd11519b7119f70
+  .git/objects/eb/cc066a88461b846e2162dc5f413412239842c6
+  .git/objects/ec/f5c7645b2bc2b0da78fd7f7d6834d887c90bef
+  .git/objects/ef/b9f30af5cfef8763b16a04bdaefd1e405f61ff
+  .git/objects/f1/6889853ecaad6660e641027b407b45b92c8669
+  .git/objects/f1/888259cb4c8124f877998078abd7ac76b2dc1f
+  .git/objects/f3/4a47a86a9467b8a4ab05cac0d55fa15dad2de3
+  .git/objects/f3/f8d7049722d9814a302c597413bc0539e70249
+  .git/objects/f4/34b1b6c91f6b89526d43b06fa692f7f2257ca6
+  .git/objects/f7/7717239234496888a7a93952ac33a0ed820038
+  .git/objects/f7/7eda994de9b80746ff4aa0f0d11d08d0e006f7
+  .git/objects/f8/5aa8b4bd528395e7829cb028e935cfc6a54919
+  .git/objects/f8/9faa1dd9fa55c0c5307c91e151fbe09fd8a7a9
+  .git/objects/fa/41c7cdeaf164bb1c9cdfff59c1518e7d12173c
+  .git/objects/fb/585c4428d7b8f538ca9e10e868a515599ad3e2
+  .git/objects/fc/c4370fe4dc3f54a1b1127f2a6fadd3d4903d50
+  .git/objects/fe/5fd5e27f8847eb1ad87d5246bb5069a2017fa8
+Source packages should not contain undeclared executable files.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .gitignore
+  .travis.yml
+  ..Rcheck
+  .git
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+
+CRAN-pack does not know about
+  .travis.yml
+  ..Rcheck
+  .git
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking serialization versions ... OK
+* checking whether package ‘ggrastr’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking for future file timestamps ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Checking should be performed on sources prepared by ‘R CMD build’.
+* checking top-level files ... NOTE
+Non-standard files/directories found at top level:
+  ‘CHANGELOG.md’ ‘ggrastr.Rproj’
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Found the following directory with the name of a check directory:
+  ./..Rcheck
+Most likely, these were included erroneously.
+Found the following directory with the name of a version control directory:
+  ./.git
+These should not be in a package tarball.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking use of S3 registration ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... WARNING
+Files in the 'vignettes' directory but no files in 'inst/doc':
+  ‘Raster_geoms.Rmd’
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... WARNING
+dir.exists(dir) is not TRUE
+Package vignette without corresponding single PDF/HTML:
+   ‘Raster_geoms.Rmd’
+
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* checking for non-standard things in the check directory ... OK
+* checking for detritus in the temp directory ... OK
+* DONE
+Status: 4 WARNINGs, 4 NOTEs
