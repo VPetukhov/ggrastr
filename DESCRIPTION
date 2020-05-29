@@ -12,7 +12,7 @@ Imports:
   Cairo (>= 1.5.9),
 Depends:
   R (>= 3.2.2)
-RoxygenNote: 6.1.0
+RoxygenNote: 7.1.0
 Suggests:
   ggbeeswarm,
   knitr,
