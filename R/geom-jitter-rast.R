@@ -2,6 +2,9 @@
 #'
 #' @inheritParams geom_point_rast
 #' @inheritSection ggplot2::geom_point Aesthetics
+#' @param width Amount of vertical and horizontal jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here. Refer to ggplot2::position_jitter.
+#' @param height Amount of vertical and horizontal jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here. Refer to ggplot2::position_jitter.
+#' @param seed A random seed to make the jitter reproducible. Refer to ggplot2::position_jitter.
 #'
 #' @examples
 #' library(ggplot2)
@@ -25,7 +28,7 @@ geom_jitter_rast <- function(
   raster.width = NULL, raster.height = NULL, raster.dpi = 300
 ) {
 
-  ggplot2::position = position_jitter(width = NULL, height = NULL, seed = NA)
+  position = ggplot2::position_jitter(width = NULL, height = NULL, seed = NA)
 
   ggplot2::layer(
     data = data,
