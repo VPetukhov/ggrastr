@@ -82,6 +82,9 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{raster.dpi}{Resolution of the result image.}
 }
+\value{
+geom_beeswarm plot with rasterized layer
+}
 \description{
 This geom is similar to \code{\link[ggbeeswarm]{geom_beeswarm}}, but creates a raster layer
 }

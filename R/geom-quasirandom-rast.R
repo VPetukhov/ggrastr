@@ -3,6 +3,7 @@
 #' @inheritParams geom_point_rast
 #' @inheritParams ggbeeswarm::position_quasirandom
 #' @inheritSection ggplot2::geom_point Aesthetics
+#' @return geom_quasirandom plot with rasterized layer
 #'
 #' @examples
 #' library(ggplot2)
