@@ -70,6 +70,9 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{raster.dpi}{Resolution of the result image.}
 }
+\value{
+geom_point plot with rasterized layer
+}
 \description{
 This geom is similar to \code{\link[ggplot2]{geom_point}}, but creates a raster layer
 }

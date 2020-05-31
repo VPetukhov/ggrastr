@@ -81,6 +81,9 @@ so the total spread is twice the value specified here. Default: 0.}
 
 \item{raster.height}{Height of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.}
 }
+\value{
+geom_boxplot plot with rasterized layer
+}
 \description{
 This geom is similar to \code{\link[ggplot2]{geom_boxplot}}, but allows to jitter outlier points and to raster points layer.
 }

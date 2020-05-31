@@ -70,6 +70,7 @@ GeomBoxplotJitter <- ggplot2::ggproto("GeomBoxplotJitter",
 #' @param raster.dpi Resolution of the rastered image. Ignored if \code{raster == FALSE}.
 #' @param raster.width Width of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.
 #' @param raster.height Height of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.
+#' @return geom_boxplot plot with rasterized layer
 #'
 #' @examples
 #' library(ggplot2)
