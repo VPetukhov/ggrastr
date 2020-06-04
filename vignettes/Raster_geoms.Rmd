@@ -27,7 +27,7 @@ points_num <- 500000
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
 gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=F)
 
-(gg_vec <- gg + geom_point(size=0.5))
+gg_vec <- gg + geom_point(size=0.5)
 ```
 
 In this case, the reasonable solution would be to rasterize the plot. But the problem is that all text becomes raster as well.
@@ -39,8 +39,8 @@ Raster layers were developed to prevent such a situation:
 The plots look the same, but the difference can be seen when they are exported to pdfs. Unfortunately, the price is longer rendering time.
 ```{r}
 PrintFileSize <- function(gg, name) {
-  invisible(ggsave('tmp.pdf', gg, width = 4, height = 4))
-  cat(name, ': ', file.info('tmp.pdf')$size / 1024, ' Kb.\n', sep = '')
+  invisible(ggsave(file.path(tempdir(), 'tmp.pdf'), gg, width = 4, height= 4))
+  cat(name, ': ', file.info(file.path(tempdir(), 'tmp.pdf'))$size / 1024, ' Kb.\n', sep = '')
   unlink('tmp.pdf')
 }
 

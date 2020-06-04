@@ -19,7 +19,7 @@ geom_quasirandom_rast <- function(
   position = 'quasirandom',
   width = NULL,
   varwidth = FALSE,
-  bandwidth =0.5,
+  bandwidth = 0.5,
   nbins = NULL,
   method = 'quasirandom',
   groupOnX = NULL,
