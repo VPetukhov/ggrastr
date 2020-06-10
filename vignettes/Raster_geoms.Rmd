@@ -1,0 +1,118 @@
+---
+title: "Raster geoms"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{"Raster geoms"}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Raster points
+### Points
+Sometimes you need to publish a figure in a vector format:
+```{r, fig.width=4, fig.height=4}
+library(ggplot2)
+library(ggrastr)
+
+points_num <- 50  
+df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
+gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=F)
+
+(gg_vec <- gg + geom_point(size=0.5))
+```
+
+But in other cases, your figure contains thousands of points, e.g. try `points_num <- 500000` in the example above, and you will notice the performance issues. 
+In this case, the reasonable solution would be to rasterize the plot. But the problem is that all text becomes raster as well.
+Raster layers were developed to prevent such a situation:
+```{r, fig.width=4, fig.height=4}
+(gg_rast <- gg + geom_point_rast(size=0.5))
+```
+
+The plots look the same, but the difference can be seen when they are exported to pdfs. Unfortunately, the price is longer rendering time.
+```{r}
+PrintFileSize <- function(gg, name) {
+  invisible(ggsave('tmp.pdf', gg, width = 4, height = 4))
+  cat(name, ': ', file.info('tmp.pdf')$size / 1024, ' Kb.\n', sep = '')
+  unlink('tmp.pdf')
+}
+
+PrintFileSize(gg_rast, 'Raster')
+PrintFileSize(gg_vec, 'Vector')
+```
+
+As expected, the difference becomes larger with growth of number of points:
+```{r}
+points_num <- 1000000
+df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
+gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=F)
+
+gg_vec <- gg + geom_point(size=0.5)
+gg_rast <- gg + geom_point_rast(size=0.5)
+
+PrintFileSize(gg_rast, 'Raster')
+PrintFileSize(gg_vec, 'Vector')
+```
+
+### Tile
+Heatmaps also don't work well with vector formats:
+```{r}
+coords <- expand.grid(1:100, 1:100)
+coords$Value <- 1 / apply(as.matrix(coords), 1, function(x) sum((x - c(50, 50))^2)^0.01)
+ggplot(coords) + geom_tile(aes(x=Var1, y=Var2, fill=Value))
+ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
+```
+
+
+### Boxplot outliers
+Another type of plots with a potentially large number of small objects is geom_boxplot:
+```{r, fig.width=5, fig.height=4}
+points_num <- 100
+df <- data.frame(x=as.factor(1:points_num %% 2), y=log(abs(rcauchy(points_num))))
+gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=F)
+
+gg + geom_boxplot()
+```
+
+Try the above example with `points_num <- 100000` or a larger integer---it will take quite long to render, far longer than allowed via CRAN. 
+
+With large number of objects, outlier points become noninformative. It's better to jitter them:
+```{r, fig.width=4, fig.height=3}
+gg_vec <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width = 0.3, outlier.alpha=0.5)
+gg_vec
+```
+
+And this geom can be rasterized as well:
+```{r, fig.width=4, fig.height=3}
+gg_rast <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width = 0.3, outlier.alpha=0.5, raster=T, raster.dpi = 200)
+gg_rast
+```
+
+
+```{r}
+PrintFileSize(gg_rast, 'Raster')
+PrintFileSize(gg_vec, 'Vector')
+```
+
+## Troubleshooting
+In the current version, legends can disturb raster plots:
+```{r, fig.width=2, fig.height=4}
+points_num <- 10
+df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
+ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5)
+```
+
+To restore the side ratio, teh parameters width and height can be used:
+```{r, fig.width=2, fig.height=4}
+points_num <- 10
+df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
+ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5, raster.width = 1)
+```
