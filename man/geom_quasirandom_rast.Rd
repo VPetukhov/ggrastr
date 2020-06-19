@@ -92,6 +92,9 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{raster.dpi}{Resolution of the result image.}
 }
+\value{
+geom_quasirandom plot with rasterized layer
+}
 \description{
 This geom is similar to \code{\link[ggbeeswarm]{geom_quasirandom}}, but creates a raster layer
 }
@@ -115,6 +118,9 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 }
 
 \examples{
+library(ggplot2)
+library(ggrastr)
+
 ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
 
 }

@@ -49,13 +49,13 @@ layer, as a string.}
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{priority}{Method used to perform point layout (see \code{\link{swarmx}})}
+\item{priority}{Method used to perform point layout (see ggbeeswarm::position_beeswarm)}
 
-\item{cex}{Scaling for adjusting point spacing (see \code{\link{swarmx}})}
+\item{cex}{Scaling for adjusting point spacing (see ggbeeswarm::position_beeswarm)}
 
-\item{groupOnX}{if TRUE then jitter is added to the x axis and if FALSE jitter is added to the y axis. Prior to v0.6.0, the default NULL causes the function to guess which axis is the categorical one based on the number of unique entries in each. This could result in unexpected results when the x variable has few unique values and so in v0.6.0 the default was changed to always jitter on the x axis unless groupOnX=FALSE. Also consider \code{\link[ggplot2]{coord_flip}}.}
+\item{groupOnX}{Should jitter be added to the x axis if TRUE or y axis if FALSE (the default NULL causes the function to guess which axis is the categorical one based on the number of unique entries in each) Refer to see ggbeeswarm::position_beeswarm}
 
-\item{dodge.width}{Amount by which points from different aesthetic groups will be dodged. This requires that one of the aesthetics is a factor.}
+\item{dodge.width}{Amount by which points from different aesthetic groups will be dodged. This requires that one of the aesthetics is a factor. (see ggbeeswarm::position_beeswarm)}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
@@ -82,29 +82,16 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{raster.dpi}{Resolution of the result image.}
 }
+\value{
+geom_beeswarm plot with rasterized layer
+}
 \description{
 This geom is similar to \code{\link[ggbeeswarm]{geom_beeswarm}}, but creates a raster layer
 }
-\section{Aesthetics}{
-
-
-\code{geom_point()} understands the following aesthetics (required aesthetics are in bold):
-\itemize{
-\item \strong{\code{x}}
-\item \strong{\code{y}}
-\item \code{alpha}
-\item \code{colour}
-\item \code{fill}
-\item \code{group}
-\item \code{shape}
-\item \code{size}
-\item \code{stroke}
-}
-Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
-
-}
-
 \examples{
+library(ggplot2)
+library(ggrastr)
+
 ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600, cex = 1.5)
 
 }

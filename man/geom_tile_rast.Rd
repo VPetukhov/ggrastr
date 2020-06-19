@@ -70,6 +70,9 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{raster.dpi}{Resolution of the result image.}
 }
+\value{
+geom_tile plot with rasterized layer
+}
 \description{
 This geom is similar to \code{\link[ggplot2]{geom_tile}}, but creates a raster layer
 }
@@ -94,6 +97,9 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 }
 
 \examples{
+library(ggplot2)
+library(ggrastr)
+
 coords <- expand.grid(1:100, 1:100)
 coords$Value <- 1 / apply(as.matrix(coords), 1, function(x) sum((x - c(50, 50))^2)^0.01)
 ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
