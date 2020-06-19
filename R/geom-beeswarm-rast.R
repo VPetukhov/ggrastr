@@ -30,7 +30,7 @@ geom_beeswarm_rast <- function(
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
-  raster.width=NULL, raster.height=NULL, raster.dpi=300
+  raster.width = NULL, raster.height = NULL, raster.dpi = 300
 ) {
 
   position <- ggbeeswarm::position_beeswarm(priority = priority, cex = cex,

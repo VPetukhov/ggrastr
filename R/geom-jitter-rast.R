@@ -6,6 +6,7 @@
 #' @param width Amount of vertical and horizontal jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here. Refer to ggplot2::position_jitter.
 #' @param height Amount of vertical and horizontal jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here. Refer to ggplot2::position_jitter.
 #' @param seed A random seed to make the jitter reproducible. Refer to ggplot2::position_jitter.
+#' @return geom_point_rast plot with rasterized layer
 #'
 #' @examples
 #' library(ggplot2)
