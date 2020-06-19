@@ -1,4 +1,9 @@
 # Changelog
+
+## [0.1.8] - 2020-06-19
+* Revisions for first version on CRAN. 
+* Documentation revisions, changes to the vignettes
+
 ## [0.1.7] - 2018-12-02
 ### Fixed
 * All pararmeters `width`, `hight` and `dpi` renamed to `raster.width`, `raster.hight` and `raster.dpi` correspondingly to avoid name conflicts.
