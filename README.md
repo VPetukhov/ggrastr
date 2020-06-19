@@ -4,6 +4,15 @@
 Provides set of geoms to rasterize only specific layers of the plot (e.g. large scatterplots) keeping all labels and text in vector format. Allows to keep your plots within the reasonable size limit without loosing vector properties of the scale-sensitive information.
 
 ## Installation
+
+To install the stable version from CRAN, use:
+
+```r
+install.packages('ggrastr')
+```
+
+To install the latest version:
+
 ```r
 install.packages('devtools')
 devtools::install_github('VPetukhov/ggrastr')
