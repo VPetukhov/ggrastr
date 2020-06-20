@@ -1,7 +1,8 @@
-# ggrastr package
 [![Build Status](https://travis-ci.com/VPetukhov/ggrastr.svg?branch=master)](https://travis-ci.com/VPetukhov/ggrastr)
 
-Provides set of geoms to rasterize only specific layers of the plot (e.g. large scatterplots) keeping all labels and text in vector format. Allows to keep your plots within the reasonable size limit without loosing vector properties of the scale-sensitive information.
+# ggrastr
+
+Provides set of geoms to rasterize only specific layers of the plot (e.g. large scatterplots with many points), while keeping all labels and text in vector format. This allows users , build_vignettes = TRUEto keep plots within the reasonable size limit without loosing vector properties of the scale-sensitive information.
 
 ## Installation
 
@@ -15,7 +16,7 @@ To install the latest version:
 
 ```r
 install.packages('devtools')
-devtools::install_github('VPetukhov/ggrastr')
+devtools::install_github('VPetukhov/ggrastr', build_vignettes = TRUE)
 ```
 
 ## New geoms:
@@ -28,12 +29,12 @@ devtools::install_github('VPetukhov/ggrastr')
 For more details see [vignette](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/inst/doc/Raster_geoms.html).
 
 ## Troubleshooting
-If your rsession crashes when you try to render rasterized plot, probably your version of Cairo was built for another 
+If your R Session crashes when you try to render a rasterized plot, it's probably the case that your version of Cairo was built for another 
 version of R (see [Upgrading to a new version of R](http://shiny.rstudio.com/articles/upgrade-R.html)). To check if 
-you use a proper version run the command below and ensure that "Built" version is the same as your R version.
+you are using a proper version, run the command below and ensure that the "Built" version is the same as your R version.
 ```r
 pkgs <- as.data.frame(installed.packages(), stringsAsFactors = F, row.names = F)
 pkgs[pkgs$Package == 'Cairo', c("Package", "LibPath", "Version", "Built")]
 ```
 
-To ensure that your Cairo works, just run `Cairo::Cairo(type='raster'); dev.off()` and check if it crashes R session.
+To ensure that Cairo works, just run `Cairo::Cairo(type='raster'); dev.off()` and check if it crashes your R session.
