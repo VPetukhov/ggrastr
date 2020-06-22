@@ -2,7 +2,7 @@
 
 # ggrastr
 
-Provides set of geoms to rasterize only specific layers of the plot (e.g. large scatterplots with many points), while keeping all labels and text in vector format. This allows users , build_vignettes = TRUEto keep plots within the reasonable size limit without loosing vector properties of the scale-sensitive information.
+Provides a set of geoms to rasterize only specific layers of the plot (e.g. large scatterplots with many points), while keeping all labels and text in vector format. This allows users to keep plots within a reasonable size limit without loosing the vector properties of scale-sensitive information.
 
 ## Installation
 
@@ -21,6 +21,7 @@ devtools::install_github('VPetukhov/ggrastr', build_vignettes = TRUE)
 
 ## New geoms:
 * `geom_point_rast`: raster scatterplots
+* `geom_jitter_rast`: raster jittered scatterplots
 * `geom_boxplot_jitter`: boxplots that allows to jitter and rasterize outlier points
 * `geom_tile_rast`: raster heatmap
 * `geom_beeswarm_rast`: raster [bee swarm plots](https://github.com/eclarke/ggbeeswarm#geom_beeswarm)
