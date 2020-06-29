@@ -27,11 +27,18 @@ points_num <- 50
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
 gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=F)
 
-(gg_vec <- gg + geom_point(size=0.5))
+gg_vec <- gg + geom_point(size=0.5)
+print(gg_vec)
 ```
 
-But in other cases, your figure contains thousands of points, e.g. try `points_num <- 500000` in the example above, and you will notice the performance issues. 
-In this case, the reasonable solution would be to rasterize the plot. But the problem is that all text becomes raster as well.
+But in other cases, your figure contains thousands of points, e.g. try `points_num <- 500000` in the example above, and you will notice the performance issues---it takes significantly longer to render the plot. 
+
+![gg_vec_plot_500000](ggvec_50000_plot.png)
+
+
+
+
+In this case, a reasonable solution would be to rasterize the plot. But the problem is that all text becomes raster as well.
 Raster layers were developed to prevent such a situation:
 ```{r, fig.width=4, fig.height=4}
 (gg_rast <- gg + geom_point_rast(size=0.5))
