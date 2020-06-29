@@ -34,7 +34,7 @@ If your R session crashes when you try to render a rasterized plot, it's probabl
 version of R (see [Upgrading to a new version of R](http://shiny.rstudio.com/articles/upgrade-R.html)). To check if 
 you are using a proper version, run the command below and ensure that the "Built" version is the same as your R version.
 ```r
-pkgs <- as.data.frame(installed.packages(), stringsAsFactors = F, row.names = F)
+pkgs <- as.data.frame(installed.packages(), stringsAsFactors = FALSE, row.names = FALSE)
 pkgs[pkgs$Package == 'Cairo', c("Package", "LibPath", "Version", "Built")]
 ```
 
@@ -44,7 +44,7 @@ To ensure that Cairo works, try running `Cairo::Cairo(type='raster'); dev.off()`
 If you find `ggrastr` useful for your publication, please cite:
 
 ```
-Viktor Petukhov and Evan Biederstedt (2020). ggrastr: Raster Layers
-  for 'ggplot2'. R package version 0.1.9.
-  https://CRAN.R-project.org/package=ggrastr
+Viktor Petukhov and Evan Biederstedt (2020). 
+ggrastr: Raster Layers for 'ggplot2'. R package version 0.1.9.
+https://CRAN.R-project.org/package=ggrastr
 ```

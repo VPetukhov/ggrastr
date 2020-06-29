@@ -157,20 +157,43 @@ PrintFileSize(gg_boxplot_jitter_vec, 'Vector')
 The effect with many points and uninformative outliers is far easier to see using a larger number of points in the boxplots; we encourage users to try values such as `points_num <- 1000000` (or larger integers) themselves.
 
 
+### Beeswarm-style plots: geom_beeswarm_rast and geom_quasirandom
 
+ggrastr also allows users to create rasterized beeswarm plots. As described in the README for [ggbeeswarm](https://github.com/eclarke/ggbeeswarm), 
 
+> Beeswarm plots (aka column scatter plots or violin scatter plots) are a way of plotting points that would ordinarily overlap so that they fall next to each other instead. In addition to reducing overplotting, it helps visualize the density of the data at each point (similar to a violin plot), while still showing each data point individually.
+
+The ggrastr geom `geom_beeswarm_rast` is similar to `ggbeeswarm::geom_beeswarm()`, but it provides a rasterized layer:
+
+```{r}
+library(ggplot2)
+library(ggrastr)
+
+ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600, cex = 1.5)
+```
+
+Analogously, `geom_quasirandom_rast` is much like `ggbeeswarm::geom_quasirandom()`, but with a rasterized layer:
+
+```{r}
+library(ggplot2)
+library(ggrastr)
+
+ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
+```
+
+We encourage users to visit both https://CRAN.R-project.org/package=ggbeeswarm and the github repo at https://github.com/eclarke/ggbeeswarm for more details.
 
 
 ## Troubleshooting
 In the current version, legends can disturb raster plots:
-```{r, fig.width=2, fig.height=4}
+```{r, fig.width=3, fig.height=4}
 points_num <- 10
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
 ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5)
 ```
 
 To restore the side ratio, the parameters width and height can be used:
-```{r, fig.width=2, fig.height=4}
+```{r, fig.width=3, fig.height=4}
 points_num <- 10
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
 ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5, raster.width = 1)
