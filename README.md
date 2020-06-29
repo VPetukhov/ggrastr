@@ -27,7 +27,6 @@ devtools::install_github('VPetukhov/ggrastr', build_vignettes = TRUE)
 * `geom_beeswarm_rast`: raster [bee swarm plots](https://github.com/eclarke/ggbeeswarm#geom_beeswarm)
 * `geom_quasirandom`: raster [quasirandom scatterplot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
 
-For more details, see the [vignette](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/inst/doc/Raster_geoms.html).
 
 ## Troubleshooting
 If your R session crashes when you try to render a rasterized plot, it's probably the case that your version of Cairo was built for another 
