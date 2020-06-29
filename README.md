@@ -39,3 +39,12 @@ pkgs[pkgs$Package == 'Cairo', c("Package", "LibPath", "Version", "Built")]
 ```
 
 To ensure that Cairo works, try running `Cairo::Cairo(type='raster'); dev.off()` and check if it crashes your R session.
+
+## Citation
+If you find `ggrastr` useful for your publication, please cite:
+
+```
+Viktor Petukhov and Evan Biederstedt (2020). ggrastr: Raster Layers
+  for 'ggplot2'. R package version 0.1.9.
+  https://CRAN.R-project.org/package=ggrastr
+```
