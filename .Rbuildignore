@@ -3,3 +3,5 @@
 .travis.yml
 CHANGELOG.md
 ^LICENSE\.md$
+^doc$
+^Meta$
