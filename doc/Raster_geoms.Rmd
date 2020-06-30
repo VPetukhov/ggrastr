@@ -26,7 +26,7 @@ library(ggrastr)
 
 points_num <- 50  
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=F)
+gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=FALSE)
 
 gg_vec <- gg + geom_point(size=0.5)
 print(gg_vec)
@@ -47,7 +47,7 @@ print(gg_rast)
 The plots look the same, but the difference in size can be seen when they are exported to pdfs. Unfortunately, there is a longer rendering time to produce such plots:
 ```{r}
 PrintFileSize <- function(gg, name) {
-  invisible(ggsave('tmp.pdf', gg, width = 4, height = 4))
+  invisible(ggsave('tmp.pdf', gg, width=4, height=4))
   cat(name, ': ', file.info('tmp.pdf')$size / 1024, ' Kb.\n', sep = '')
   unlink('tmp.pdf')
 }
@@ -60,7 +60,7 @@ As expected, the difference becomes larger with growth of number of points:
 ```{r}
 points_num <- 1000000
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=F)
+gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=FALSE)
 
 gg_vec <- gg + geom_point(size=0.5)
 gg_rast <- gg + geom_point_rast(size=0.5)
@@ -80,9 +80,9 @@ library(ggrastr)
 
 points_num <- 5000 
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=F)
+gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=FALSE)
 
-gg_jitter_rast <- gg + geom_jitter_rast(raster.dpi = 600)
+gg_jitter_rast <- gg + geom_jitter_rast(raster.dpi=600)
 print(gg_jitter_rast)
 ```
 
@@ -121,7 +121,7 @@ library(ggrastr)
 
 points_num <- 500
 df <- data.frame(x=as.factor(1:points_num %% 2), y=log(abs(rcauchy(points_num))))
-gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=F)
+gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=FALSE)
 
 boxplot <- gg + geom_boxplot()
 print(boxplot)
@@ -136,22 +136,22 @@ For such a large number of points, it would be better to jitter them using `geom
 ```{r, fig.width=4, fig.height=3}
 points_num <- 500
 df <- data.frame(x=as.factor(1:points_num %% 2), y=log(abs(rcauchy(points_num))))
-gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=F)
+gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=FALSE)
 
-gg_boxplot_jitter_vec <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width = 0.3, outlier.alpha=0.5)
-print(gg_boxplot_jitter_vec)
+gg_box_vec <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5)
+print(gg_box_vec)
 ```
 
 And this geom can be rasterized as well:
 ```{r, fig.width=4, fig.height=3}
-gg_boxplot_jitter_rast <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width = 0.3, outlier.alpha=0.5, raster=TRUE, raster.dpi = 200)
-print(gg_boxplot_jitter_rast)
+gg_box_rast <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5, raster=TRUE, raster.dpi=200)
+print(gg_box_rast)
 ```
 
 
 ```{r}
-PrintFileSize(gg_boxplot_jitter_rast, 'Raster')
-PrintFileSize(gg_boxplot_jitter_vec, 'Vector')
+PrintFileSize(gg_box_rast, 'Raster')
+PrintFileSize(gg_box_vec, 'Vector')
 ```
 
 The effect with many points and uninformative outliers is far easier to see using a larger number of points in the boxplots; we encourage users to try values such as `points_num <- 1000000` (or larger integers) themselves.
@@ -169,7 +169,7 @@ The ggrastr geom `geom_beeswarm_rast` is similar to `ggbeeswarm::geom_beeswarm()
 library(ggplot2)
 library(ggrastr)
 
-ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600, cex = 1.5)
+ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y=mpg), raster.dpi=600, cex=1.5)
 ```
 
 Analogously, `geom_quasirandom_rast` is much like `ggbeeswarm::geom_quasirandom()`, but with a rasterized layer:
@@ -178,7 +178,7 @@ Analogously, `geom_quasirandom_rast` is much like `ggbeeswarm::geom_quasirandom(
 library(ggplot2)
 library(ggrastr)
 
-ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
+ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y=mpg), raster.dpi=600)
 ```
 
 We encourage users to visit both https://CRAN.R-project.org/package=ggbeeswarm and the github repo at https://github.com/eclarke/ggbeeswarm for more details.

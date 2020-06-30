@@ -139,13 +139,13 @@ df <- data.frame(x=as.factor(1:points_num %% 2), y=log(abs(rcauchy(points_num)))
 gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=FALSE)
 
 gg_box_vec <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5)
-print(gg_boxplot_jitter_vec)
+print(gg_box_vec)
 ```
 
 And this geom can be rasterized as well:
 ```{r, fig.width=4, fig.height=3}
 gg_box_rast <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5, raster=TRUE, raster.dpi=200)
-print(gg_boxplot_jitter_rast)
+print(gg_box_rast)
 ```
 
 
