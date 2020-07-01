@@ -2,6 +2,7 @@
 
 ## [0.1.9] - 2020-06-19
 * Added geom-jitter-rast
+* Revised vignettes to detail all functions
 
 ## [0.1.8] - 2020-06-19
 * Revisions for first version on CRAN. 
