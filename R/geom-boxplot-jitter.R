@@ -12,8 +12,9 @@ DrawGeomBoxplotJitter <- function(data, panel_params, coord, ...,
                                   ) {
   boxplot_grob <- ggplot2::GeomBoxplot$draw_group(data, panel_params, coord, ...)
   point_grob <- grep("geom_point.*", names(boxplot_grob$children))
-  if (length(point_grob) == 0)
+  if (length(point_grob) == 0){
     return(boxplot_grob)
+  }
 
   ifnotnull <- function(x, y) if(is.null(x)) y else x
 
