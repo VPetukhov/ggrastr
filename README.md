@@ -32,7 +32,7 @@ If your rsession crashes when you try to render rasterized plot, probably your v
 version of R (see [Upgrading to a new version of R](http://shiny.rstudio.com/articles/upgrade-R.html)). To check if 
 you use a proper version run the command below and ensure that "Built" version is the same as your R version.
 ```r
-pkgs <- as.data.frame(installed.packages(), stringsAsFactors = F, row.names = F)
+pkgs <- as.data.frame(installed.packages(), stringsAsFactors = FALSE, row.names = FALSE)
 pkgs[pkgs$Package == 'Cairo', c("Package", "LibPath", "Version", "Built")]
 ```
 
