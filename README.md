@@ -28,7 +28,7 @@ devtools::install_github('VPetukhov/ggrastr', build_vignettes = TRUE)
 * `geom_quasirandom`: raster [quasirandom scatterplot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
 
 
-For more details, please see the [vignette](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/inst/doc/Raster_geoms.html).
+For more details, see the [vignette](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/doc/Raster_geoms.html).
 
 
 ## Troubleshooting
