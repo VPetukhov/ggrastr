@@ -25,7 +25,7 @@ devtools::install_github('VPetukhov/ggrastr', build_vignettes = TRUE)
 * `geom_boxplot_jitter`: boxplots that allows to jitter and rasterize outlier points
 * `geom_tile_rast`: raster heatmap
 * `geom_beeswarm_rast`: raster [bee swarm plots](https://github.com/eclarke/ggbeeswarm#geom_beeswarm)
-* `geom_quasirandom`: raster [quasirandom scatterplot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
+* `geom_quasirandom_rast`: raster [quasirandom scatterplot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
 
 
 For more details, please see the [vignette](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/inst/doc/Raster_geoms.html).
