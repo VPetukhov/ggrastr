@@ -8,15 +8,18 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
-  ggplot2 (>= 2.1.0),
-  Cairo (>= 1.5.9),
-  ggbeeswarm
+    ggplot2 (>= 2.1.0),
+    Cairo (>= 1.5.9),
+    ggbeeswarm,
+    grid
 Depends:
   R (>= 3.2.2)
 RoxygenNote: 7.1.1
 Suggests:
-  rmarkdown,
-  knitr
+    rmarkdown,
+    knitr,
+    ragg,
+    png
 VignetteBuilder: knitr
 URL: https://github.com/VPetukhov/ggrastr
 BugReports: https://github.com/VPetukhov/ggrastr/issues
