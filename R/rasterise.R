@@ -29,21 +29,6 @@
 rasterise <- function(layer, dpi = NULL, dev = "cairo") {
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
-  # For ragg deviced, check if they are installed
-  if (!startsWith(dev, "ragg")) {
-    if (!requireNamespace("ragg", quietly  = TRUE)) {
-      stop("Package `ragg` required for `rasterise()` with ",
-           "ragg device settings.", call. = FALSE)
-    }
-    if (dev == "ragg_png") {
-      # The png package is needed to read .png files
-      if (!requireNamespace("png", quietly  = TRUE)) {
-        stop("Package `png` required for `rasterise()` with",
-             "'ragg_png' device settings.", call. = FALSE)
-      }
-    }
-  }
-
   if (!inherits(layer, "Layer")) {
     stop("Cannot rasterise an object of class `", class(layer)[1], "`.",
          call. = FALSE)
