@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/VPetukhov/ggrastr.svg?branch=master)](https://travis-ci.com/VPetukhov/ggrastr)
-[![CRAN status](https://www.r-pkg.org/badges/version/ggrastr)](https://cran.r-project.org/package=workflowr)
-[![CRAN downloads](https://cranlogs.r-pkg.org/badges/ggrastr)](https://cran.r-project.org/package=workflowr)
+[![CRAN status](https://www.r-pkg.org/badges/version/ggrastr)](https://cran.r-project.org/package=ggrastr)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/ggrastr)](https://cran.r-project.org/package=ggrastr)
 
 # ggrastr
 
