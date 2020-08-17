@@ -1,17 +1,15 @@
 #' Rasterise ggplot layers
-#'
 #' Takes a ggplot layer as input and renders their graphical output as a raster.
 #'
+#' @author Teun van den Brand <t.vd.brand@nki.nl>
 #' @param layer A \code{Layer} object, typically constructed with a call to a
 #'   \code{geom_*()} or \code{stat_*()} function.
 #' @param dpi An \code{integer} of length one setting the desired resolution in
-#'   dots per inch.
+#'   dots per inch. (default=NULL)
 #' @param dev A \code{character} specifying a device. Can be one of:
-#'   \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}.
+#'   \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
 #'
 #' @return A modified \code{Layer} object.
-#' @export
-#'
 #' @examples
 #' require(ggplot2)
 #' # `rasterise()` is used to wrap layers
@@ -26,6 +24,8 @@
 #' require(ragg)
 #' ggplot(diamonds, aes(carat, depth, z = price)) +
 #'   rasterise(stat_summary_hex(), dev = "ragg")
+#'
+#' @export
 rasterise <- function(layer, dpi = NULL, dev = "cairo") {
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
