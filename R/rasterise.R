@@ -4,10 +4,8 @@
 #' @author Teun van den Brand <t.vd.brand@nki.nl>
 #' @param layer A \code{Layer} object, typically constructed with a call to a
 #'   \code{geom_*()} or \code{stat_*()} function.
-#' @param dpi An \code{integer} of length one setting the desired resolution in
-#'   dots per inch. (default=NULL)
-#' @param dev A \code{character} specifying a device. Can be one of:
-#'   \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
+#' @param dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
+#' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
 #'
 #' @return A modified \code{Layer} object.
 #' @examples
@@ -30,8 +28,7 @@ rasterise <- function(layer, dpi = NULL, dev = "cairo") {
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
   if (!inherits(layer, "Layer")) {
-    stop("Cannot rasterise an object of class `", class(layer)[1], "`.",
-         call. = FALSE)
+    stop("Cannot rasterise an object of class `", class(layer)[1], "`. Must be either 'cairo', 'ragg', or 'ragg_png'.", call. = FALSE)
   }
 
   # Take geom from input layer

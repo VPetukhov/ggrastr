@@ -3,7 +3,8 @@
 #' @inheritParams ggplot2::geom_boxplot
 #' @inheritSection ggplot2::geom_boxplot Aesthetics
 #'
-#' @param raster.dpi Resolution of the rastered image. 
+#' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
+#' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
 #' @return geom_boxplot plot with rasterized layer
 #'
 #' @examples
@@ -15,6 +16,6 @@
 #' ggplot() + geom_boxplot_jitter(aes(y=yvalues, x=xvalues), outlier.jitter.width = 0.1)
 #'
 #' @export
-geom_boxplot_jitter <- function(..., raster.dpi=300){
-  rasterise(geom_boxplot(...), dpi=raster.dpi) 
+geom_boxplot_jitter <- function(..., raster.dpi=300, dev="cairo"){
+  rasterise(geom_boxplot(...), dpi=raster.dpi, dev=dev) 
 }

@@ -3,7 +3,8 @@
 #' @inheritParams ggplot2::geom_tile
 #' @inheritSection ggplot2::geom_tile Aesthetics
 #'
-#' @param raster.dpi Resolution of the result image.
+#' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
+#' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
 #' @return geom_tile plot with rasterized layer
 #'
 #' @examples
@@ -15,6 +16,6 @@
 #' ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
 #'
 #' @export
-geom_tile_rast <- function(..., raster.dpi=300) {
-  rasterise(geom_tile(...), dpi=raster.dpi)
+geom_tile_rast <- function(..., raster.dpi=300, dev="cairo") {
+  rasterise(geom_tile(...), dpi=raster.dpi, dev=dev)
 }

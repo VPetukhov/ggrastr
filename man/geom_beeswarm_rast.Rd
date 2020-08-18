@@ -4,7 +4,7 @@
 \alias{geom_beeswarm_rast}
 \title{This geom is similar to \code{\link[ggbeeswarm]{geom_beeswarm}}, but creates a raster layer}
 \usage{
-geom_beeswarm_rast(..., raster.dpi = 300)
+geom_beeswarm_rast(..., raster.dpi = 300, dev = "cairo")
 }
 \arguments{
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
@@ -12,7 +12,9 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
-\item{raster.dpi}{Resolution of the result image.}
+\item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
+
+\item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
 
 \item{priority}{Method used to perform point layout (see ggbeeswarm::position_beeswarm)}
 

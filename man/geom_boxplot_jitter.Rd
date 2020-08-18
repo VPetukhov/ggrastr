@@ -4,7 +4,7 @@
 \alias{geom_boxplot_jitter}
 \title{This geom is similar to \code{\link[ggplot2]{geom_boxplot}}, but allows to jitter outlier points and to raster points layer.}
 \usage{
-geom_boxplot_jitter(..., raster.dpi = 300)
+geom_boxplot_jitter(..., raster.dpi = 300, dev = "cairo")
 }
 \arguments{
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
@@ -12,7 +12,9 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
-\item{raster.dpi}{Resolution of the rastered image.}
+\item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
+
+\item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
 }
 \value{
 geom_boxplot plot with rasterized layer

@@ -14,11 +14,9 @@ rasterize(layer, dpi = NULL, dev = "cairo")
 \item{layer}{A \code{Layer} object, typically constructed with a call to a
 \code{geom_*()} or \code{stat_*()} function.}
 
-\item{dpi}{An \code{integer} of length one setting the desired resolution in
-dots per inch. (default=NULL)}
+\item{dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
 
-\item{dev}{A \code{character} specifying a device. Can be one of:
-\code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
+\item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
 }
 \value{
 A modified \code{Layer} object.

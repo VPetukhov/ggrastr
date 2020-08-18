@@ -3,6 +3,8 @@
 #' @inheritParams geom_point_rast
 #' @inheritParams ggbeeswarm::position_quasirandom
 #' @inheritSection ggplot2::geom_point Aesthetics
+#' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
+#' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
 #' @return geom_quasirandom plot with rasterized layer
 #'
 #' @examples
@@ -12,6 +14,6 @@
 #' ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
 #'
 #' @export
-geom_quasirandom_rast <- function(..., raster.dpi = 300) {
-  rasterise(ggbeeswarm::geom_quasirandom(...), dpi=raster.dpi)
+geom_quasirandom_rast <- function(..., raster.dpi = 300, dev="cairo") {
+  rasterise(ggbeeswarm::geom_quasirandom(...), dpi=raster.dpi, dev=dev)
 }
