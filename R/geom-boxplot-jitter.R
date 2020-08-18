@@ -3,14 +3,7 @@
 #' @inheritParams ggplot2::geom_boxplot
 #' @inheritSection ggplot2::geom_boxplot Aesthetics
 #'
-#' @param outlier.jitter.width Amount of horizontal jitter. The jitter is added in both positive and negative directions,
-#' so the total spread is twice the value specified here. Default: boxplot width.
-#' @param outlier.jitter.height Amount of horizontal jitter. The jitter is added in both positive and negative directions,
-#' so the total spread is twice the value specified here. Default: 0.
-#' @param raster Should outlier points be rastered?.
-#' @param raster.dpi Resolution of the rastered image. Ignored if \code{raster == FALSE}.
-#' @param raster.width Width of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.
-#' @param raster.height Height of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.
+#' @param raster.dpi Resolution of the rastered image. 
 #' @return geom_boxplot plot with rasterized layer
 #'
 #' @examples

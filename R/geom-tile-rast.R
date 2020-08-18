@@ -3,8 +3,6 @@
 #' @inheritParams ggplot2::geom_tile
 #' @inheritSection ggplot2::geom_tile Aesthetics
 #'
-#' @param raster.width Width of the result image (in inches). Default: deterined by the current device parameters.
-#' @param raster.height Height of the result image (in inches). Default: deterined by the current device parameters.
 #' @param raster.dpi Resolution of the result image.
 #' @return geom_tile plot with rasterized layer
 #'

@@ -4,8 +4,6 @@
 #' @inheritSection ggplot2::geom_point Aesthetics
 #'
 #' @import ggplot2
-#' @param raster.width Width of the result image (in inches). Default: deterined by the current device parameters.
-#' @param raster.height Height of the result image (in inches). Default: deterined by the current device parameters.
 #' @param raster.dpi Resolution of the result image.
 #' @return geom_point plot with rasterized layer
 #'
