@@ -4,13 +4,39 @@
 \alias{geom_quasirandom_rast}
 \title{This geom is similar to \code{\link[ggbeeswarm]{geom_quasirandom}}, but creates a raster layer}
 \usage{
-geom_quasirandom_rast(..., raster.dpi = 300, dev = "cairo")
+geom_quasirandom_rast(
+  ...,
+  width = NULL,
+  varwidth = FALSE,
+  bandwidth = 0.5,
+  nbins = NULL,
+  method = "quasirandom",
+  groupOnX = NULL,
+  dodge.width = 0,
+  raster.dpi = 300,
+  dev = "cairo"
+)
 }
 \arguments{
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
+
+\item{width}{the maximum amount of spread (default: 0.4)}
+
+\item{varwidth}{vary the width by the relative size of each group}
+
+\item{bandwidth}{the bandwidth adjustment to use when calculating density
+Smaller numbers (< 1) produce a tighter "fit". (default: 0.5)}
+
+\item{nbins}{the number of bins used when calculating density (has little effect with quasirandom/random distribution)}
+
+\item{method}{the method used for distributing points (quasirandom, pseudorandom, smiley or frowney)}
+
+\item{groupOnX}{if TRUE then jitter is added to the x axis and if FALSE jitter is added to the y axis. Prior to v0.6.0, the default NULL causes the function to guess which axis is the categorical one based on the number of unique entries in each. This could result in unexpected results when the x variable has few unique values and so in v0.6.0 the default was changed to always jitter on the x axis unless groupOnX=FALSE. Also consider \code{\link[ggplot2]{coord_flip}}.}
+
+\item{dodge.width}{Amount by which points from different aesthetic groups will be dodged. This requires that one of the aesthetics is a factor.}
 
 \item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
 

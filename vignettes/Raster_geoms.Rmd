@@ -144,7 +144,7 @@ print(gg_box_vec)
 
 And this geom can be rasterized as well:
 ```{r, fig.width=4, fig.height=3}
-gg_box_rast <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5, raster=TRUE, raster.dpi=200)
+gg_box_rast <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5, raster.dpi=200)
 print(gg_box_rast)
 ```
 

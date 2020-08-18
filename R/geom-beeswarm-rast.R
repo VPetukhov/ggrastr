@@ -19,7 +19,7 @@
 #' ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600, cex = 1.5)
 #'
 #' @export
-geom_beeswarm_rast <- function(..., raster.dpi = 300, dev="cairo") {
-  rasterise(ggbeeswarm::geom_beeswarm(...), dpi=raster.dpi, dev=dev)
+geom_beeswarm_rast <- function(..., priority= c("ascending", "descending", "density", "random", "none"), cex = 1, groupOnX = NULL, dodge.width = 0, raster.dpi = 300, dev="cairo") {
+  rasterise(ggbeeswarm::geom_beeswarm(..., priority=priority, cex=cex, groupOnX=groupOnX, dodge.width=dodge.width), dpi=raster.dpi, dev=dev)
 }
 

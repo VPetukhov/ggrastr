@@ -14,6 +14,6 @@
 #' ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
 #'
 #' @export
-geom_quasirandom_rast <- function(..., raster.dpi = 300, dev="cairo") {
-  rasterise(ggbeeswarm::geom_quasirandom(...), dpi=raster.dpi, dev=dev)
+geom_quasirandom_rast <- function(..., width = NULL, varwidth = FALSE, bandwidth = 0.5, nbins = NULL, method = "quasirandom", groupOnX = NULL, dodge.width = 0, raster.dpi = 300, dev="cairo") {
+  rasterise(ggbeeswarm::geom_quasirandom(..., width = width, varwidth = varwidth, bandwidth = bandwidth, nbins = nbins, method = method, groupOnX = groupOnX, dodge.width = dodge.width), dpi=raster.dpi, dev=dev)
 }

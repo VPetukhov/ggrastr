@@ -4,17 +4,21 @@
 \alias{geom_beeswarm_rast}
 \title{This geom is similar to \code{\link[ggbeeswarm]{geom_beeswarm}}, but creates a raster layer}
 \usage{
-geom_beeswarm_rast(..., raster.dpi = 300, dev = "cairo")
+geom_beeswarm_rast(
+  ...,
+  priority = c("ascending", "descending", "density", "random", "none"),
+  cex = 1,
+  groupOnX = NULL,
+  dodge.width = 0,
+  raster.dpi = 300,
+  dev = "cairo"
+)
 }
 \arguments{
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
-
-\item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
-
-\item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
 
 \item{priority}{Method used to perform point layout (see ggbeeswarm::position_beeswarm)}
 
@@ -23,6 +27,10 @@ to the paired geom/stat.}
 \item{groupOnX}{Should jitter be added to the x axis if TRUE or y axis if FALSE (the default NULL causes the function to guess which axis is the categorical one based on the number of unique entries in each) Refer to see ggbeeswarm::position_beeswarm}
 
 \item{dodge.width}{Amount by which points from different aesthetic groups will be dodged. This requires that one of the aesthetics is a factor. (see ggbeeswarm::position_beeswarm)}
+
+\item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
+
+\item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
 }
 \value{
 geom_beeswarm plot with rasterized layer
