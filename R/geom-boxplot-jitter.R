@@ -12,9 +12,9 @@
 #'
 #' yvalues = rt(1000, df=3)
 #' xvalues = as.factor(1:1000 %% 2)
-#' ggplot() + geom_boxplot_jitter(aes(y=yvalues, x=xvalues), outlier.jitter.width = 0.1, raster = TRUE)
+#' ggplot() + geom_boxplot_jitter(aes(y=yvalues, x=xvalues), outlier.jitter.width = 0.1)
 #'
 #' @export
-geom_boxplot_jitter <- function(..., raster.dpi=300){
-  rasterise(geom_boxplot(...), dpi=raster.dpi)
+geom_boxplot_jitter <- function(..., raster.dpi=300, width = NULL, height = NULL, seed = NA){
+  rasterise(geom_boxplot(...), dpi=raster.dpi) 
 }
