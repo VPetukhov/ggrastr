@@ -50,13 +50,13 @@ plot + rasterise(geom_point(), dpi = 5, dev = "cairo")
 
 ```{r, fig.width=4, fig.height=4}
 # Using 'ragg' gives better anti-aliasing but has unexpected alpha blending
-p + rasterise(geom_point(), dpi = 5, dev = "ragg")
+plot + rasterise(geom_point(), dpi = 5, dev = "ragg")
 ```
 
 
 ```{r, fig.width=4, fig.height=4}
 # Using 'ragg_png' solves the alpha blend, but requires writing a temporary file to disk
-p + rasterise(geom_point(), dpi = 5, dev = "ragg_png")
+plot + rasterise(geom_point(), dpi = 5, dev = "ragg_png")
 ```
 
 
