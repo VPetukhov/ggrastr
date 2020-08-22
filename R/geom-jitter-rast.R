@@ -3,9 +3,6 @@
 #' @inheritParams geom_point_rast
 #' @inheritSection ggplot2::geom_point Aesthetics
 #' @import ggplot2
-#' @param width Amount of vertical and horizontal jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here. Refer to ggplot2::position_jitter.
-#' @param height Amount of vertical and horizontal jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here. Refer to ggplot2::position_jitter.
-#' @param seed A random seed to make the jitter reproducible. Refer to ggplot2::position_jitter.
 #' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
 #' @return geom_point_rast plot with rasterized layer

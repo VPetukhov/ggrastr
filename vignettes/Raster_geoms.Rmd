@@ -39,7 +39,7 @@ Note that with ggrastr changes in version 0.2.0, when the aspect ratio is distor
 plot + rasterise(geom_point(), dpi = 72) + theme(aspect.ratio = 0.2)
 ```
 
-By default, plots are rendered with [cairo](https://cran.r-project.org/web/packages/Cairo/index.html). However, users now have the option to render plots with the [ragg](https://github.com/r-lib/ragg) device. The motivation for using `ragg` is that `ragg` can be faster and has better anti-aliasing. That being said, the default ragg device also has some alpha blending quirks. Because of these quirks, users are recommended to use the `ragg_png` option to work around the alpha blending.
+By default, plots are rendered with [cairo](https://CRAN.R-project.org/package=Cairo). However, users now have the option to render plots with the [ragg](https://github.com/r-lib/ragg) device. The motivation for using `ragg` is that `ragg` can be faster and has better anti-aliasing. That being said, the default ragg device also has some alpha blending quirks. Because of these quirks, users are recommended to use the `ragg_png` option to work around the alpha blending.
 
 The differences in devices are best seen at lower resolution:
 

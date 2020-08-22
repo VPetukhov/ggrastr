@@ -15,12 +15,6 @@ to the paired geom/stat.}
 \item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
 
 \item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
-
-\item{width}{Amount of vertical and horizontal jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here. Refer to ggplot2::position_jitter.}
-
-\item{height}{Amount of vertical and horizontal jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here. Refer to ggplot2::position_jitter.}
-
-\item{seed}{A random seed to make the jitter reproducible. Refer to ggplot2::position_jitter.}
 }
 \value{
 geom_point_rast plot with rasterized layer
