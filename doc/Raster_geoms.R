@@ -4,7 +4,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ---- fig.width=4, fig.height=4-----------------------------------------------
+## -----------------------------------------------------------------------------
 library(ggplot2)
 library(ggrastr)
 
@@ -12,23 +12,23 @@ plot <- ggplot(diamonds, aes(carat, price, colour = cut))
 
 plot + rasterise(geom_point(), dpi = 72) + theme(aspect.ratio = 1)
 
-## ---- fig.width=4, fig.height=4-----------------------------------------------
+## -----------------------------------------------------------------------------
 # Points remain round across different aspect ratios
 plot + rasterise(geom_point(), dpi = 72) + theme(aspect.ratio = 0.2)
 
-## ---- fig.width=4, fig.height=4-----------------------------------------------
+## -----------------------------------------------------------------------------
 # The default 'cairo' at dpi=5
 plot + rasterise(geom_point(), dpi = 5, dev = "cairo")
 
-## ---- fig.width=4, fig.height=4-----------------------------------------------
+## -----------------------------------------------------------------------------
 # Using 'ragg' gives better anti-aliasing but has unexpected alpha blending
 plot + rasterise(geom_point(), dpi = 5, dev = "ragg")
 
-## ---- fig.width=4, fig.height=4-----------------------------------------------
+## -----------------------------------------------------------------------------
 # Using 'ragg_png' solves the alpha blend, but requires writing a temporary file to disk
 plot + rasterise(geom_point(), dpi = 5, dev = "ragg_png")
 
-## ---- fig.width=4, fig.height=4-----------------------------------------------
+## -----------------------------------------------------------------------------
 # Facets won't warp points
 set.seed(123)
 plot + rasterise(geom_point(), dpi = 300) + facet_wrap(~ sample(1:3, nrow(diamonds), 2))
