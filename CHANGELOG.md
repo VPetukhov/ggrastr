@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.0] - 2020-08
+* Refactor code to use rasterise()
+* Updated vignettes accordingly
+
 ## [0.1.9] - 2020-06-19
 * Added geom-jitter-rast
 * Revised vignettes to detail all functions
