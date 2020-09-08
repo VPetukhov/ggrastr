@@ -21,16 +21,19 @@ install.packages('devtools')
 devtools::install_github('VPetukhov/ggrastr', build_vignettes = TRUE)
 ```
 
-## New geoms:
+## Rasterize any ggplot2 layer
+
+Note that with ggrastr version 0.2.0, any ggplot2 geom provided by the user can be rasterized with the function `rasterise()`. Furthermore, when the aspect ratio is distorted, points are rendered without distortion. 
+
+For more details and examples, see the [vignette](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/doc/Raster_geoms.html).
+
+## Geoms provided:
 * `geom_point_rast`: raster scatterplots
 * `geom_jitter_rast`: raster jittered scatterplots
 * `geom_boxplot_jitter`: boxplots that allows to jitter and rasterize outlier points
 * `geom_tile_rast`: raster heatmap
 * `geom_beeswarm_rast`: raster [bee swarm plots](https://github.com/eclarke/ggbeeswarm#geom_beeswarm)
 * `geom_quasirandom_rast`: raster [quasirandom scatterplot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
-
-
-For more details, see the [vignette](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/doc/Raster_geoms.html).
 
 
 ## Troubleshooting
