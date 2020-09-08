@@ -4,7 +4,7 @@
 
 # ggrastr
 
-Provides a set of ggplot2 [geoms](https://ggplot2.tidyverse.org/reference/#section-geoms) to rasterize only specific layers of the plot (e.g. large scatterplots with many points), while keeping all labels and text in vector format. This allows users to keep plots within a reasonable size limit without loosing the vector properties of scale-sensitive information. 
+Provides a set of ggplot2 [geoms](https://ggplot2.tidyverse.org/reference/#section-geoms) to rasterize only specific layers of the plot (e.g. large scatterplots with many points), while keeping all labels and text in vector format. This allows users to keep plots within a reasonable size limit without losing the vector properties of scale-sensitive information. 
 
 ## Installation
 
