@@ -4,6 +4,35 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
+## -----------------------------------------------------------------------------
+library(ggplot2)
+library(ggrastr)
+
+plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+
+plot + rasterise(geom_point(), dpi = 72) + theme(aspect.ratio = 1)
+
+## -----------------------------------------------------------------------------
+# Points remain round across different aspect ratios
+plot + rasterise(geom_point(), dpi = 72) + theme(aspect.ratio = 0.2)
+
+## -----------------------------------------------------------------------------
+# The default 'cairo' at dpi=5
+plot + rasterise(geom_point(), dpi = 5, dev = "cairo")
+
+## -----------------------------------------------------------------------------
+# Using 'ragg' gives better anti-aliasing but has unexpected alpha blending
+plot + rasterise(geom_point(), dpi = 5, dev = "ragg")
+
+## -----------------------------------------------------------------------------
+# Using 'ragg_png' solves the alpha blend, but requires writing a temporary file to disk
+plot + rasterise(geom_point(), dpi = 5, dev = "ragg_png")
+
+## -----------------------------------------------------------------------------
+# Facets won't warp points
+set.seed(123)
+plot + rasterise(geom_point(), dpi = 300) + facet_wrap(~ sample(1:3, nrow(diamonds), 2))
+
 ## ---- fig.width=4, fig.height=4-----------------------------------------------
 library(ggplot2)
 library(ggrastr)
@@ -84,7 +113,7 @@ gg_box_vec <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.
 print(gg_box_vec)
 
 ## ---- fig.width=4, fig.height=3-----------------------------------------------
-gg_box_rast <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5, raster=TRUE, raster.dpi=200)
+gg_box_rast <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5, raster.dpi=200)
 print(gg_box_rast)
 
 ## -----------------------------------------------------------------------------
@@ -111,5 +140,5 @@ ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5)
 ## ---- fig.width=3, fig.height=4-----------------------------------------------
 points_num <- 10
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5, raster.width = 1)
+ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5)
 

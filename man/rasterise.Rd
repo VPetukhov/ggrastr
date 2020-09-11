@@ -3,7 +3,8 @@
 \name{rasterise}
 \alias{rasterise}
 \alias{rasterize}
-\title{Rasterise ggplot layers}
+\title{Rasterise ggplot layers
+Takes a ggplot layer as input and renders their graphical output as a raster.}
 \usage{
 rasterise(layer, dpi = NULL, dev = "cairo")
 
@@ -13,16 +14,15 @@ rasterize(layer, dpi = NULL, dev = "cairo")
 \item{layer}{A \code{Layer} object, typically constructed with a call to a
 \code{geom_*()} or \code{stat_*()} function.}
 
-\item{dpi}{An \code{integer} of length one setting the desired resolution in
-dots per inch.}
+\item{dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
 
-\item{dev}{A \code{character} specifying a device. Can be one of:
-\code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}.}
+\item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
 }
 \value{
 A modified \code{Layer} object.
 }
 \description{
+Rasterise ggplot layers
 Takes a ggplot layer as input and renders their graphical output as a raster.
 }
 \examples{
@@ -39,4 +39,8 @@ ggplot(faithful, aes(eruptions, waiting)) +
 require(ragg)
 ggplot(diamonds, aes(carat, depth, z = price)) +
   rasterise(stat_summary_hex(), dev = "ragg")
+
+}
+\author{
+Teun van den Brand <t.vd.brand@nki.nl>
 }

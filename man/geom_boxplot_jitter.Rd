@@ -15,10 +15,7 @@ geom_boxplot_jitter(
   ...,
   outlier.jitter.width = NULL,
   outlier.jitter.height = 0,
-  raster = FALSE,
-  raster.dpi = 300,
-  raster.width = NULL,
-  raster.height = NULL
+  raster.dpi = 300
 )
 }
 \arguments{
@@ -73,13 +70,7 @@ so the total spread is twice the value specified here. Default: boxplot width.}
 \item{outlier.jitter.height}{Amount of horizontal jitter. The jitter is added in both positive and negative directions,
 so the total spread is twice the value specified here. Default: 0.}
 
-\item{raster}{Should outlier points be rastered?.}
-
 \item{raster.dpi}{Resolution of the rastered image. Ignored if \code{raster == FALSE}.}
-
-\item{raster.width}{Width of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.}
-
-\item{raster.height}{Height of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.}
 }
 \value{
 geom_boxplot plot with rasterized layer

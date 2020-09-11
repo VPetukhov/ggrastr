@@ -1,3 +1,18 @@
+
+GeomPointRast <- ggplot2::ggproto(
+  "GeomPointRast",
+  ggplot2::GeomPoint,
+  draw_panel = function(self, data, panel_params, coord, na.rm = FALSE,
+                        raster.dpi) {
+    grob <- ggproto_parent(GeomPoint, self)$draw_panel(
+      data, panel_params, coord, na.rm = na.rm
+    )
+    class(grob) <- c("rasterpoint", class(grob))
+    grob$dpi <- raster.dpi
+    grob
+  }
+)
+
 DrawGeomBoxplotJitter <- function(data, panel_params, coord, ...,
                                   outlier.jitter.width=NULL,
                                   outlier.jitter.height=0,
@@ -44,12 +59,7 @@ DrawGeomBoxplotJitter <- function(data, panel_params, coord, ...,
     stringsAsFactors = FALSE
   )
 
-  if (raster) {
-    boxplot_grob$children[[point_grob]] <- GeomPointRast$draw_panel(outliers, panel_params, coord, raster.width=raster.width,
-                                                                    raster.height=raster.height, raster.dpi=raster.dpi)
-  } else {
-    boxplot_grob$children[[point_grob]] <- ggplot2::GeomPoint$draw_panel(outliers, panel_params, coord)
-  }
+  boxplot_grob$children[[point_grob]] <- GeomPointRast$draw_panel(outliers, panel_params, coord, raster.dpi=raster.dpi)
 
   return(boxplot_grob)
 }
@@ -67,10 +77,7 @@ GeomBoxplotJitter <- ggplot2::ggproto("GeomBoxplotJitter",
 #' so the total spread is twice the value specified here. Default: boxplot width.
 #' @param outlier.jitter.height Amount of horizontal jitter. The jitter is added in both positive and negative directions,
 #' so the total spread is twice the value specified here. Default: 0.
-#' @param raster Should outlier points be rastered?.
 #' @param raster.dpi Resolution of the rastered image. Ignored if \code{raster == FALSE}.
-#' @param raster.width Width of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.
-#' @param raster.height Height of the result image (in inches). Default: deterined by the current device parameters. Ignored if \code{raster == FALSE}.
 #' @return geom_boxplot plot with rasterized layer
 #'
 #' @examples
@@ -88,8 +95,7 @@ geom_boxplot_jitter <- function(mapping = NULL, data = NULL,
                                 inherit.aes = TRUE, ...,
                                 outlier.jitter.width=NULL,
                                 outlier.jitter.height=0,
-                                raster=FALSE, raster.dpi=300,
-                                raster.width=NULL, raster.height=NULL
+                                raster.dpi=300
                                 ) {
   ggplot2::layer(
     geom = GeomBoxplotJitter, mapping = mapping, data = data, stat = stat,
@@ -97,7 +103,6 @@ geom_boxplot_jitter <- function(mapping = NULL, data = NULL,
     params = list(na.rm = na.rm,
                   outlier.jitter.width=outlier.jitter.width,
                   outlier.jitter.height=outlier.jitter.height,
-                  raster=raster, raster.dpi=raster.dpi,
-                  raster.width=raster.width, raster.height=raster.height,
+                  raster.dpi=raster.dpi,
                   ...))
 }
