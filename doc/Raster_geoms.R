@@ -119,7 +119,7 @@ boxplot <- gg + geom_boxplot()
 print(boxplot)
 
 ## ---- fig.width=4, fig.height=4-----------------------------------------------
-points_num <- 500
+points_num <- 50000
 df <- data.frame(x=as.factor(1:points_num %% 2), y=log(abs(rcauchy(points_num))))
 gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=FALSE)
 
