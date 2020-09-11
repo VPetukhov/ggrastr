@@ -93,6 +93,18 @@ gg_tile_rast <- ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
 PrintFileSize(gg_tile_rast, 'Raster')
 PrintFileSize(gg_tile_vec, 'Vector')
 
+## -----------------------------------------------------------------------------
+library(ggplot2)
+library(ggrastr)
+
+gg_violin_vec <- ggplot(mtcars, aes(factor(cyl), mpg)) + geom_violin()
+gg_violin_rast <- ggplot(mtcars) + geom_violin_rast(aes(factor(cyl), mpg))
+
+## -----------------------------------------------------------------------------
+## difference in size shown
+PrintFileSize(gg_tile_rast, 'Raster')
+PrintFileSize(gg_tile_vec, 'Vector')
+
 ## ---- fig.width=5, fig.height=4-----------------------------------------------
 library(ggplot2)
 library(ggrastr)

@@ -145,7 +145,7 @@ print(gg_jitter_rast)
 
 ### Tiles: Rasterize heatmaps with geom_tile_rast()
 
-Heatmaps also have similar issues with the default verctorized formats:
+Heatmaps also have similar issues with the default vectorized formats:
 
 
 ```{r}
@@ -167,7 +167,27 @@ PrintFileSize(gg_tile_vec, 'Vector')
 
 
 
-### Boxplots: jitter outliers and rasterize boxplots with geom_boxplot_jitter
+### Violinplots: Rasterize violin plots with geom_violin_rast()
+
+One can see a similar effect with violin plots:
+
+```{r}
+library(ggplot2)
+library(ggrastr)
+
+gg_violin_vec <- ggplot(mtcars, aes(factor(cyl), mpg)) + geom_violin()
+gg_violin_rast <- ggplot(mtcars) + geom_violin_rast(aes(factor(cyl), mpg))
+```
+
+```{r}
+## difference in size shown
+PrintFileSize(gg_tile_rast, 'Raster')
+PrintFileSize(gg_tile_vec, 'Vector')
+```
+
+
+
+### Boxplots: Jitter outliers and rasterize boxplots with geom_boxplot_jitter
 
 Another type of plots with a potentially large number of small objects is geom_boxplot:
 ```{r, fig.width=5, fig.height=4}
@@ -182,7 +202,7 @@ boxplot <- gg + geom_boxplot()
 print(boxplot)
 ```
 
-With large number of objects, outlier points become noninformative. For example, here is the rendered plot with `points_num <- 1000000`:
+With a large number of objects, outlier points become noninformative. For example, here is the rendered plot with `points_num <- 1000000`:
 
 ![boxplot_1000000](boxplot_1000000.png)
 
