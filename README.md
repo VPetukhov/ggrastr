@@ -38,7 +38,7 @@ For more details and examples, see the [vignette](https://htmlpreview.github.io/
 
 ## Troubleshooting
 If your R session crashes when you try to render a rasterized plot, it's probably the case that your version of Cairo was built for another 
-version of R (see [Upgrading to a new version of R](http://shiny.rstudio.com/articles/upgrade-R.html)). To check if 
+version of R (see [Upgrading to a new version of R](https://shiny.rstudio.com/articles/upgrade-R.html)). To check if 
 you are using a proper version, run the command below and ensure that the "Built" version is the same as your R version.
 ```r
 pkgs <- as.data.frame(installed.packages(), stringsAsFactors = FALSE, row.names = FALSE)
