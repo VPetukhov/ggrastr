@@ -7,7 +7,7 @@ GeomPointRast <- ggplot2::ggproto(
     grob <- ggproto_parent(GeomPoint, self)$draw_panel(
       data, panel_params, coord, na.rm = na.rm
     )
-    class(grob) <- c("rasteriser", class(grob))
+    class(grob) <- c("rasterpoint", class(grob))
     grob$dpi <- raster.dpi
     grob
   }

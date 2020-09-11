@@ -37,7 +37,7 @@ plot + rasterise(geom_point(), dpi = 300) + facet_wrap(~ sample(1:3, nrow(diamon
 library(ggplot2)
 library(ggrastr)
 
-points_num <- 50  
+points_num <- 10000
 df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
 gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=FALSE)
 
@@ -111,14 +111,14 @@ PrintFileSize(gg_tile_vec, 'Vector')
 library(ggplot2)
 library(ggrastr)
 
-points_num <- 500
+points_num <- 5000
 df <- data.frame(x=as.factor(1:points_num %% 2), y=log(abs(rcauchy(points_num))))
 gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=FALSE)
 
 boxplot <- gg + geom_boxplot()
 print(boxplot)
 
-## ---- fig.width=4, fig.height=3-----------------------------------------------
+## ---- fig.width=4, fig.height=4-----------------------------------------------
 points_num <- 500
 df <- data.frame(x=as.factor(1:points_num %% 2), y=log(abs(rcauchy(points_num))))
 gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=FALSE)
@@ -126,7 +126,7 @@ gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=FALSE)
 gg_box_vec <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5)
 print(gg_box_vec)
 
-## ---- fig.width=4, fig.height=3-----------------------------------------------
+## ---- fig.width=4, fig.height=4-----------------------------------------------
 gg_box_rast <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5, raster.dpi=200)
 print(gg_box_rast)
 
