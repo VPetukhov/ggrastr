@@ -80,7 +80,7 @@ gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=FALSE)
 gg_jitter_rast <- gg + geom_jitter_rast(raster.dpi=600)
 print(gg_jitter_rast)
 
-## -----------------------------------------------------------------------------
+## ---- fig.width=4, fig.height=4-----------------------------------------------
 library(ggplot2)
 library(ggrastr)
 
@@ -94,7 +94,7 @@ print(gg_tile_rast)
 PrintFileSize(gg_tile_rast, 'Raster')
 PrintFileSize(gg_tile_vec, 'Vector')
 
-## -----------------------------------------------------------------------------
+## ---- fig.width=4, fig.height=4-----------------------------------------------
 library(ggplot2)
 library(ggrastr)
 
@@ -134,13 +134,13 @@ print(gg_box_rast)
 PrintFileSize(gg_box_rast, 'Raster')
 PrintFileSize(gg_box_vec, 'Vector')
 
-## -----------------------------------------------------------------------------
+## ---- fig.width=4, fig.height=4-----------------------------------------------
 library(ggplot2)
 library(ggrastr)
 
 ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y=mpg), raster.dpi=600, cex=1.5)
 
-## -----------------------------------------------------------------------------
+## ---- fig.width=4, fig.height=4-----------------------------------------------
 library(ggplot2)
 library(ggrastr)
 

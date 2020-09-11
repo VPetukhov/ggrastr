@@ -148,7 +148,7 @@ print(gg_jitter_rast)
 Heatmaps also have similar issues with the default vectorized formats:
 
 
-```{r}
+```{r, fig.width=4, fig.height=4}
 library(ggplot2)
 library(ggrastr)
 
@@ -172,7 +172,7 @@ PrintFileSize(gg_tile_vec, 'Vector')
 
 One can see a similar effect with violin plots:
 
-```{r}
+```{r, fig.width=4, fig.height=4}
 library(ggplot2)
 library(ggrastr)
 
@@ -242,7 +242,7 @@ ggrastr also allows users to create rasterized beeswarm plots. As described in t
 
 The ggrastr geom `geom_beeswarm_rast` is similar to `ggbeeswarm::geom_beeswarm()`, but it provides a rasterized layer:
 
-```{r}
+```{r, fig.width=4, fig.height=4}
 library(ggplot2)
 library(ggrastr)
 
@@ -251,7 +251,7 @@ ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y=mpg), raster.dpi=600,
 
 Analogously, `geom_quasirandom_rast` is much like `ggbeeswarm::geom_quasirandom()`, but with a rasterized layer:
 
-```{r}
+```{r, fig.width=4, fig.height=4}
 library(ggplot2)
 library(ggrastr)
 
