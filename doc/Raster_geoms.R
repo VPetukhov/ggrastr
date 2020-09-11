@@ -88,6 +88,7 @@ coords <- expand.grid(1:500, 1:500)
 coords$Value <- 1 / apply(as.matrix(coords), 1, function(x) sum((x - c(50, 50))^2)^0.01)
 gg_tile_vec <- ggplot(coords) + geom_tile(aes(x=Var1, y=Var2, fill=Value))
 gg_tile_rast <- ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
+print(gg_tile_rast)
 
 ## -----------------------------------------------------------------------------
 PrintFileSize(gg_tile_rast, 'Raster')
@@ -99,6 +100,7 @@ library(ggrastr)
 
 gg_violin_vec <- ggplot(mtcars, aes(factor(cyl), mpg)) + geom_violin()
 gg_violin_rast <- ggplot(mtcars) + geom_violin_rast(aes(factor(cyl), mpg))
+print(gg_violin_rast)
 
 ## -----------------------------------------------------------------------------
 ## difference in size shown
@@ -143,14 +145,4 @@ library(ggplot2)
 library(ggrastr)
 
 ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y=mpg), raster.dpi=600)
-
-## ---- fig.width=3, fig.height=4-----------------------------------------------
-points_num <- 10
-df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5)
-
-## ---- fig.width=3, fig.height=4-----------------------------------------------
-points_num <- 10
-df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-ggplot(df, aes(x=x, y=y, color=c)) + geom_point_rast(size=0.5)
 
