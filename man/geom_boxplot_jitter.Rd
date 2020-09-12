@@ -7,6 +7,7 @@
 geom_boxplot_jitter(
   mapping = NULL,
   data = NULL,
+  dev = "cairo",
   stat = "boxplot",
   position = "dodge",
   na.rm = FALSE,
@@ -39,6 +40,8 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
+\item{dev}{A character specifying a device (default="cairo"). Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}.}
+
 \item{stat}{Use to override the default connection between
 \code{geom_boxplot} and \code{stat_boxplot}.}
 
@@ -65,12 +68,12 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 to the paired geom/stat.}
 
 \item{outlier.jitter.width}{Amount of horizontal jitter. The jitter is added in both positive and negative directions,
-so the total spread is twice the value specified here. Default: boxplot width.}
+so the total spread is twice the value specified here (default=NULL)}
 
 \item{outlier.jitter.height}{Amount of horizontal jitter. The jitter is added in both positive and negative directions,
-so the total spread is twice the value specified here. Default: 0.}
+so the total spread is twice the value specified here (default=0)}
 
-\item{raster.dpi}{Resolution of the rastered image. Ignored if \code{raster == FALSE}.}
+\item{raster.dpi}{Resolution of the rastered image (default=300). Ignored if \code{raster == FALSE}.}
 }
 \value{
 geom_boxplot plot with rasterized layer
