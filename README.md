@@ -27,7 +27,10 @@ Note that with ggrastr version 0.2.0, any ggplot2 geom provided by the user can 
 
 For more details and examples, see the [vignettes](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/doc/Raster_geoms.html).
 
-## Geoms provided:
+## Geoms provided
+
+We alo provide wrappers for several geoms to guarantee compatibility with an older version of `ggrast`. Though we encourage to use the `rasterise` function instead.
+
 * `geom_point_rast`: raster scatterplots
 * `geom_jitter_rast`: raster jittered scatterplots
 * `geom_boxplot_jitter`: boxplots that allows to jitter and rasterize outlier points
