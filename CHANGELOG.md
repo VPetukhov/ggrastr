@@ -5,6 +5,7 @@
 * Added `geom_violin_rast()` as a feature request
 * Updated vignettes accordingly
 * Updated README
+* Fixed aspect ratio problems. Consequently, `raster.width` and `raster.height` parameters were removed.
 
 ## [0.1.9] - 2020-06-19
 * Added geom-jitter-rast
