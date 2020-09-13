@@ -4,7 +4,7 @@
 
 # ggrastr
 
-Provides a set of ggplot2 [geoms](https://ggplot2.tidyverse.org/reference/#section-geoms) to rasterize only specific layers of the plot (e.g. large scatterplots with many points), while keeping all labels and text in vector format. This allows users to keep plots within a reasonable size limit without loosing the vector properties of scale-sensitive information. 
+Provides a set of ggplot2 [geoms](https://ggplot2.tidyverse.org/reference/#section-geoms) to rasterize only specific layers of the plot (e.g. large scatterplots with many points), while keeping all labels and text in vector format. This allows users to keep plots within a reasonable size limit without losing the vector properties of scale-sensitive information. 
 
 ## Installation
 
@@ -21,16 +21,19 @@ install.packages('devtools')
 devtools::install_github('VPetukhov/ggrastr', build_vignettes = TRUE)
 ```
 
-## New geoms:
+## Rasterize any ggplot2 layer
+
+Note that with ggrastr version 0.2.0, any ggplot2 geom provided by the user can be rasterized with the function `rasterise()`. Furthermore, when the aspect ratio is distorted, points are rendered without distortion. 
+
+For more details and examples, see the [vignettes](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/doc/Raster_geoms.html).
+
+## Geoms provided:
 * `geom_point_rast`: raster scatterplots
 * `geom_jitter_rast`: raster jittered scatterplots
 * `geom_boxplot_jitter`: boxplots that allows to jitter and rasterize outlier points
 * `geom_tile_rast`: raster heatmap
 * `geom_beeswarm_rast`: raster [bee swarm plots](https://github.com/eclarke/ggbeeswarm#geom_beeswarm)
 * `geom_quasirandom_rast`: raster [quasirandom scatterplot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
-
-
-For more details, see the [vignette](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/doc/Raster_geoms.html).
 
 
 ## Troubleshooting
@@ -48,7 +51,7 @@ To ensure that Cairo works, try running `Cairo::Cairo(type='raster'); dev.off()`
 If you find `ggrastr` useful for your publication, please cite:
 
 ```
-Viktor Petukhov and Evan Biederstedt (2020). 
+Viktor Petukhov, Teun van den Brand and Evan Biederstedt (2020).
 ggrastr: Raster Layers for 'ggplot2'. R package version 0.1.9.
 https://CRAN.R-project.org/package=ggrastr
 ```

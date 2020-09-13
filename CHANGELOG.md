@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.0] - 2020-08
+* Refactor code to use rasterise()
+* Added `geom_violin_rast()` as a feature request
+* Updated vignettes accordingly
+* Updated README
+
 ## [0.1.9] - 2020-06-19
 * Added geom-jitter-rast
 * Revised vignettes to detail all functions
