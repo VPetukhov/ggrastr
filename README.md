@@ -52,6 +52,6 @@ If you find `ggrastr` useful for your publication, please cite:
 
 ```
 Viktor Petukhov, Teun van den Brand and Evan Biederstedt (2020).
-ggrastr: Raster Layers for 'ggplot2'. R package version 0.1.9.
+ggrastr: Raster Layers for 'ggplot2'. R package version 0.2.1.
 https://CRAN.R-project.org/package=ggrastr
 ```
