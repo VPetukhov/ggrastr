@@ -43,7 +43,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{dev}{A character specifying a device (default="cairo"). Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}.}
 
 \item{stat}{Use to override the default connection between
-\code{geom_boxplot} and \code{stat_boxplot}.}
+\code{geom_boxplot()} and \code{stat_boxplot()}.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
