@@ -1,3 +1,4 @@
+
 language: r
 
 ## minimal travis config
@@ -7,6 +8,10 @@ language: r
 ## no tests, coverage
 ## check as CRAN
 
+before_install:
+  - sudo apt-get update -y 
+  - sudo apt-get -y install libglu1-mesa-dev libharfbuzz-dev libfribidi-dev 
+
 script:
   - R CMD build . --compact-vignettes=gs+qpdf
-  - R CMD check *tar.gz --as-cran 
+  - R CMD check *tar.gz ## without CRAN check, --as-cran
