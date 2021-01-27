@@ -73,7 +73,7 @@ plot + rasterise(geom_point(), dpi = 300) + facet_wrap(~ sample(1:3, nrow(diamon
 
 
 
-### Points: Rasterize scatterplots with geom_point_rast()
+### Points: Rasterize scatter plots with geom_point_rast()
 Sometimes you need to publish a figure in a vector format:
 ```{r, fig.width=4, fig.height=4}
 library(ggplot2)
@@ -124,9 +124,9 @@ PrintFileSize(gg_rast, 'Raster')
 PrintFileSize(gg_vec, 'Vector')
 ```
 
-### Jitter: Rasterize jittered scatterplots with geom_jitter_rast()
+### Jitter: Rasterize jittered scatter plots with geom_jitter_rast()
 
-Just like the example above with`geom_point_rast()`, users may also opt to create rasterized scatterplots with jitter. The geom `geom_jitter_rast()` is similar to `ggplot2::geom_jitter()`, but it creates a rasterized layer:
+Just like the example above with`geom_point_rast()`, users may also opt to create rasterized scatter plots with jitter. The geom `geom_jitter_rast()` is similar to `ggplot2::geom_jitter()`, but it creates a rasterized layer:
 
 
 ```{r, fig.width=4, fig.height=4}
