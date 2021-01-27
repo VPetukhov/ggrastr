@@ -28,7 +28,7 @@ to the paired geom/stat.}
 
 \item{dodge.width}{Amount by which points from different aesthetic groups will be dodged. This requires that one of the aesthetics is a factor. (see ggbeeswarm::position_beeswarm)}
 
-\item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
+\item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=300)}
 
 \item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
 }
