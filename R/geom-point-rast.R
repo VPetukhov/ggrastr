@@ -4,7 +4,7 @@
 #' @inheritSection ggplot2::geom_point Aesthetics
 #'
 #' @import ggplot2
-#' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
+#' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=300)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
 #' @return geom_point plot with rasterized layer
 #'
