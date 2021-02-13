@@ -16,7 +16,7 @@ geom_boxplot_jitter(
   ...,
   outlier.jitter.width = NULL,
   outlier.jitter.height = 0,
-  raster.dpi = 300
+  raster.dpi = getOption("ggrastr.default.dpi", 300)
 )
 }
 \arguments{

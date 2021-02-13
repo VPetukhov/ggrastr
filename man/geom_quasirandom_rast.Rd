@@ -13,7 +13,7 @@ geom_quasirandom_rast(
   method = "quasirandom",
   groupOnX = NULL,
   dodge.width = 0,
-  raster.dpi = 300,
+  raster.dpi = getOption("ggrastr.default.dpi", 300),
   dev = "cairo"
 )
 }

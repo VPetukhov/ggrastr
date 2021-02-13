@@ -4,7 +4,11 @@
 \alias{geom_point_rast}
 \title{This geom is similar to \code{\link[ggplot2]{geom_point}}, but creates a raster layer}
 \usage{
-geom_point_rast(..., raster.dpi = 300, dev = "cairo")
+geom_point_rast(
+  ...,
+  raster.dpi = getOption("ggrastr.default.dpi", 300),
+  dev = "cairo"
+)
 }
 \arguments{
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are

@@ -14,6 +14,6 @@
 #' ggplot(mpg) + geom_jitter_rast(aes(x = factor(cyl), y = hwy), raster.dpi = 600)
 #'
 #' @export
-geom_jitter_rast <- function(..., raster.dpi = 300, dev="cairo"){
+geom_jitter_rast <- function(..., raster.dpi = getOption("ggrastr.default.dpi", 300), dev="cairo"){
   rasterise(geom_jitter(...), dpi=raster.dpi, dev=dev)
 }

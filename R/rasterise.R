@@ -6,7 +6,7 @@
 #'   \code{geom_*()} or \code{stat_*()} function.
 #' @param dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
-#'
+#' @details The default \code{dpi} (\code{NULL} (= let device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{option("ggrastr.default.dpi", 30)} for drafting).
 #' @return A modified \code{Layer} object.
 #' @examples
 #' require(ggplot2)
@@ -24,7 +24,7 @@
 #'   rasterise(stat_summary_hex(), dev = "ragg")
 #'
 #' @export
-rasterise <- function(layer, dpi = NULL, dev = "cairo") {
+rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo") {
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
   if (!inherits(layer, "Layer")) {

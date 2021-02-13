@@ -14,6 +14,6 @@
 #' ggplot(mpg) + geom_violin_rast(aes(x = factor(cyl), y = hwy), raster.dpi = 600)
 #'
 #' @export
-geom_violin_rast = function(..., raster.dpi=300, dev="cairo"){
+geom_violin_rast = function(..., raster.dpi=getOption("ggrastr.default.dpi", 300), dev="cairo"){
   rasterise(geom_violin(...), dpi=raster.dpi, dev=dev)
 }

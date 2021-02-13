@@ -16,6 +16,6 @@
 #' ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
 #'
 #' @export
-geom_tile_rast <- function(..., raster.dpi=300, dev="cairo") {
+geom_tile_rast <- function(..., raster.dpi=getOption("ggrastr.default.dpi", 300), dev="cairo") {
   rasterise(geom_tile(...), dpi=raster.dpi, dev=dev)
 }

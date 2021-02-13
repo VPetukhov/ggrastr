@@ -15,6 +15,6 @@
 #' ggplot() + geom_point_rast(aes(x=rnorm(1000), y=rnorm(1000)), raster.dpi=600)
 #'
 #' @export
-geom_point_rast <- function(..., raster.dpi=300, dev="cairo") {
+geom_point_rast <- function(..., raster.dpi=getOption("ggrastr.default.dpi", 300), dev="cairo") {
   rasterise(geom_point(...), dpi=raster.dpi, dev=dev)
 }

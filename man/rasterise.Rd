@@ -6,9 +6,9 @@
 \title{Rasterise ggplot layers
 Takes a ggplot layer as input and renders their graphical output as a raster.}
 \usage{
-rasterise(layer, dpi = NULL, dev = "cairo")
+rasterise(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo")
 
-rasterize(layer, dpi = NULL, dev = "cairo")
+rasterize(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo")
 }
 \arguments{
 \item{layer}{A \code{Layer} object, typically constructed with a call to a
@@ -24,6 +24,9 @@ A modified \code{Layer} object.
 \description{
 Rasterise ggplot layers
 Takes a ggplot layer as input and renders their graphical output as a raster.
+}
+\details{
+The default \code{dpi} (\code{NULL} (= let device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{option("ggrastr.default.dpi", 30)} for drafting).
 }
 \examples{
 require(ggplot2)

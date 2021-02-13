@@ -4,7 +4,11 @@
 \alias{geom_violin_rast}
 \title{This geom is similar to \code{\link[ggplot2]{geom_violin}}, but creates a raster layer}
 \usage{
-geom_violin_rast(..., raster.dpi = 300, dev = "cairo")
+geom_violin_rast(
+  ...,
+  raster.dpi = getOption("ggrastr.default.dpi", 300),
+  dev = "cairo"
+)
 }
 \arguments{
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
