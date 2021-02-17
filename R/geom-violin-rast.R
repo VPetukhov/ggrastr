@@ -3,7 +3,7 @@
 #' @inheritParams ggplot2::geom_violin
 #' @inheritSection ggplot2::geom_violin Aesthetics
 #'
-#' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
+#' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=300)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
 #' @return geom_violin_rast plot with rasterized layer
 #'
@@ -14,6 +14,6 @@
 #' ggplot(mpg) + geom_violin_rast(aes(x = factor(cyl), y = hwy), raster.dpi = 600)
 #'
 #' @export
-geom_violin_rast = function(..., raster.dpi=300, dev="cairo"){
+geom_violin_rast = function(..., raster.dpi=getOption("ggrastr.default.dpi", 300), dev="cairo"){
   rasterise(geom_violin(...), dpi=raster.dpi, dev=dev)
 }

@@ -25,7 +25,9 @@ devtools::install_github('VPetukhov/ggrastr', build_vignettes = TRUE)
 
 Note that with `ggrastr` version 0.2.0, any ggplot2 geom provided by the user can be rasterized with the function `rasterise()`. Furthermore, when the aspect ratio is distorted, points are rendered without distortion. 
 
-For more details and examples, see the [vignettes](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/doc/Raster_geoms.html).
+For more details and examples, see the **vignettes:**
+* [HTML version](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/master/doc/Raster_geoms.html) 
+* [Markdown version](https://github.com/VPetukhov/ggrastr/blob/master/vignettes/Raster_geoms.md)
 
 ## Geoms provided
 

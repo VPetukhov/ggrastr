@@ -13,7 +13,7 @@ geom_quasirandom_rast(
   method = "quasirandom",
   groupOnX = NULL,
   dodge.width = 0,
-  raster.dpi = 300,
+  raster.dpi = getOption("ggrastr.default.dpi", 300),
   dev = "cairo"
 )
 }
@@ -38,7 +38,7 @@ Smaller numbers (< 1) produce a tighter "fit". (default: 0.5)}
 
 \item{dodge.width}{Amount by which points from different aesthetic groups will be dodged. This requires that one of the aesthetics is a factor.}
 
-\item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
+\item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=300)}
 
 \item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
 }

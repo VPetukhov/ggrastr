@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.2] - 2021-02-10
+* Add global option for `dpi` using `options(ggrastr.default.dpi=N)`. PR found here: https://github.com/VPetukhov/ggrastr/pull/21
+* Slight corrections to roxygen2 docs
+* Vignettes edited accordingly
+* Use both html and markdown for vignettes, link to README
+
+
+## [0.2.1] - 2020-09-14
+* Changes to be in sync with ggrastr version 0.2.1 on CRAN: https://cran.rstudio.com/src/contrib/ggrastr_0.2.1.tar.gz
+* Aesthetic revisions to the github README
+* Otherwise, this version mirrors https://github.com/VPetukhov/ggrastr/releases/tag/v0.2.0
+
+
 ## [0.2.0] - 2020-08
 * Refactor code to use rasterise()
 * Added `geom_violin_rast()` as a feature request
