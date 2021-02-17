@@ -2,6 +2,7 @@
 
 ## [0.2.2] - 2021-02-10
 * Add global option for `dpi` using `options(ggrastr.default.dpi=N)`. PR found here: https://github.com/VPetukhov/ggrastr/pull/21
+* Slight corrections to roxygen2 docs
 * Vignettes edited accordingly
 * Use both html and markdown for vignettes, link to README
 

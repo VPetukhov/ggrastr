@@ -238,7 +238,7 @@ PrintFileSize(gg_tile_vec, 'Vector')
 
 
 
-### Violinplots: Rasterize violin plots with geom_violin_rast()
+### Violin plots: Rasterize violin plots with geom_violin_rast()
 
 One can see a similar effect with violin plots:
 
@@ -265,9 +265,9 @@ PrintFileSize(gg_tile_vec, 'Vector')
 
 
 
-### Boxplots: Jitter outliers and rasterize boxplots with geom_boxplot_jitter
+### Box plots: Jitter outliers and rasterize box plots with geom_boxplot_jitter
 
-Another type of plots with a potentially large number of small objects is geom_boxplot:
+Another type of plot with a potentially large number of small objects is geom_boxplot:
 
 ```r
 library(ggplot2)
