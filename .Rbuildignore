@@ -3,7 +3,9 @@
 .travis.yml
 CHANGELOG.md
 ^LICENSE\.md$
-^vignettes\*.md$
-^vignettes\figure$
+^docker$
 ^doc$
 ^Meta$
+^vignettes\*.md$
+^vignettes\figure$
+vignettes/figure
