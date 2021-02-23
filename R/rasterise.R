@@ -24,7 +24,7 @@
 #'   rasterise(stat_summary_hex(), dev = "ragg")
 #'
 #' @export
-rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo") {
+rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) {
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
   if (!inherits(layer, "Layer")) {
@@ -62,8 +62,8 @@ rasterize <- rasterise
 makeContext.rasteriser <- function(x) {
   # Grab viewport information
   vp <- if(is.null(x$vp)) grid::viewport() else x$vp
-  width <- grid::convertWidth(unit(1, "npc"), "inch", valueOnly = TRUE)
-  height <- grid::convertHeight(unit(1, "npc"), "inch", valueOnly = TRUE)
+  width <- grid::convertWidth(unit(1, "npc"), "inch", valueOnly = TRUE)*scale
+  height <- grid::convertHeight(unit(1, "npc"), "inch", valueOnly = TRUE)*scale
 
   # Grab grob metadata
   dpi <- x$dpi
