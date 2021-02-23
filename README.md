@@ -8,7 +8,7 @@ Provides a set of ggplot2 [geoms](https://ggplot2.tidyverse.org/reference/#secti
 
 ## Installation
 
-To install the stable version from CRAN, use:
+To install the stable version from [CRAN](https://cran.rstudio.com/web/packages/ggrastr/index.html), use:
 
 ```r
 install.packages('ggrastr')
