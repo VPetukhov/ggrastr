@@ -45,6 +45,7 @@ rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cair
         class(grob) <- c("rasteriser", class(grob))
         grob$dpi <- dpi
         grob$dev <- dev
+        grob$scale <- scale
         return(grob)
       }
     )
@@ -62,8 +63,8 @@ rasterize <- rasterise
 makeContext.rasteriser <- function(x) {
   # Grab viewport information
   vp <- if(is.null(x$vp)) grid::viewport() else x$vp
-  width <- grid::convertWidth(unit(1, "npc"), "inch", valueOnly = TRUE)*scale
-  height <- grid::convertHeight(unit(1, "npc"), "inch", valueOnly = TRUE)*scale
+  width <- grid::convertWidth(unit(1, "npc"), "inch", valueOnly = TRUE)
+  height <- grid::convertHeight(unit(1, "npc"), "inch", valueOnly = TRUE)
 
   # Grab grob metadata
   dpi <- x$dpi
@@ -72,12 +73,18 @@ makeContext.rasteriser <- function(x) {
     dpi <- grid::convertWidth(unit(1, "inch"), "pt", valueOnly = TRUE)
   }
   dev <- x$dev
+  scale <- x$scale
 
   # Clean up grob
   x$dev <- NULL
   x$dpi <- NULL
+  x$scale <- NULL
   class(x) <- setdiff(class(x), "rasteriser")
 
+  # Rescale height and width
+  width <- width * scale
+  height <- height * scale
+  
   # Track current device
   dev_cur <- grDevices::dev.cur()
   # Reset current device upon function exit
