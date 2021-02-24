@@ -145,8 +145,8 @@ makeContext.rasteriser <- function(x) {
   # Forward raster grob
   grid::rasterGrob(
     cap, x = 0.5, y = 0.5,
-    height = unit(height, "inch"),
-    width = unit(width, "inch"),
+    height = unit(height/scale, "inch"),
+    width = unit(width/scale, "inch"),
     default.units = "npc",
     just = "center"
   )
