@@ -12,8 +12,8 @@ Imports:
     Cairo (>= 1.5.9),
     ggbeeswarm,
     grid,
-    ragg,
-    png
+    png,
+    ragg
 Depends:
   R (>= 3.2.2)
 RoxygenNote: 7.1.1

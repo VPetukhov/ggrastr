@@ -160,8 +160,9 @@ makeContext.rasteriser <- function(x) {
   )
 }
 
+
 # Small helper function to test if x is a ggplot2 layer
+#' @keywords internal
 is.layer <- function(x) {
   inherits(x, "LayerInstance")
 }
-
