@@ -16,7 +16,8 @@ geom_boxplot_jitter(
   ...,
   outlier.jitter.width = NULL,
   outlier.jitter.height = 0,
-  raster.dpi = getOption("ggrastr.default.dpi", 300)
+  raster.dpi = getOption("ggrastr.default.dpi", 300),
+  scale = 1
 )
 }
 \arguments{
@@ -43,7 +44,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{dev}{A character specifying a device (default="cairo"). Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}.}
 
 \item{stat}{Use to override the default connection between
-\code{geom_boxplot()} and \code{stat_boxplot()}.}
+\code{geom_boxplot} and \code{stat_boxplot}.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
@@ -74,6 +75,8 @@ so the total spread is twice the value specified here (default=NULL)}
 so the total spread is twice the value specified here (default=0)}
 
 \item{raster.dpi}{Resolution of the rastered image (default=300). Ignored if \code{raster == FALSE}.}
+
+\item{scale}{A numeric of length one, setting the scaling factor (default=1)}
 }
 \value{
 geom_boxplot plot with rasterized layer

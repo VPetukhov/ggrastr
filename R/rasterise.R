@@ -6,6 +6,7 @@
 #'   \code{geom_*()} or \code{stat_*()} function.
 #' @param dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
+#' @param scale A numeric of length one, setting the scaling factor (default=1)
 #' @details The default \code{dpi} (\code{NULL} (= let device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{option("ggrastr.default.dpi", 30)} for drafting).
 #' @return A modified \code{Layer} object.
 #' @examples
@@ -22,6 +23,10 @@
 #' require(ragg)
 #' ggplot(diamonds, aes(carat, depth, z = price)) +
 #'   rasterise(stat_summary_hex(), dev = "ragg")
+#'
+#' # The `scale` argument allows you to render a 'big' plot in small window, or vice versa.
+#' ggplot(faithful, aes(eruptions, waiting)) +
+#'   rasterise(geom_point(), scale = 4)
 #'
 #' @export
 rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) {

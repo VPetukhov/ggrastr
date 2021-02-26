@@ -79,6 +79,7 @@ GeomBoxplotJitter <- ggplot2::ggproto("GeomBoxplotJitter",
 #' so the total spread is twice the value specified here (default=0)
 #' @param raster.dpi Resolution of the rastered image (default=300). Ignored if \code{raster == FALSE}.
 #' @param dev A character specifying a device (default="cairo"). Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}.
+#' @param scale A numeric of length one, setting the scaling factor (default=1)
 #' @return geom_boxplot plot with rasterized layer
 #'
 #' @examples
