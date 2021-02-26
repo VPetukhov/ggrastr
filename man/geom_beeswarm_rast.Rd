@@ -11,7 +11,8 @@ geom_beeswarm_rast(
   groupOnX = NULL,
   dodge.width = 0,
   raster.dpi = getOption("ggrastr.default.dpi", 300),
-  dev = "cairo"
+  dev = "cairo",
+  scale = 1
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ to the paired geom/stat.}
 \item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=300)}
 
 \item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
+
+\item{scale}{A numeric of length one, setting the scaling factor (default=1)}
 }
 \value{
 geom_beeswarm plot with rasterized layer

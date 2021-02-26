@@ -5,6 +5,7 @@
 #' @inheritSection ggplot2::geom_point Aesthetics
 #' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=300)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
+#' @param scale A numeric of length one, setting the scaling factor (default=1)
 #' @return geom_quasirandom plot with rasterized layer
 #'
 #' @examples
@@ -14,6 +15,6 @@
 #' ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600)
 #'
 #' @export
-geom_quasirandom_rast <- function(..., width = NULL, varwidth = FALSE, bandwidth = 0.5, nbins = NULL, method = "quasirandom", groupOnX = NULL, dodge.width = 0, raster.dpi = getOption("ggrastr.default.dpi", 300), dev="cairo") {
-  rasterise(ggbeeswarm::geom_quasirandom(..., width = width, varwidth = varwidth, bandwidth = bandwidth, nbins = nbins, method = method, groupOnX = groupOnX, dodge.width = dodge.width), dpi=raster.dpi, dev=dev)
+geom_quasirandom_rast <- function(..., width = NULL, varwidth = FALSE, bandwidth = 0.5, nbins = NULL, method = "quasirandom", groupOnX = NULL, dodge.width = 0, raster.dpi = getOption("ggrastr.default.dpi", 300), dev="cairo", scale=1) {
+  rasterise(ggbeeswarm::geom_quasirandom(..., width = width, varwidth = varwidth, bandwidth = bandwidth, nbins = nbins, method = method, groupOnX = groupOnX, dodge.width = dodge.width), dpi=raster.dpi, dev=dev, scale=scale)
 }

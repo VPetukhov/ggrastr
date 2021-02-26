@@ -10,6 +10,7 @@
 #' @param dodge.width Amount by which points from different aesthetic groups will be dodged. This requires that one of the aesthetics is a factor. (see ggbeeswarm::position_beeswarm)
 #' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=300)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
+#' @param scale A numeric of length one, setting the scaling factor (default=1)
 #' @return geom_beeswarm plot with rasterized layer
 #'
 #' @examples
@@ -19,7 +20,7 @@
 #' ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y = mpg), raster.dpi = 600, cex = 1.5)
 #'
 #' @export
-geom_beeswarm_rast <- function(..., priority= c("ascending", "descending", "density", "random", "none"), cex = 1, groupOnX = NULL, dodge.width = 0, raster.dpi = getOption("ggrastr.default.dpi", 300), dev="cairo") {
-  rasterise(ggbeeswarm::geom_beeswarm(..., priority=priority, cex=cex, groupOnX=groupOnX, dodge.width=dodge.width), dpi=raster.dpi, dev=dev)
+geom_beeswarm_rast <- function(..., priority= c("ascending", "descending", "density", "random", "none"), cex = 1, groupOnX = NULL, dodge.width = 0, raster.dpi = getOption("ggrastr.default.dpi", 300), dev="cairo", scale = 1) {
+  rasterise(ggbeeswarm::geom_beeswarm(..., priority=priority, cex=cex, groupOnX=groupOnX, dodge.width=dodge.width), dpi=raster.dpi, dev=dev, scale=scale)
 }
 

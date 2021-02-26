@@ -7,7 +7,8 @@
 geom_tile_rast(
   ...,
   raster.dpi = getOption("ggrastr.default.dpi", 300),
-  dev = "cairo"
+  dev = "cairo",
+  scale = scale
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ to the paired geom/stat.}
 \item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=300)}
 
 \item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
+
+\item{scale}{A numeric of length one, setting the scaling factor (default=1)}
 }
 \value{
 geom_tile plot with rasterized layer

@@ -6,6 +6,7 @@
 #' @import ggplot2
 #' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=300)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
+#' @param scale A numeric of length one, setting the scaling factor (default=1)
 #' @return geom_point plot with rasterized layer
 #'
 #' @examples
@@ -15,6 +16,6 @@
 #' ggplot() + geom_point_rast(aes(x=rnorm(1000), y=rnorm(1000)), raster.dpi=600)
 #'
 #' @export
-geom_point_rast <- function(..., raster.dpi=getOption("ggrastr.default.dpi", 300), dev="cairo") {
-  rasterise(geom_point(...), dpi=raster.dpi, dev=dev)
+geom_point_rast <- function(..., raster.dpi=getOption("ggrastr.default.dpi", 300), dev="cairo", scale=1) {
+  rasterise(geom_point(...), dpi=raster.dpi, dev=dev, scale=scale)
 }

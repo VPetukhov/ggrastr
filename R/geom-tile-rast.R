@@ -5,6 +5,7 @@
 #'
 #' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=300)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
+#' @param scale A numeric of length one, setting the scaling factor (default=1)
 #' @return geom_tile plot with rasterized layer
 #'
 #' @examples
@@ -16,6 +17,6 @@
 #' ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
 #'
 #' @export
-geom_tile_rast <- function(..., raster.dpi=getOption("ggrastr.default.dpi", 300), dev="cairo") {
-  rasterise(geom_tile(...), dpi=raster.dpi, dev=dev)
+geom_tile_rast <- function(..., raster.dpi=getOption("ggrastr.default.dpi", 300), dev="cairo", scale=scale) {
+  rasterise(geom_tile(...), dpi=raster.dpi, dev=dev, scale=scale)
 }
