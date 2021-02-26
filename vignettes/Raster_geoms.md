@@ -1,15 +1,4 @@
----
-title: "Raster geoms"
-output: 
-  rmarkdown::html_vignette:
-    toc: true
-vignette: >
-  %\VignetteIndexEntry{"Raster geoms"}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-
+# Raster geoms
 
 ## ggrastr
 
