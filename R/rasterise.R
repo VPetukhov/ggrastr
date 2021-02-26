@@ -24,8 +24,8 @@
 #'   rasterise(stat_summary_hex(), dev = "ragg")
 #'
 #' @export
-rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"),
-                      dev = "cairo") {
+rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo") {
+  
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
   # geom_sf returns a list and requires extra logic here to handle gracefully
