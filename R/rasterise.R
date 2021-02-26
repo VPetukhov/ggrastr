@@ -84,7 +84,7 @@ makeContext.rasteriser <- function(x) {
   # Rescale height and width
   width <- width * scale
   height <- height * scale
-  
+
   # Track current device
   dev_cur <- grDevices::dev.cur()
   # Reset current device upon function exit
@@ -142,11 +142,14 @@ makeContext.rasteriser <- function(x) {
     )
   }
 
+  #back transform scaling
+  height <-height / scale
+  width <- width / scale
   # Forward raster grob
   grid::rasterGrob(
     cap, x = 0.5, y = 0.5,
-    height = unit(height/scale, "inch"),
-    width = unit(width/scale, "inch"),
+    height = unit(height, "inch"),
+    width = unit(width, "inch"),
     default.units = "npc",
     just = "center"
   )
