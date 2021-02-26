@@ -28,6 +28,7 @@ rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cair
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
   if (!inherits(layer, "LayerInstance")) {
+  if (!is.layer(layer)) {
     stop("Cannot rasterise an object of class `", class(layer)[1], "`.",
          call. = FALSE)
   }
@@ -144,4 +145,9 @@ makeContext.rasteriser <- function(x) {
     default.units = "npc",
     just = "center"
   )
+}
+
+# Small helper function to test if x is a ggplot2 layer
+is.layer <- function(x) {
+  inherits(x, "LayerInstance")
 }
