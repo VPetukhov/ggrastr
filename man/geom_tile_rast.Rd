@@ -8,7 +8,7 @@ geom_tile_rast(
   ...,
   raster.dpi = getOption("ggrastr.default.dpi", 300),
   dev = "cairo",
-  scale = scale
+  scale = 1
 )
 }
 \arguments{
