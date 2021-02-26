@@ -29,11 +29,27 @@
 #'   rasterise(geom_point(), scale = 4)
 #'
 #' @export
+
 rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) {
+  
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
-  if (!inherits(layer, "Layer")) {
-    stop("Cannot rasterise an object of class `", class(layer)[1], "`. Must be either 'cairo', 'ragg', or 'ragg_png'.", call. = FALSE)
+  # geom_sf returns a list and requires extra logic here to handle gracefully
+  if (is.list(layer)) {
+    # Check if list contains layers
+    has_layer <- rapply(layer, is.layer, how = "list")
+    has_layer <- vapply(has_layer, function(x) {any(unlist(x))}, logical(1))
+    if (any(has_layer)) {
+      # Recurse through list elements that contain layers
+      layer[has_layer] <- lapply(layer[has_layer], rasterise,
+                                dpi = dpi, dev = dev)
+      return(layer)
+    } # Will hit next error if list doesn't contain layers
+  }
+
+  if (!is.layer(layer)) {
+    stop("Cannot rasterise an object of class `", class(layer)[1], "`.",
+         call. = FALSE)
   }
 
   # Take geom from input layer
@@ -159,4 +175,11 @@ makeContext.rasteriser <- function(x) {
     default.units = "npc",
     just = "center"
   )
+}
+
+
+# Small helper function to test if x is a ggplot2 layer
+#' @keywords internal
+is.layer <- function(x) {
+  inherits(x, "LayerInstance")
 }
