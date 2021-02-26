@@ -27,8 +27,9 @@
 rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo") {
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
-  if (!inherits(layer, "Layer")) {
-    stop("Cannot rasterise an object of class `", class(layer)[1], "`. Must be either 'cairo', 'ragg', or 'ragg_png'.", call. = FALSE)
+  if (!inherits(layer, "LayerInstance")) {
+    stop("Cannot rasterise an object of class `", class(layer)[1], "`.",
+         call. = FALSE)
   }
 
   # Take geom from input layer
