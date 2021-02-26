@@ -6,7 +6,7 @@
 #'   \code{geom_*()} or \code{stat_*()} function.
 #' @param dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
-#' @param scale A numeric of length one, setting the scaling factor (default=1)
+#' @param scale A numeric of length one, setting the scaling factor (default=1). Values > 1 will render the plot as if it was plotted in a larger window.
 #' @details The default \code{dpi} (\code{NULL} (= let device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{option("ggrastr.default.dpi", 30)} for drafting).
 #' @return A modified \code{Layer} object.
 #' @examples
@@ -87,6 +87,10 @@ makeContext.rasteriser <- function(x) {
   class(x) <- setdiff(class(x), "rasteriser")
 
   # Rescale height and width
+  if (scale < 0 | !is.numeric(scale)) {
+    stop("scale must be set to a numeric > 0")
+  }
+
   width <- width * scale
   height <- height * scale
 

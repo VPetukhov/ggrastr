@@ -28,7 +28,7 @@ rasterize(
 
 \item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
 
-\item{scale}{A numeric of length one, setting the scaling factor (default=1)}
+\item{scale}{A numeric of length one, setting the scaling factor (default=1). Values > 1 will render the plot as if it was plotted in a larger window.}
 }
 \value{
 A modified \code{Layer} object.
