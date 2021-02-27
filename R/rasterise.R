@@ -6,7 +6,7 @@
 #'   \code{geom_*()} or \code{stat_*()} function.
 #' @param dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
-#' @param scale A numeric of length one, setting the scaling factor (default=1). Values > 1 will render the plot as if it was plotted in a larger window.
+#' @param scale numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.
 #' @details The default \code{dpi} (\code{NULL} (= let device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{option("ggrastr.default.dpi", 30)} for drafting).
 #' @return A modified \code{Layer} object.
 #' @examples
@@ -111,8 +111,8 @@ makeContext.rasteriser <- function(x) {
     stop("The parameter 'scale' must be set to a numeric greater than 0")
   }
 
-  width <- width * scale
-  height <- height * scale
+  width <- width / scale
+  height <- height / scale
 
   # Track current device
   dev_cur <- grDevices::dev.cur()
@@ -174,8 +174,8 @@ makeContext.rasteriser <- function(x) {
   # Forward raster grob
   grid::rasterGrob(
     cap, x = 0.5, y = 0.5,
-    height = unit(height / scale, "inch"),
-    width = unit(width / scale, "inch"),
+    height = unit(height * scale, "inch"),
+    width = unit(width * scale, "inch"),
     default.units = "npc",
     just = "center"
   )

@@ -5,7 +5,7 @@
 #'
 #' @param raster.dpi An integer of length one setting the desired resolution in dots per inch. (default=300)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
-#' @param scale A numeric of length one, setting the scaling factor (default=1)
+#' @param scale numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.
 #' @return geom_violin_rast plot with rasterized layer
 #'
 #' @examples

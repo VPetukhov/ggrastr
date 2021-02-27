@@ -44,7 +44,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \item{dev}{A character specifying a device (default="cairo"). Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}.}
 
 \item{stat}{Use to override the default connection between
-\code{geom_boxplot} and \code{stat_boxplot}.}
+\code{geom_boxplot()} and \code{stat_boxplot()}.}
 
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
@@ -76,7 +76,7 @@ so the total spread is twice the value specified here (default=0)}
 
 \item{raster.dpi}{Resolution of the rastered image (default=300). Ignored if \code{raster == FALSE}.}
 
-\item{scale}{A numeric of length one, setting the scaling factor (default=1)}
+\item{scale}{numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.}
 }
 \value{
 geom_boxplot plot with rasterized layer
