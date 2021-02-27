@@ -83,7 +83,11 @@ rasterize <- rasterise
 #' @method makeContext rasteriser
 makeContext.rasteriser <- function(x) {
   # Grab viewport information
-  vp <- if(is.null(x$vp)) grid::viewport() else x$vp
+  vp <- if (is.null(x$vp)){
+    grid::viewport()
+  } else{
+    x$vp
+  }
   width <- grid::convertWidth(unit(1, "npc"), "inch", valueOnly = TRUE)
   height <- grid::convertHeight(unit(1, "npc"), "inch", valueOnly = TRUE)
 
@@ -103,8 +107,8 @@ makeContext.rasteriser <- function(x) {
   class(x) <- setdiff(class(x), "rasteriser")
 
   # Rescale height and width
-  if (scale < 0 | !is.numeric(scale)) {
-    stop("scale must be set to a numeric > 0")
+  if (scale <= 0 || !is.numeric(scale)) {
+    stop("The parameter 'scale' must be set to a numeric greater than 0")
   }
 
   width <- width * scale
