@@ -1,16 +1,5 @@
----
-title: "Raster geoms"
-output: 
-  rmarkdown::html_vignette:
-    toc: true
-vignette: >
-  %\VignetteIndexEntry{Raster geoms}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
+# ggrastr
 
-
-## ggrastr
 
 ### Convert any ggplot2 layer into a rasterized output
 
@@ -39,7 +28,7 @@ plot + rasterise(geom_point(), dpi = 72) + theme(aspect.ratio = 0.2)
 
 ![plot of chunk unnamed-chunk-2](figure_ggrastr/unnamed-chunk-2-1.png)
 
-By default, plots are rendered with [cairo](https://CRAN.R-project.org/package=Cairo). However, users now have the option to render plots with the [ragg](https://github.com/r-lib/ragg) device. The motivation for using `ragg` is that `ragg` can be faster and has better anti-aliasing. That being said, the default ragg device also has some alpha blending quirks. Because of these quirks, users are recommended to use the `ragg_png` option to work around the alpha blending.
+By default, plots are rendered with [Cairo](https://CRAN.R-project.org/package=Cairo). However, users now have the option to render plots with the [ragg](https://github.com/r-lib/ragg) device. The motivation for using `ragg` is that `ragg` can be faster and has better anti-aliasing. That being said, the default ragg device also has some alpha blending quirks. Because of these quirks, users are recommended to use the `ragg_png` option to work around the alpha blending.
 
 The differences in devices are best seen at lower resolution:
 
@@ -74,7 +63,7 @@ Facets are rendered correctly without users having to adjust the width/height se
 
 
 ```r
-# Facets won't warp points
+# Facets will not warp/distort points
 set.seed(123)
 plot + rasterise(geom_point(), dpi = 300) + facet_wrap(~ sample(1:3, nrow(diamonds), 2))
 ```
@@ -195,6 +184,7 @@ All other functions detailed below are wrapper functions provided for several ge
 
 Sometimes you need to publish a figure in a vector format:
 
+
 ```r
 library(ggplot2)
 library(ggrastr)
@@ -215,9 +205,9 @@ But in other cases, your figure contains thousands of points, e.g. try `points_n
 
 ![gg_vec_plot_500000](ggvec_50000_plot.png)
 
-
 In this case, a reasonable solution would be to rasterize the plot. But the problem is that all text becomes rasterized as well.
 Raster layers with `ggrastr` were developed to prevent such a situation, here using `geom_point_rast()`:
+
 
 ```r
 gg_rast <- gg + geom_point_rast(size=0.5)
@@ -369,9 +359,11 @@ print(boxplot)
 
 ![plot of chunk unnamed-chunk-22](figure_ggrastr/unnamed-chunk-22-1.png)
 
+
 With a large number of objects, outlier points become noninformative. For example, here is the rendered plot with `points_num <- 1000000`:
 
 ![boxplot_1000000](boxplot_1000000.png)
+
 
 
 For such a large number of points, it would be better to jitter them using `geom_boxplot_jitter()`:
