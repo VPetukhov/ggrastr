@@ -8,7 +8,7 @@ Rasterize only specific layers of a [ggplot2 plot](https://ggplot2.tidyverse.org
 
 ## Installation
 
-To install the stable version from [CRAN](https://cran.r-project.org/web/packages/ggrastr/index.html), use:
+To install the stable version from [CRAN](https://CRAN.R-project.org/package=ggrastr), use:
 
 ```r
 install.packages('ggrastr')
