@@ -1,8 +1,9 @@
 # Changelog
 
 ## [0.2.3] - 
-* `rasterise()` changed to work with multiple layers
-* `rasterise()` now works with `geom_sf()`, i.e. should find any layers in a valid input list, and rasterize this. 
+* Function `rasterise()` changed to work with multiple layers
+* Function `rasterise()` now works with `geom_sf()`, i.e. should find any layers in a valid input list, and rasterize this. 
+* Parameter `scale` added to rasterise()`. This scales the 'height' and 'weight' of the raster objects
 
 ## [0.2.2] - 2021-02-10
 * Add global option for `dpi` using `options(ggrastr.default.dpi=N)`. PR found here: https://github.com/VPetukhov/ggrastr/pull/21
