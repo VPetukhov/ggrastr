@@ -1,16 +1,4 @@
----
-title: "Raster geoms"
-output: 
-  rmarkdown::html_vignette:
-    toc: true
-vignette: >
-  %\VignetteIndexEntry{Raster geoms}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-
-## ggrastr
+# ggrastr 
 
 ### Convert any ggplot2 layer into a rasterized output
 
@@ -74,7 +62,7 @@ Facets are rendered correctly without users having to adjust the width/height se
 
 
 ```r
-# Facets won't warp points
+# Facets will not warp/distort points
 set.seed(123)
 plot + rasterise(geom_point(), dpi = 300) + facet_wrap(~ sample(1:3, nrow(diamonds), 2))
 ```
