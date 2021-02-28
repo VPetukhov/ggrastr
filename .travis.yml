@@ -8,10 +8,11 @@ language: r
 ## no tests, coverage
 ## check as CRAN
 
-## libgdal1i installed for package 'sf'
+## For package 'sf', need to install gdal, proj & geos
+## libgdal1-dev gdal-bin libproj-dev proj-data proj-bin libgeos-dev
 before_install:
   - sudo apt-get update -y 
-  - sudo apt-get -y install libglu1-mesa-dev libharfbuzz-dev libfribidi-dev libcairo2-dev libudunits2-dev  libgdal1i
+  - sudo apt-get -y install libglu1-mesa-dev libharfbuzz-dev libfribidi-dev libcairo2-dev libudunits2-dev libgdal1-dev gdal-bin libproj-dev proj-data proj-bin libgeos-dev
 
 script:
   - R CMD build . --compact-vignettes=gs+qpdf
