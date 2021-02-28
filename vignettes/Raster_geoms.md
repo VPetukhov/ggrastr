@@ -1,13 +1,4 @@
----
-title: "ggrastr"
-output: 
-  rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{ggrastr}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
+# ggrastr
 
 
 ### Convert any ggplot2 layer into a rasterized output
