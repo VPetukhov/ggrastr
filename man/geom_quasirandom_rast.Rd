@@ -14,7 +14,8 @@ geom_quasirandom_rast(
   groupOnX = NULL,
   dodge.width = 0,
   raster.dpi = getOption("ggrastr.default.dpi", 300),
-  dev = "cairo"
+  dev = "cairo",
+  scale = 1
 )
 }
 \arguments{
@@ -41,6 +42,8 @@ Smaller numbers (< 1) produce a tighter "fit". (default: 0.5)}
 \item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=300)}
 
 \item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
+
+\item{scale}{numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.}
 }
 \value{
 geom_quasirandom plot with rasterized layer

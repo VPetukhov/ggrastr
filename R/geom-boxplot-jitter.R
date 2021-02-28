@@ -2,11 +2,12 @@
 GeomPointRast <- ggplot2::ggproto(
   "GeomPointRast",
   ggplot2::GeomPoint,
-  draw_panel = function(self, data, panel_params, coord, raster.dpi, dev) {
+  draw_panel = function(self, data, panel_params, coord, raster.dpi, dev, scale) {
     grob <- ggproto_parent(GeomPoint, self)$draw_panel(data, panel_params, coord)
     class(grob) <- c("rasteriser", class(grob))
     grob$dpi <- raster.dpi
     grob$dev <- dev
+    grob$scale <- scale
     return(grob)
   }
 )
@@ -21,7 +22,8 @@ DrawGeomBoxplotJitter <- function(data, panel_params, coord, dev="cairo", ...,
                                   outlier.stroke = 0.5,
                                   outlier.alpha = NULL,
                                   raster=FALSE, raster.dpi=getOption("ggrastr.default.dpi", 300),
-                                  raster.width=NULL, raster.height=NULL
+                                  raster.width=NULL, raster.height=NULL,
+                                  scale = 1
                                   ) {
   boxplot_grob <- ggplot2::GeomBoxplot$draw_group(data, panel_params, coord, ...)
   point_grob <- grep("geom_point.*", names(boxplot_grob$children))
@@ -57,7 +59,7 @@ DrawGeomBoxplotJitter <- function(data, panel_params, coord, dev="cairo", ...,
     stringsAsFactors = FALSE
   )
 
-  boxplot_grob$children[[point_grob]] <- GeomPointRast$draw_panel(outliers, panel_params, coord, raster.dpi=raster.dpi, dev=dev)
+  boxplot_grob$children[[point_grob]] <- GeomPointRast$draw_panel(outliers, panel_params, coord, raster.dpi=raster.dpi, dev=dev, scale = scale)
 
   return(boxplot_grob)
 }
@@ -77,6 +79,7 @@ GeomBoxplotJitter <- ggplot2::ggproto("GeomBoxplotJitter",
 #' so the total spread is twice the value specified here (default=0)
 #' @param raster.dpi Resolution of the rastered image (default=300). Ignored if \code{raster == FALSE}.
 #' @param dev A character specifying a device (default="cairo"). Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}.
+#' @param scale numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.
 #' @return geom_boxplot plot with rasterized layer
 #'
 #' @examples
@@ -94,7 +97,8 @@ geom_boxplot_jitter <- function(mapping = NULL, data = NULL, dev = "cairo",
                                 inherit.aes = TRUE, ...,
                                 outlier.jitter.width=NULL,
                                 outlier.jitter.height=0,
-                                raster.dpi=getOption("ggrastr.default.dpi", 300)
+                                raster.dpi=getOption("ggrastr.default.dpi", 300),
+                                scale = 1
                                 ) {
   ggplot2::layer(
     geom = GeomBoxplotJitter, mapping = mapping, data = data, stat = stat,
@@ -102,5 +106,5 @@ geom_boxplot_jitter <- function(mapping = NULL, data = NULL, dev = "cairo",
     params = list(na.rm = na.rm,
                   outlier.jitter.width=outlier.jitter.width,
                   outlier.jitter.height=outlier.jitter.height,
-                  raster.dpi=raster.dpi, dev=dev, ...))
+                  raster.dpi=raster.dpi, dev=dev, scale = scale, ...))
 }

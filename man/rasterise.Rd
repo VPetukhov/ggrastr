@@ -6,9 +6,19 @@
 \title{Rasterise ggplot layers
 Takes a ggplot layer as input and renders their graphical output as a raster.}
 \usage{
-rasterise(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo")
+rasterise(
+  layer,
+  dpi = getOption("ggrastr.default.dpi"),
+  dev = "cairo",
+  scale = 1
+)
 
-rasterize(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo")
+rasterize(
+  layer,
+  dpi = getOption("ggrastr.default.dpi"),
+  dev = "cairo",
+  scale = 1
+)
 }
 \arguments{
 \item{layer}{A \code{Layer} object, typically constructed with a call to a
@@ -17,6 +27,8 @@ rasterize(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo")
 \item{dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
 
 \item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
+
+\item{scale}{numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.}
 }
 \value{
 A modified \code{Layer} object.
@@ -42,6 +54,10 @@ ggplot(faithful, aes(eruptions, waiting)) +
 require(ragg)
 ggplot(diamonds, aes(carat, depth, z = price)) +
   rasterise(stat_summary_hex(), dev = "ragg")
+
+# The `scale` argument allows you to render a 'big' plot in small window, or vice versa.
+ggplot(faithful, aes(eruptions, waiting)) +
+  rasterise(geom_point(), scale = 4)
 
 }
 \author{

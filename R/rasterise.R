@@ -6,6 +6,7 @@
 #'   \code{geom_*()} or \code{stat_*()} function.
 #' @param dpi An integer of length one setting the desired resolution in dots per inch. (default=NULL)
 #' @param dev A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")
+#' @param scale numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.
 #' @details The default \code{dpi} (\code{NULL} (= let device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{option("ggrastr.default.dpi", 30)} for drafting).
 #' @return A modified \code{Layer} object.
 #' @examples
@@ -23,8 +24,13 @@
 #' ggplot(diamonds, aes(carat, depth, z = price)) +
 #'   rasterise(stat_summary_hex(), dev = "ragg")
 #'
+#' # The `scale` argument allows you to render a 'big' plot in small window, or vice versa.
+#' ggplot(faithful, aes(eruptions, waiting)) +
+#'   rasterise(geom_point(), scale = 4)
+#'
 #' @export
-rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo") {
+
+rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) {
   
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
@@ -60,6 +66,7 @@ rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cair
         class(grob) <- c("rasteriser", class(grob))
         grob$dpi <- dpi
         grob$dev <- dev
+        grob$scale <- scale
         return(grob)
       }
     )
@@ -76,7 +83,11 @@ rasterize <- rasterise
 #' @method makeContext rasteriser
 makeContext.rasteriser <- function(x) {
   # Grab viewport information
-  vp <- if(is.null(x$vp)) grid::viewport() else x$vp
+  vp <- if (is.null(x$vp)){
+    grid::viewport()
+  } else{
+    x$vp
+  }
   width <- grid::convertWidth(unit(1, "npc"), "inch", valueOnly = TRUE)
   height <- grid::convertHeight(unit(1, "npc"), "inch", valueOnly = TRUE)
 
@@ -87,11 +98,21 @@ makeContext.rasteriser <- function(x) {
     dpi <- grid::convertWidth(unit(1, "inch"), "pt", valueOnly = TRUE)
   }
   dev <- x$dev
+  scale <- x$scale
 
   # Clean up grob
   x$dev <- NULL
   x$dpi <- NULL
+  x$scale <- NULL
   class(x) <- setdiff(class(x), "rasteriser")
+
+  # Rescale height and width
+  if (scale <= 0 || !is.numeric(scale)) {
+    stop("The parameter 'scale' must be set to a numeric greater than 0")
+  }
+
+  width <- width / scale
+  height <- height / scale
 
   # Track current device
   dev_cur <- grDevices::dev.cur()
@@ -153,8 +174,8 @@ makeContext.rasteriser <- function(x) {
   # Forward raster grob
   grid::rasterGrob(
     cap, x = 0.5, y = 0.5,
-    height = unit(height, "inch"),
-    width = unit(width, "inch"),
+    height = unit(height * scale, "inch"),
+    width = unit(width * scale, "inch"),
     default.units = "npc",
     just = "center"
   )

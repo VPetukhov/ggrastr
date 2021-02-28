@@ -10,7 +10,7 @@ language: r
 
 before_install:
   - sudo apt-get update -y 
-  - sudo apt-get -y install libglu1-mesa-dev libharfbuzz-dev libfribidi-dev 
+  - sudo apt-get -y install libglu1-mesa-dev libharfbuzz-dev libfribidi-dev libcairo2-dev
 
 script:
   - R CMD build . --compact-vignettes=gs+qpdf

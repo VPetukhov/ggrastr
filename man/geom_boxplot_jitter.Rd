@@ -16,7 +16,8 @@ geom_boxplot_jitter(
   ...,
   outlier.jitter.width = NULL,
   outlier.jitter.height = 0,
-  raster.dpi = getOption("ggrastr.default.dpi", 300)
+  raster.dpi = getOption("ggrastr.default.dpi", 300),
+  scale = 1
 )
 }
 \arguments{
@@ -74,6 +75,8 @@ so the total spread is twice the value specified here (default=NULL)}
 so the total spread is twice the value specified here (default=0)}
 
 \item{raster.dpi}{Resolution of the rastered image (default=300). Ignored if \code{raster == FALSE}.}
+
+\item{scale}{numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.}
 }
 \value{
 geom_boxplot plot with rasterized layer
