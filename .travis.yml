@@ -8,9 +8,10 @@ language: r
 ## no tests, coverage
 ## check as CRAN
 
+## libgdal1i installed for package 'sf'
 before_install:
   - sudo apt-get update -y 
-  - sudo apt-get -y install libglu1-mesa-dev libharfbuzz-dev libfribidi-dev libcairo2-dev libudunits2-dev
+  - sudo apt-get -y install libglu1-mesa-dev libharfbuzz-dev libfribidi-dev libcairo2-dev libudunits2-dev  libgdal1i
 
 script:
   - R CMD build . --compact-vignettes=gs+qpdf
