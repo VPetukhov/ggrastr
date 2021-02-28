@@ -7,9 +7,9 @@
 theme_pdf(show.ticks = TRUE, legend.pos = NULL)
 }
 \arguments{
-\item{show.ticks}{Show x- and y-ticks.}
+\item{show.ticks}{boolean Whether to show x- and y-ticks (default=TRUE).}
 
-\item{legend.pos}{Vector with x and y position of the legend.}
+\item{legend.pos}{Vector with x and y position of the legend (default=NULL).}
 }
 \value{
 ggplot2 with plot ticks and positioned legend

@@ -31,7 +31,7 @@ For more details and examples, see the **vignettes:**
 
 ## Geoms provided
 
-We alo provide wrappers for several geoms to guarantee compatibility with an older version of `ggrastr`. However, we encourage users to use the `rasterise()` function instead.
+We also provide wrappers for several geoms to guarantee compatibility with an older version of `ggrastr`. However, we encourage users to use the `rasterise()` function instead.
 
 * `geom_point_rast`: raster scatter plots
 * `geom_jitter_rast`: raster jittered scatter plots
@@ -59,6 +59,6 @@ If you find `ggrastr` useful for your publication, please cite:
 
 ```
 Viktor Petukhov, Teun van den Brand and Evan Biederstedt (2021).
-ggrastr: Raster Layers for 'ggplot2'. R package version 0.2.2.
+ggrastr: Raster Layers for 'ggplot2'. R package version 0.2.3.
 https://CRAN.R-project.org/package=ggrastr
 ```

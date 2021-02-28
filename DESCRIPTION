@@ -18,8 +18,10 @@ Depends:
   R (>= 3.2.2)
 RoxygenNote: 7.1.1
 Suggests:
-    rmarkdown,
-    knitr
+    knitr,
+    maps, 
+    rmarkdown, 
+    sf
 VignetteBuilder: knitr
 URL: https://github.com/VPetukhov/ggrastr
 BugReports: https://github.com/VPetukhov/ggrastr/issues

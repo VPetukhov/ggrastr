@@ -1,7 +1,7 @@
 #' Pretty theme
 #'
-#' @param show.ticks Show x- and y-ticks.
-#' @param legend.pos Vector with x and y position of the legend.
+#' @param show.ticks boolean Whether to show x- and y-ticks (default=TRUE).
+#' @param legend.pos Vector with x and y position of the legend (default=NULL).
 #' @return ggplot2 with plot ticks and positioned legend
 #'
 #' @examples

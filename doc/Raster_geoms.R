@@ -33,6 +33,53 @@ plot + rasterise(geom_point(), dpi = 5, dev = "ragg_png")
 set.seed(123)
 plot + rasterise(geom_point(), dpi = 300) + facet_wrap(~ sample(1:3, nrow(diamonds), 2))
 
+## -----------------------------------------------------------------------------
+# unchanged scaling, scale=1
+plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+plot + rasterise(geom_point(), dpi = 300, scale = 1)
+
+## -----------------------------------------------------------------------------
+# larger objects, scale > 1
+plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+plot + rasterise(geom_point(), dpi = 300, scale = 2)
+
+## -----------------------------------------------------------------------------
+# smaller objects, scale < 1
+plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+plot + rasterise(geom_point(), dpi = 300, scale = 0.5)
+
+## -----------------------------------------------------------------------------
+# smaller objects, scale < 1
+ggplot(mtcars, aes(wt, mpg)) + rasterise(list(geom_point(), geom_smooth()))
+
+## -----------------------------------------------------------------------------
+world1 <- sf::st_as_sf(maps::map('world', plot = FALSE, fill = TRUE))
+ggplot() + rasterise(
+  list(
+    list(
+      geom_sf(data = world1),
+      theme(panel.background = element_rect(fill = "skyblue"))
+    ),
+    list(
+      list(
+        geom_point(aes(x = rnorm(100, sd = 10), y = rnorm(100, sd = 10)))
+      ),
+      theme(panel.border = element_rect(fill = NA, colour = "blue"))
+    )
+  )
+)
+
+## -----------------------------------------------------------------------------
+## set ggrastr.default.dpi with options()
+options(ggrastr.default.dpi=750)
+
+plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+new_plot = plot + rasterise(geom_point()) + theme(aspect.ratio = 1)
+print(new_plot)
+
+## set back to default 300
+options(ggrastr.default.dpi=300)
+
 ## ---- fig.width=4, fig.height=4-----------------------------------------------
 library(ggplot2)
 library(ggrastr)
@@ -119,6 +166,8 @@ boxplot <- gg + geom_boxplot()
 print(boxplot)
 
 ## ---- fig.width=4, fig.height=4-----------------------------------------------
+library(ggplot2)
+library(ggrastr)
 points_num <- 500000
 df <- data.frame(x=as.factor(1:points_num %% 2), y=log(abs(rcauchy(points_num))))
 gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=FALSE)

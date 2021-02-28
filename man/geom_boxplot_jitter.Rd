@@ -41,7 +41,7 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
-\item{dev}{A character specifying a device (default="cairo"). Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}.}
+\item{dev}{string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"} (default="cairo").}
 
 \item{stat}{Use to override the default connection between
 \code{geom_boxplot()} and \code{stat_boxplot()}.}
@@ -68,13 +68,13 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
-\item{outlier.jitter.width}{Amount of horizontal jitter. The jitter is added in both positive and negative directions,
-so the total spread is twice the value specified here (default=NULL)}
+\item{outlier.jitter.width}{numeric Amount of horizontal jitter (default=NULL). The jitter is added in both positive and negative directions,
+so the total spread is twice the value specified here. If NULL, no jitter performed.}
 
-\item{outlier.jitter.height}{Amount of horizontal jitter. The jitter is added in both positive and negative directions,
-so the total spread is twice the value specified here (default=0)}
+\item{outlier.jitter.height}{numeric Amount of horizontal jitter (default=0). The jitter is added in both positive and negative directions,
+so the total spread is twice the value specified here.}
 
-\item{raster.dpi}{Resolution of the rastered image (default=300). Ignored if \code{raster == FALSE}.}
+\item{raster.dpi}{integer Resolution of the rastered image (default=300). Ignored if \code{raster == FALSE}.}
 
 \item{scale}{numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.}
 }

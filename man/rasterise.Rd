@@ -24,9 +24,9 @@ rasterize(
 \item{layer}{A \code{Layer} object, typically constructed with a call to a
 \code{geom_*()} or \code{stat_*()} function.}
 
-\item{dpi}{An integer of length one setting the desired resolution in dots per inch. (default=NULL)}
+\item{dpi}{integer Sets the desired resolution in dots per inch (default=NULL).}
 
-\item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
+\item{dev}{string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"} (default="cairo").}
 
 \item{scale}{numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.}
 }
@@ -38,7 +38,7 @@ Rasterise ggplot layers
 Takes a ggplot layer as input and renders their graphical output as a raster.
 }
 \details{
-The default \code{dpi} (\code{NULL} (= let device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{option("ggrastr.default.dpi", 30)} for drafting).
+The default \code{dpi} (\code{NULL} (i.e. let the device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{option("ggrastr.default.dpi", 30)} for drafting).
 }
 \examples{
 require(ggplot2)

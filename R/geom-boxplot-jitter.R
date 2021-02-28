@@ -73,12 +73,12 @@ GeomBoxplotJitter <- ggplot2::ggproto("GeomBoxplotJitter",
 #' @inheritParams ggplot2::geom_boxplot
 #' @inheritSection ggplot2::geom_boxplot Aesthetics
 #'
-#' @param outlier.jitter.width Amount of horizontal jitter. The jitter is added in both positive and negative directions,
-#' so the total spread is twice the value specified here (default=NULL)
-#' @param outlier.jitter.height Amount of horizontal jitter. The jitter is added in both positive and negative directions,
-#' so the total spread is twice the value specified here (default=0)
-#' @param raster.dpi Resolution of the rastered image (default=300). Ignored if \code{raster == FALSE}.
-#' @param dev A character specifying a device (default="cairo"). Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}.
+#' @param outlier.jitter.width numeric Amount of horizontal jitter (default=NULL). The jitter is added in both positive and negative directions,
+#' so the total spread is twice the value specified here. If NULL, no jitter performed.
+#' @param outlier.jitter.height numeric Amount of horizontal jitter (default=0). The jitter is added in both positive and negative directions,
+#' so the total spread is twice the value specified here. 
+#' @param raster.dpi integer Resolution of the rastered image (default=300). Ignored if \code{raster == FALSE}.
+#' @param dev string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"} (default="cairo").
 #' @param scale numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.
 #' @return geom_boxplot plot with rasterized layer
 #'

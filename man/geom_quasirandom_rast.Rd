@@ -39,9 +39,9 @@ Smaller numbers (< 1) produce a tighter "fit". (default: 0.5)}
 
 \item{dodge.width}{Amount by which points from different aesthetic groups will be dodged. This requires that one of the aesthetics is a factor.}
 
-\item{raster.dpi}{An integer of length one setting the desired resolution in dots per inch. (default=300)}
+\item{raster.dpi}{integer Resolution of the rastered image in dots per inch (default=300).}
 
-\item{dev}{A character specifying a device. Can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"}. (default="cairo")}
+\item{dev}{string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"} (default="cairo").}
 
 \item{scale}{numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.}
 }
