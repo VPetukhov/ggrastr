@@ -6,7 +6,6 @@ Authors@R: c(person("Viktor", "Petukhov", email = "viktor.s.petukhov@ya.ru", rol
 Description: Rasterize only specific layers of a 'ggplot2' plot while simultaneously keeping all labels and text in vector format. This allows users to keep plots within the reasonable size limit without loosing vector properties of the scale-sensitive information. 
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Imports:
     ggplot2 (>= 2.1.0),
     Cairo (>= 1.5.9),
