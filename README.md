@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/VPetukhov/ggrastr.svg?branch=master)](https://travis-ci.com/VPetukhov/ggrastr)
+[![<VPetukhov>](https://circleci.com/gh/VPetukhov/ggrastr.svg?style=svg)](https://app.circleci.com/pipelines/github/VPetukhov/ggrastr)
 [![CRAN status](https://www.r-pkg.org/badges/version/ggrastr)](https://cran.r-project.org/package=ggrastr)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/ggrastr)](https://cran.r-project.org/package=ggrastr)
 
@@ -59,6 +59,6 @@ If you find `ggrastr` useful for your publication, please cite:
 
 ```
 Viktor Petukhov, Teun van den Brand and Evan Biederstedt (2021).
-ggrastr: Raster Layers for 'ggplot2'. R package version 0.2.3.
+ggrastr: Raster Layers for 'ggplot2'. R package version 1.0.0.
 https://CRAN.R-project.org/package=ggrastr
 ```

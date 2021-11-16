@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: rocker/verse:4.0.3
+    environment:
+            _R_CHECK_FORCE_SUGGESTS_: false
+    steps:
+      - checkout
+      - run:
+          name: Install package dependencies
+          command: |
+            Rscript \
+              -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")' \
+              -e 'devtools::install_deps(dependencies = NA)'
+      - run:
+          name: Build package
+          command: R CMD build .
+      - run:
+          name: Check package
+          command: R CMD check --no-manual *tar.gz
+      - store_test_results:
+          path: tmp/tests

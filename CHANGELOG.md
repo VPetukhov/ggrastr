@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.0.0] - 2021-11-15
+* `ggrastr` has gone through no major revisions in over a year. In order to avoid any confusion, this should be released with a major version.
+
 ## [0.2.3] - 2021-02-27
 * Function `rasterise()` changed to work with multiple layers
 * Function `rasterise()` now works with `geom_sf()`, i.e. should find any layers in a valid input list, and rasterize this. 
