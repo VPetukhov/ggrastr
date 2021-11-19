@@ -15,7 +15,7 @@ jobs:
           command: |
             Rscript \
               -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")' \
-              -e 'devtools::install_deps(dependencies = NA)'
+              -e 'devtools::install_deps(dependencies = TRUE)'
       - run:
           name: Build package
           command: R CMD build .
