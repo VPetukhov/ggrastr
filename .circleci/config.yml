@@ -2,11 +2,14 @@ version: 2
 jobs:
   build:
     docker:
-      - image: rocker/verse:4.0.3
+      - image: rocker/verse:4.1.2
     environment:
             _R_CHECK_FORCE_SUGGESTS_: false
     steps:
       - checkout
+      - run:
+          name: Install system dependencies
+          command: sudo apt-get update -y && sudo apt-get install proj gdal-bin libgdal-dev  libgeos++-dev libgeos-3.8.0 libgeos-c1v5 libgeos-dev libgeos-doc sqlite3 -y  
       - run:
           name: Install package dependencies
           command: |
