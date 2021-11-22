@@ -2,26 +2,59 @@
 % Please edit documentation in R/rasterise.R
 \name{rasterise}
 \alias{rasterise}
+\alias{rasterise,ggplot-method}
+\alias{rasterise,Layer-method}
+\alias{rasterise,LayerInstance-method}
+\alias{rasterise,ggproto-method}
+\alias{rasterise,gg-method}
+\alias{rasterise.layer}
 \alias{rasterize}
-\title{Rasterise ggplot layers
-Takes a ggplot layer as input and renders their graphical output as a raster.}
+\title{Rasterize the input}
 \usage{
-rasterise(
-  layer,
+rasterise(input, ...)
+
+\S4method{rasterise}{ggplot}(
+  input,
+  layers = c("Point", "Tile"),
   dpi = getOption("ggrastr.default.dpi"),
   dev = "cairo",
   scale = 1
 )
 
-rasterize(
-  layer,
+\S4method{rasterise}{Layer}(
+  input,
   dpi = getOption("ggrastr.default.dpi"),
   dev = "cairo",
   scale = 1
 )
+
+\S4method{rasterise}{LayerInstance}(
+  input,
+  dpi = getOption("ggrastr.default.dpi"),
+  dev = "cairo",
+  scale = 1
+)
+
+\S4method{rasterise}{ggproto}(
+  input,
+  dpi = getOption("ggrastr.default.dpi"),
+  dev = "cairo",
+  scale = 1
+)
+
+\S4method{rasterise}{gg}(input, ...)
+
+rasterise.layer(
+  input,
+  dpi = getOption("ggrastr.default.dpi"),
+  dev = "cairo",
+  scale = 1
+)
+
+rasterise(input, ...)
 }
 \arguments{
-\item{layer}{A \code{Layer} object, typically constructed with a call to a
+\item{input}{A \code{Layer} object, typically constructed with a call to a
 \code{geom_*()} or \code{stat_*()} function.}
 
 \item{dpi}{integer Sets the desired resolution in dots per inch (default=NULL).}
@@ -34,11 +67,15 @@ rasterize(
 A modified \code{Layer} object.
 }
 \description{
+Rasterize the input
+
 Rasterise ggplot layers
 Takes a ggplot layer as input and renders their graphical output as a raster.
 }
 \details{
-The default \code{dpi} (\code{NULL} (i.e. let the device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{option("ggrastr.default.dpi", 30)} for drafting).
+The default \code{dpi} (\code{NULL} (i.e. let the device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{options("ggrastr.default.dpi" = 30)} for drafting).
+
+The default \code{dpi} (\code{NULL} (i.e. let the device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{options("ggrastr.default.dpi" = 30)} for drafting).
 }
 \examples{
 require(ggplot2)

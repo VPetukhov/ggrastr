@@ -1,8 +1,75 @@
+#' @import ggplot2
+setOldClass("ggplot")
+setOldClass("gg")
+setOldClass("ggproto")
+setOldClass("Layer")
+setOldClass("LayerInstance")
+
+
+#' Rasterize the input
+#' 
+#' @param input either a ggplot2 object or ggplot2 layer
+#' @param dpi integer Sets the desired resolution in dots per inch (default=NULL).
+#' @param dev string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"} (default="cairo").
+#' @param scale numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.
+#' @details The default \code{dpi} (\code{NULL} (i.e. let the device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{options("ggrastr.default.dpi" = 30)} for drafting).
+#' @rdname rasterise
+#' @export 
+setGeneric("rasterise", function(input, ...) standardGeneric("rasterise"))
+
+
+#' @rdname rasterise
+setMethod("rasterise", signature = signature("ggplot"), function(input, layers=c('Point', 'Tile'), dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) { 
+  rasterise.ggplot(input, layers=layers, dpi = dpi, dev = dev, scale = scale) 
+})
+
+#' @rdname rasterise
+setMethod("rasterise", signature = signature("Layer"), function(input,  dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) { 
+  rasterise.layer(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)
+})
+
+#' @rdname rasterise
+setMethod("rasterise", signature = signature("LayerInstance"), function(input,  dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) { 
+  rasterise.layer(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)
+})
+
+#' @rdname rasterise
+setMethod("rasterise", signature = signature("ggproto"), function(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) { 
+  rasterise.layer(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)
+})
+
+#' @rdname rasterise
+setMethod("rasterise", signature = signature("gg"), function(input, ...) { 
+  if (inherits(input, "LayerInstance")) {
+    rasterise.layer(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)
+  } else if (inherits(input, "Layer")) {
+    rasterise.layer(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)
+  } else if (inherits(input, "ggproto")) {
+    rasterise.layer(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)    
+  } else {
+    rasterise.ggplot(input, layers=c('Point', 'Tile'), dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)
+  }
+})
+
+
+
+rasterise.ggplot <- function(input, layers=c('Point', 'Tile'), dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) {
+  input$layers <- lapply(input$layers, function(lay) {
+    if (length(intersect(class(lay$geom), paste0('Geom', layers))) > 0) {
+      rasterize(lay, dpi = dpi, dev = dev, scale = scale)
+    } else{
+      lay
+    }
+  })
+  return(input)
+}
+
+
 #' Rasterise ggplot layers
 #' Takes a ggplot layer as input and renders their graphical output as a raster.
 #'
 #' @author Teun van den Brand <t.vd.brand@nki.nl>
-#' @param layer A \code{Layer} object, typically constructed with a call to a
+#' @param input A \code{Layer} object, typically constructed with a call to a
 #'   \code{geom_*()} or \code{stat_*()} function.
 #' @param dpi integer Sets the desired resolution in dots per inch (default=NULL).
 #' @param dev string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"} (default="cairo").
@@ -28,10 +95,10 @@
 #' ggplot(faithful, aes(eruptions, waiting)) +
 #'   rasterise(geom_point(), scale = 4)
 #'
-#' @export
-
-rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) {
+#' @rdname rasterise
+rasterise.layer <- function(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) {
   
+  layer <- input
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
 
   # geom_sf returns a list and requires extra logic here to handle gracefully
@@ -77,10 +144,13 @@ rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cair
 #' @export
 rasterize <- rasterise
 
-#' @export
+
+
+
 #' @noRd
 #' @importFrom grid makeContext
 #' @method makeContext rasteriser
+#' @export
 makeContext.rasteriser <- function(x) {
   # Grab viewport information
   vp <- if (is.null(x$vp)){
