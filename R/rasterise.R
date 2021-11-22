@@ -39,15 +39,15 @@ setMethod("rasterise", signature = signature("ggproto"), function(input, dpi = g
 })
 
 #' @rdname rasterise
-setMethod("rasterise", signature = signature("gg"), function(input, ...) { 
+setMethod("rasterise", signature = signature("gg"), function(input, layers=c('Point', 'Tile'), dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) { 
   if (inherits(input, "LayerInstance")) {
-    rasterise.layer(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)
+    rasterise.layer(input, dpi = dpi, dev = dev, scale = scale)
   } else if (inherits(input, "Layer")) {
-    rasterise.layer(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)
+    rasterise.layer(input, dpi = dpi, dev = dev, scale = scale)
   } else if (inherits(input, "ggproto")) {
-    rasterise.layer(input, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)    
+    rasterise.layer(input, dpi = dpi, dev = dev, scale = scale)    
   } else {
-    rasterise.ggplot(input, layers=c('Point', 'Tile'), dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1)
+    rasterise.ggplot(input, layers=layers, dpi = dpi, dev = dev, scale = scale)
   }
 })
 

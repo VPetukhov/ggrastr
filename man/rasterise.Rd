@@ -41,7 +41,13 @@ rasterise(input, ...)
   scale = 1
 )
 
-\S4method{rasterise}{gg}(input, ...)
+\S4method{rasterise}{gg}(
+  input,
+  layers = c("Point", "Tile"),
+  dpi = getOption("ggrastr.default.dpi"),
+  dev = "cairo",
+  scale = 1
+)
 
 rasterise.layer(
   input,
