@@ -140,16 +140,17 @@ rasterise.layer <- function(input, dpi = getOption("ggrastr.default.dpi"), dev =
   )
 }
 
-#' @rdname rasterise
-#' @export
+
+#' @export rasterize
 rasterize <- rasterise
 
 
 
 
-#' @noRd
+
 #' @importFrom grid makeContext
 #' @method makeContext rasteriser
+#' @noRd
 #' @export
 makeContext.rasteriser <- function(x) {
   # Grab viewport information

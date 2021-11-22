@@ -8,7 +8,6 @@
 \alias{rasterise,ggproto-method}
 \alias{rasterise,gg-method}
 \alias{rasterise.layer}
-\alias{rasterize}
 \title{Rasterize the input}
 \usage{
 rasterise(input, ...)
@@ -50,8 +49,6 @@ rasterise.layer(
   dev = "cairo",
   scale = 1
 )
-
-rasterise(input, ...)
 }
 \arguments{
 \item{input}{A \code{Layer} object, typically constructed with a call to a
