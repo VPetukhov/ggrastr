@@ -1,9 +1,9 @@
+#' @import ggplot2
+NULL
+
 #' Rasterise ggplot layers
-#' Takes a ggplot layer as input and renders their graphical output as a raster.
+#' Takes a ggplot object or a layer as input and renders their graphical output as a raster.
 #'
-#' @author Teun van den Brand <t.vd.brand@nki.nl>
-#' @param layer A \code{Layer} object, typically constructed with a call to a
-#'   \code{geom_*()} or \code{stat_*()} function.
 #' @param dpi integer Sets the desired resolution in dots per inch (default=NULL).
 #' @param dev string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"} (default="cairo").
 #' @param scale numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.
@@ -27,42 +27,32 @@
 #' # The `scale` argument allows you to render a 'big' plot in small window, or vice versa.
 #' ggplot(faithful, aes(eruptions, waiting)) +
 #'   rasterise(geom_point(), scale = 4)
-#'
+#' @rdname rasterise
 #' @export
+rasterise <- function(input, ...) UseMethod("rasterise", input)
 
-rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cairo", scale = 1) {
-  
+#' @rdname rasterise
+#' @param layer A \code{Layer} object, typically constructed with a call to a
+#'   \code{geom_*()} or \code{stat_*()} function.
+#' @author Teun van den Brand <t.vd.brand@nki.nl>
+#' @export
+rasterise.Layer <- function(layer, dpi=NULL, dev="cairo", scale=1) {
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
-
-  # geom_sf returns a list and requires extra logic here to handle gracefully
-  if (is.list(layer)) {
-    # Check if list contains layers
-    has_layer <- rapply(layer, is.layer, how = "list")
-    has_layer <- vapply(has_layer, function(x) {any(unlist(x))}, logical(1))
-    if (any(has_layer)) {
-      # Recurse through list elements that contain layers
-      layer[has_layer] <- lapply(layer[has_layer], rasterise,
-                                dpi = dpi, dev = dev)
-      return(layer)
-    } # Will hit next error if list doesn't contain layers
-  }
-
-  if (!is.layer(layer)) {
-    stop("Cannot rasterise an object of class `", class(layer)[1], "`.",
-         call. = FALSE)
+  if (is.null(dpi)) {
+    dpi <- getOption("ggrastr.default.dpi")
   }
 
   # Take geom from input layer
-  old_geom <- layer$geom
+  old.geom <- layer$geom
   # Reconstruct input layer
   ggproto(
     NULL, layer,
     # Let the new geom inherit from the old geom
     geom = ggproto(
-      NULL, old_geom,
+      NULL, old.geom,
       # draw_panel draws like old geom, but appends info to graphical object
       draw_panel = function(...) {
-        grob <- old_geom$draw_panel(...)
+        grob <- old.geom$draw_panel(...)
         class(grob) <- c("rasteriser", class(grob))
         grob$dpi <- dpi
         grob$dev <- dev
@@ -73,8 +63,39 @@ rasterise <- function(layer, dpi = getOption("ggrastr.default.dpi"), dev = "cair
   )
 }
 
+#' @param input input list with rasterizable ggplot objects
 #' @rdname rasterise
 #' @export
+rasterise.list <- function(input, dpi=NULL, dev="cairo", scale=1) {
+  # geom_sf returns a list and requires extra logic here to handle gracefully
+  # Check if list contains layers
+  has.layer <- rapply(input, is.layer, how = "list")
+  has.layer <- vapply(has.layer, function(x) {any(unlist(x))}, logical(1))
+  if (!any(has.layer))
+    stop("The input list doesn't ggplot layers", call.=FALSE)
+
+  # Recurse through list elements that contain layers
+  input[has.layer] <- lapply(input[has.layer], rasterise, dpi=dpi, dev=dev)
+  return(input)
+}
+
+#' @param gg ggplot plot object to rasterize
+#' @param layers list of layer types that should be rasterized
+#' @rdname rasterise
+#' @export
+rasterise.ggplot <- function(gg, layers=c('Point', 'Tile'), dpi=NULL, dev="cairo", scale=1) {
+  gg$layers <- lapply(gg$layers, function(lay) {
+    if (inherits(lay$geom, paste0('Geom', layers))) {
+      rasterise(lay, dpi=dpi, dev=dev, scale=scale)
+    } else{
+      lay
+    }
+  })
+  return(gg)
+}
+
+
+#' @export rasterize
 rasterize <- rasterise
 
 #' @export
@@ -185,5 +206,6 @@ makeContext.rasteriser <- function(x) {
 # Small helper function to test if x is a ggplot2 layer
 #' @keywords internal
 is.layer <- function(x) {
-  inherits(x, "LayerInstance")
+  # duplicate of hidden ggplot2:::is.layer
+  inherits(x, "Layer")
 }
