@@ -1,441 +1,185 @@
-# ggrastr
+## Rasterizing ggplot objects with `rasterize`
 
+When you need to plot data with many observations, storing plots
+completely in vector format is unsuitable: it requires tons of space and
+is very slow to work with in graphic editors. On the other hand,
+completely rasterizing the plot distorts important text content and
+prevents readers from editing and copying. The solution provided here
+within the package `ggrastr` is to rasterize layers that have a lot of
+data points, keeping all the rest as vector.
 
-### Convert any ggplot2 layer into a rasterized output
+The simplest way to rasterize some of your layers is to call `rasterize`
+on the plot object:
 
-Using the function `rasterize()`, users can rasterize any ggplot2 layer:
+    library(ggplot2)
+    library(ggrastr)
 
+    plot <- ggplot(diamonds, aes(carat, price, colour = cut)) +
+      geom_point()
 
+    rasterize(plot, layers='Point', dpi=50)
 
-```r
-library(ggplot2)
-library(ggrastr)
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-1-1.png)
 
-plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+The layer parameter here accepts the layers, which should be rasterized
+and can work with vectors of layer types.
 
-plot + rasterise(geom_point(), dpi = 72) + theme(aspect.ratio = 1)
-```
+## Rasterizing individual layers
 
-![plot of chunk unnamed-chunk-1](figure_ggrastr/unnamed-chunk-1-1.png)
+The same function can be applied on the level of individual layers. It
+allows users to rasterize only some layers of the same type:
 
-Note that with ggrastr changes in version 0.2.0, when the aspect ratio is distorted, the objects are rendered without distortion, i.e. the points in this example are still circles:
+    ggplot() + 
+      rasterise(geom_point(aes(carat, price, colour = cut), data=diamonds), dpi=30) +
+      geom_point(aes(x=runif(20, 0, 5), y=runif(20, 0, 20000)), size=10, color="black", shape=8)
 
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-2-1.png)
 
-```r
-# Points remain round across different aspect ratios
-plot + rasterise(geom_point(), dpi = 72) + theme(aspect.ratio = 0.2)
-```
+Note that when the aspect ratio is distorted, the objects are rendered
+without distortion, i.e. the points in this example are still circles:
 
-![plot of chunk unnamed-chunk-2](figure_ggrastr/unnamed-chunk-2-1.png)
+    # Points remain round across different aspect ratios
+    plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+    plot + rasterise(geom_point(), dpi = 72) + theme(aspect.ratio = 0.2)
 
-By default, plots are rendered with [Cairo](https://CRAN.R-project.org/package=Cairo). However, users now have the option to render plots with the [ragg](https://github.com/r-lib/ragg) device. The motivation for using `ragg` is that `ragg` can be faster and has better anti-aliasing. That being said, the default ragg device also has some alpha blending quirks. Because of these quirks, users are recommended to use the `ragg_png` option to work around the alpha blending.
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-3-1.png)
+
+## Advanced options
+
+### Selecting rendering device
+
+By default, plots are rendered with
+[Cairo](https://CRAN.R-project.org/package=Cairo). However, users now
+have the option to render plots with the
+[ragg](https://github.com/r-lib/ragg) device. The motivation for using
+`ragg` is that `ragg` can be faster and has better anti-aliasing. That
+being said, the default ragg device also has some alpha blending quirks.
+Because of these quirks, users are recommended to use the `ragg_png`
+option to work around the alpha blending.
 
 The differences in devices are best seen at lower resolution:
 
+    # The default 'cairo' at dpi=5
+    plot + rasterise(geom_point(), dpi = 5, dev = "cairo")
 
-```r
-# The default 'cairo' at dpi=5
-plot + rasterise(geom_point(), dpi = 5, dev = "cairo")
-```
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-4-1.png)
 
-![plot of chunk unnamed-chunk-3](figure_ggrastr/unnamed-chunk-3-1.png)
+    # Using 'ragg' gives better anti-aliasing but has unexpected alpha blending
+    plot + rasterise(geom_point(), dpi = 5, dev = "ragg")
 
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-5-1.png)
 
-```r
-# Using 'ragg' gives better anti-aliasing but has unexpected alpha blending
-plot + rasterise(geom_point(), dpi = 5, dev = "ragg")
-```
+    # Using 'ragg_png' solves the alpha blend, but requires writing a temporary file to disk
+    plot + rasterise(geom_point(), dpi = 5, dev = "ragg_png")
 
-![plot of chunk unnamed-chunk-4](figure_ggrastr/unnamed-chunk-4-1.png)
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
+Note that facets are rendered correctly without users having to adjust
+the width/height settings.
 
+    # Facets will not warp/distort points
+    set.seed(123)
+    plot + rasterise(geom_point(), dpi = 300) + facet_wrap(~ sample(1:3, nrow(diamonds), 2))
 
-```r
-# Using 'ragg_png' solves the alpha blend, but requires writing a temporary file to disk
-plot + rasterise(geom_point(), dpi = 5, dev = "ragg_png")
-```
-
-![plot of chunk unnamed-chunk-5](figure_ggrastr/unnamed-chunk-5-1.png)
-
-### Raserized plots with facet_wrap()
-
-Facets are rendered correctly without users having to adjust the width/height settings.
-
-
-```r
-# Facets will not warp/distort points
-set.seed(123)
-plot + rasterise(geom_point(), dpi = 300) + facet_wrap(~ sample(1:3, nrow(diamonds), 2))
-```
-
-![plot of chunk unnamed-chunk-6](figure_ggrastr/unnamed-chunk-6-1.png)
-
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-7-1.png)
 
 ### Scaling size of raster objects
 
-Users are also able to change the size of the raster objects with the parameter `scale`. The default behavior is not to modify the size with `scale=1`:
+Users are also able to change the size of the raster objects with the
+parameter `scale`. The default behavior is not to modify the size with
+`scale=1`:
 
+    # unchanged scaling, scale=1
+    plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+    plot + rasterise(geom_point(), dpi = 300, scale = 1)
 
-```r
-# unchanged scaling, scale=1
-plot <- ggplot(diamonds, aes(carat, price, colour = cut))
-plot + rasterise(geom_point(), dpi = 300, scale = 1)
-```
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-8-1.png)
 
-![plot of chunk unnamed-chunk-7](figure_ggrastr/unnamed-chunk-7-1.png)
+Setting `scale` to values greater than 1 will increase the size of the
+rasterized objects. In this case, `scale=2` will double the size of the
+points in comparison to the original plot:
 
-Setting `scale` to values greater than 1 will increase the size of the rasterized objects. In this case, `scale=2` will double the size of the points in comparison to the original plot:
+    # larger objects, scale > 1
+    plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+    plot + rasterise(geom_point(), dpi = 300, scale = 2)
 
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-9-1.png)
 
+Similarly, values less than 1 will result in smaller objects. Here we
+see `scale=0.5` results in points half the size of the points in the
+original plot above:
 
-```r
-# larger objects, scale > 1
-plot <- ggplot(diamonds, aes(carat, price, colour = cut))
-plot + rasterise(geom_point(), dpi = 300, scale = 2)
-```
+    # smaller objects, scale < 1
+    plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+    plot + rasterise(geom_point(), dpi = 300, scale = 0.5)
 
-![plot of chunk unnamed-chunk-8](figure_ggrastr/unnamed-chunk-8-1.png)
-
-Similarly, values less than 1 will result in smaller objects. Here we see `scale=0.5` results in points half the size of the points in the original plot above:
-
-
-```r
-# smaller objects, scale < 1
-plot <- ggplot(diamonds, aes(carat, price, colour = cut))
-plot + rasterise(geom_point(), dpi = 300, scale = 0.5)
-```
-
-![plot of chunk unnamed-chunk-9](figure_ggrastr/unnamed-chunk-9-1.png)
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-10-1.png)
 
 ### Rasterize multiple layers with lists
 
-As of ggrastr versions `>=0.2.3`, users are also able to rasterize multiple layers at once using (valid) lists. In this example, we show how to rasterize the input `list(geom_point(), geom_smooth())`: 
+As of ggrastr versions `>=0.2.3`, users are also able to rasterize
+multiple layers at once using (valid) lists. It is mainly useful when
+working with `geom_sf`, as it returns the list object instead of a
+single geom:
 
-
-
-```r
-# smaller objects, scale < 1
-ggplot(mtcars, aes(wt, mpg)) + rasterise(list(geom_point(), geom_smooth()))
-#> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-![plot of chunk unnamed-chunk-10](figure_ggrastr/unnamed-chunk-10-1.png)
-
-Indeed, `rasterize()` will even work with nested lists, e.g 
-
-
-```r
-world1 <- sf::st_as_sf(maps::map('world', plot = FALSE, fill = TRUE))
-ggplot() + rasterise(
-  list(
-    list(
-      geom_sf(data = world1),
-      theme(panel.background = element_rect(fill = "skyblue"))
-    ),
-    list(
+    world1 <- sf::st_as_sf(maps::map('world', plot = FALSE, fill = TRUE))
+    ggplot() + rasterise(
       list(
-        geom_point(aes(x = rnorm(100, sd = 10), y = rnorm(100, sd = 10)))
-      ),
-      theme(panel.border = element_rect(fill = NA, colour = "blue"))
+        list(
+          geom_sf(data = world1),
+          theme(panel.background = element_rect(fill = "skyblue"))
+        ),
+        list(
+          list(
+            geom_point(aes(x = rnorm(100, sd = 10), y = rnorm(100, sd = 10)))
+          ),
+          theme(panel.border = element_rect(fill = NA, colour = "blue"))
+        )
+      )
     )
-  )
-)
-```
 
-![plot of chunk unnamed-chunk-11](figure_ggrastr/unnamed-chunk-11-1.png)
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
+### Set the parameter ‘dpi’ globally with options(ggrastr.default.dpi=N)
 
-### Set the parameter 'dpi' globally with options(ggrastr.default.dpi=N)
+The parameter `dpi` is an integer which sets the desired resolution in
+dots per inch. With ggrastr versions `>=0.2.2`, users can set this
+parameter globally, using
+[options()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/options.html).
+In the following example, plots will be rendered with `dpi=750` after
+the user sets this with `options(ggrastr.default.dpi=750)`:
 
-The parameter `dpi` is an integer which sets the desired resolution in dots per inch. With ggrastr versions `>=0.2.2`, users can set this parameter globally, using [options()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/options.html). In the following example, plots will be rendered with `dpi=750` after the user sets this with `options(ggrastr.default.dpi=750)`:
+    ## set ggrastr.default.dpi with options()
+    options(ggrastr.default.dpi=750)
 
+    plot <- ggplot(diamonds, aes(carat, price, colour = cut))
+    new_plot = plot + rasterise(geom_point()) + theme(aspect.ratio = 1)
+    print(new_plot)
 
-```r
-## set ggrastr.default.dpi with options()
-options(ggrastr.default.dpi=750)
+![](Raster_geoms_files/figure-markdown_strict/unnamed-chunk-12-1.png)
 
-plot <- ggplot(diamonds, aes(carat, price, colour = cut))
-new_plot = plot + rasterise(geom_point()) + theme(aspect.ratio = 1)
-print(new_plot)
-```
 
-![plot of chunk unnamed-chunk-12](figure_ggrastr/unnamed-chunk-12-1.png)
+    ## set back to default 300
+    options(ggrastr.default.dpi=300)
 
-```r
+## Other wrapper functions
 
-## set back to default 300
-options(ggrastr.default.dpi=300)
-```
+For legacy reasons, we have all popular geoms wrapped inside the
+package. However, we strongly encourage users to use the `rasterise()`
+function instead.
 
-### Other wrapper functions
+-   `geom_point_rast`: raster scatter plots
+-   `geom_jitter_rast`: raster jittered scatter plots
+-   `geom_boxplot_jitter`: boxplots that allows to jitter and rasterize
+    outlier points
+-   `geom_tile_rast`: raster heatmap
+-   `geom_beeswarm_rast`: raster [bee swarm
+    plots](https://github.com/eclarke/ggbeeswarm#geom_beeswarm)
+-   `geom_quasirandom_rast`: raster [quasirandom scatter
+    plot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
 
-All other functions detailed below are wrapper functions provided for several geoms to guarantee compatibility with an older version of `ggrastr`. However, we encourage users to use the `rasterise()` function instead.
-
-* `geom_point_rast`: raster scatter plots
-* `geom_jitter_rast`: raster jittered scatter plots
-* `geom_boxplot_jitter`: boxplots that allows to jitter and rasterize outlier points
-* `geom_tile_rast`: raster heatmap
-* `geom_beeswarm_rast`: raster [bee swarm plots](https://github.com/eclarke/ggbeeswarm#geom_beeswarm)
-* `geom_quasirandom_rast`: raster [quasirandom scatter plot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
-
-
-#### Points: Rasterize scatter plots with geom_point_rast()
-
-
-Sometimes you need to publish a figure in a vector format:
-
-
-```r
-library(ggplot2)
-library(ggrastr)
-
-points_num <- 10000
-df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=FALSE)
-
-gg_vec <- gg + geom_point(size=0.5)
-print(gg_vec)
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-```
-
-![plot of chunk unnamed-chunk-13](figure_ggrastr/unnamed-chunk-13-1.png)
-
-But in other cases, your figure contains thousands of points, e.g. try `points_num <- 500000` in the example above, and you will notice the performance issues---it takes significantly longer to render the plot:
-
-![gg_vec_plot_500000](ggvec_50000_plot.png)
-
-In this case, a reasonable solution would be to rasterize the plot. But the problem is that all text becomes rasterized as well.
-Raster layers with `ggrastr` were developed to prevent such a situation, here using `geom_point_rast()`:
-
-
-```r
-gg_rast <- gg + geom_point_rast(size=0.5)
-print(gg_rast)
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-```
-
-![plot of chunk unnamed-chunk-14](figure_ggrastr/unnamed-chunk-14-1.png)
-
-The plots look the same, but the difference in size can be seen when they are exported to pdfs. Unfortunately, there is a longer rendering time to produce such plots:
-
-```r
-PrintFileSize <- function(gg, name) {
-  invisible(ggsave('tmp.pdf', gg, width=4, height=4))
-  cat(name, ': ', file.info('tmp.pdf')$size / 1024, ' Kb.\n', sep = '')
-  unlink('tmp.pdf')
-}
-
-PrintFileSize(gg_rast, 'Raster')
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-#> Raster: 312.4551 Kb.
-PrintFileSize(gg_vec, 'Vector')
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-#> Vector: 556.8682 Kb.
-```
-
-As expected, the difference becomes larger with growth of number of points:
-
-```r
-points_num <- 1000000
-df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=FALSE)
-
-gg_vec <- gg + geom_point(size=0.5)
-gg_rast <- gg + geom_point_rast(size=0.5)
-
-PrintFileSize(gg_rast, 'Raster')
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-#> Raster: 400.4482 Kb.
-PrintFileSize(gg_vec, 'Vector')
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-#> Vector: 54862.39 Kb.
-```
-
-#### Jitter: Rasterize jittered scatter plots with geom_jitter_rast()
-
-Just like the example above with`geom_point_rast()`, users may also opt to create rasterized scatter plots with jitter. The geom `geom_jitter_rast()` is similar to `ggplot2::geom_jitter()`, but it creates a rasterized layer:
-
-
-
-```r
-library(ggplot2)
-library(ggrastr)
-
-points_num <- 5000 
-df <- data.frame(x=rnorm(points_num), y=rnorm(points_num), c=as.factor(1:points_num %% 2))
-gg <- ggplot(df, aes(x=x, y=y, color=c)) + scale_color_discrete(guide=FALSE)
-
-gg_jitter_rast <- gg + geom_jitter_rast(raster.dpi=600)
-print(gg_jitter_rast)
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-```
-
-![plot of chunk unnamed-chunk-17](figure_ggrastr/unnamed-chunk-17-1.png)
-
-
-
-#### Tiles: Rasterize heatmaps with geom_tile_rast()
-
-Heatmaps also have similar issues with the default vectorized formats:
-
-
-
-```r
-library(ggplot2)
-library(ggrastr)
-
-coords <- expand.grid(1:500, 1:500)
-coords$Value <- 1 / apply(as.matrix(coords), 1, function(x) sum((x - c(50, 50))^2)^0.01)
-gg_tile_vec <- ggplot(coords) + geom_tile(aes(x=Var1, y=Var2, fill=Value))
-gg_tile_rast <- ggplot(coords) + geom_tile_rast(aes(x=Var1, y=Var2, fill=Value))
-print(gg_tile_rast)
-```
-
-![plot of chunk unnamed-chunk-18](figure_ggrastr/unnamed-chunk-18-1.png)
-
-We can see that the rasterized plots using `ggrastr` are lighter in size when rendered to pdf:
-
-
-```r
-PrintFileSize(gg_tile_rast, 'Raster')
-#> Raster: 46.77637 Kb.
-PrintFileSize(gg_tile_vec, 'Vector')
-#> Vector: 817.8398 Kb.
-```
-
-
-
-#### Violin plots: Rasterize violin plots with geom_violin_rast()
-
-One can see a similar effect with violin plots:
-
-
-```r
-library(ggplot2)
-library(ggrastr)
-
-gg_violin_vec <- ggplot(mtcars, aes(factor(cyl), mpg)) + geom_violin()
-gg_violin_rast <- ggplot(mtcars) + geom_violin_rast(aes(factor(cyl), mpg))
-print(gg_violin_rast)
-```
-
-![plot of chunk unnamed-chunk-20](figure_ggrastr/unnamed-chunk-20-1.png)
-
-
-```r
-## difference in size shown
-PrintFileSize(gg_tile_rast, 'Raster')
-#> Raster: 46.77637 Kb.
-PrintFileSize(gg_tile_vec, 'Vector')
-#> Vector: 817.8398 Kb.
-```
-
-
-
-#### Box plots: Jitter outliers and rasterize box plots with geom_boxplot_jitter
-
-Another type of plot with a potentially large number of small objects is geom_boxplot:
-
-```r
-library(ggplot2)
-library(ggrastr)
-
-points_num <- 5000
-df <- data.frame(x=as.factor(1:points_num %% 2), y=log(abs(rcauchy(points_num))))
-gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=FALSE)
-
-boxplot <- gg + geom_boxplot()
-print(boxplot)
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-```
-
-![plot of chunk unnamed-chunk-22](figure_ggrastr/unnamed-chunk-22-1.png)
-
-
-With a large number of objects, outlier points become noninformative. For example, here is the rendered plot with `points_num <- 1000000`:
-
-![boxplot_1000000](boxplot_1000000.png)
-
-
-
-For such a large number of points, it would be better to jitter them using `geom_boxplot_jitter()`:
-
-```r
-library(ggplot2)
-library(ggrastr)
-points_num <- 500000
-df <- data.frame(x=as.factor(1:points_num %% 2), y=log(abs(rcauchy(points_num))))
-gg <- ggplot(df, aes(x=x, y=y)) + scale_color_discrete(guide=FALSE)
-
-gg_box_vec <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5)
-print(gg_box_vec)
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-```
-
-![plot of chunk unnamed-chunk-23](figure_ggrastr/unnamed-chunk-23-1.png)
-
-And this geom can be rasterized as well:
-
-```r
-gg_box_rast <- gg + geom_boxplot_jitter(outlier.size=0.1, outlier.jitter.width=0.3, outlier.alpha=0.5, raster.dpi=200)
-print(gg_box_rast)
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-```
-
-![plot of chunk unnamed-chunk-24](figure_ggrastr/unnamed-chunk-24-1.png)
-
-
-
-```r
-PrintFileSize(gg_box_rast, 'Raster')
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-#> Raster: 119.8994 Kb.
-PrintFileSize(gg_box_vec, 'Vector')
-#> Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-#> use `guide = "none"` instead.
-#> Vector: 226.9346 Kb.
-```
-
-
-#### Beeswarm-style plots: geom_beeswarm_rast and geom_quasirandom
-
-ggrastr also allows users to create rasterized beeswarm plots. As described in the README for [ggbeeswarm](https://github.com/eclarke/ggbeeswarm), 
-
-> Beeswarm plots (aka column scatter plots or violin scatter plots) are a way of plotting points that would ordinarily overlap so that they fall next to each other instead. In addition to reducing overplotting, it helps visualize the density of the data at each point (similar to a violin plot), while still showing each data point individually.
-
-The ggrastr geom `geom_beeswarm_rast` is similar to `ggbeeswarm::geom_beeswarm()`, but it provides a rasterized layer:
-
-
-```r
-library(ggplot2)
-library(ggrastr)
-
-ggplot(mtcars) + geom_beeswarm_rast(aes(x = factor(cyl), y=mpg), raster.dpi=600, cex=1.5)
-```
-
-![plot of chunk unnamed-chunk-26](figure_ggrastr/unnamed-chunk-26-1.png)
-
-Analogously, `geom_quasirandom_rast` is much like `ggbeeswarm::geom_quasirandom()`, but with a rasterized layer:
-
-
-```r
-library(ggplot2)
-library(ggrastr)
-
-ggplot(mtcars) + geom_quasirandom_rast(aes(x = factor(cyl), y=mpg), raster.dpi=600)
-```
-
-![plot of chunk unnamed-chunk-27](figure_ggrastr/unnamed-chunk-27-1.png)
-
-We encourage users to visit both https://CRAN.R-project.org/package=ggbeeswarm and the github repo at https://github.com/eclarke/ggbeeswarm for more details.
+For more details, see the vignettes detailing these legacy functions
+[here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/main/doc/Legacy_functions.html)
+(for the Markdown version) and
+[here](https://github.com/VPetukhov/ggrastr/blob/main/vignettes/Legacy_functions.md)
+(for the HTML version).

@@ -71,9 +71,10 @@ rasterise.list <- function(input, dpi=NULL, dev="cairo", scale=1) {
   # Check if list contains layers
   has.layer <- rapply(input, is.layer, how = "list")
   has.layer <- vapply(has.layer, function(x) {any(unlist(x))}, logical(1))
-  if (!any(has.layer))
-    stop("The input list doesn't ggplot layers", call.=FALSE)
-
+  if (!any(has.layer)) {
+    stop("The input list doesn't contain any ggplot layers", call.=FALSE)
+  }
+  
   # Recurse through list elements that contain layers
   input[has.layer] <- lapply(input[has.layer], rasterise, dpi=dpi, dev=dev)
   return(input)
