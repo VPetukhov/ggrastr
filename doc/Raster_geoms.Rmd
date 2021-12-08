@@ -23,7 +23,7 @@ When you need to plot data with many observations, storing plots completely in v
 format is unsuitable: it requires tons of space and is very slow to work with in 
 graphic editors. On the other hand, completely rasterizing the plot distorts important
 text content and prevents readers from editing and copying. The solution provided here within the package `ggrastr` is to 
-rasterize layers that have a lot of data points, keeping all the rest as vector.
+rasterize layers that have a lot of data points, keeping all the rest in vector format.
 
 The simplest way to rasterize some of your layers is to call `rasterize` on the plot object:
 
@@ -168,6 +168,6 @@ For legacy reasons, we have all popular geoms wrapped inside the package. Howeve
 * `geom_beeswarm_rast`: raster [bee swarm plots](https://github.com/eclarke/ggbeeswarm#geom_beeswarm)
 * `geom_quasirandom_rast`: raster [quasirandom scatter plot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
 
-For more details, see the vignettes detailing these legacy functions [here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/main/doc/Legacy_functions.html) (for the Markdown version) and [here](https://github.com/VPetukhov/ggrastr/blob/main/vignettes/Legacy_functions.md) (for the HTML version).
+For more details, see the vignettes detailing these legacy functions [here](https://github.com/VPetukhov/ggrastr/blob/main/vignettes/Legacy_functions.md)  (for the Markdown version) and [here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/main/doc/Legacy_functions.html) (for the HTML version).
 
 

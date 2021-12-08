@@ -65,9 +65,9 @@ time to produce such plots:
       unlink('tmp.pdf')
     }
     PrintFileSize(gg_rast, 'Raster')
-    #> Raster: 323.04 Kb.
+    #> Raster: 311.376 Kb.
     PrintFileSize(gg_vec, 'Vector')
-    #> Vector: 556.8896 Kb.
+    #> Vector: 556.7402 Kb.
 
 As expected, the difference becomes larger with growth of number of
 points:
@@ -78,9 +78,9 @@ points:
     gg_vec <- gg + geom_point(size=0.5)
     gg_rast <- gg + geom_point_rast(size=0.5)
     PrintFileSize(gg_rast, 'Raster')
-    #> Raster: 397.4551 Kb.
+    #> Raster: 393.3652 Kb.
     PrintFileSize(gg_vec, 'Vector')
-    #> Vector: 54876.16 Kb.
+    #> Vector: 54851.96 Kb.
 
 #### Jitter: Rasterize jittered scatter plots with geom\_jitter\_rast()
 
@@ -205,9 +205,9 @@ And this geom can be rasterized as well:
 ![](Legacy_functions_files/figure-markdown_strict/unnamed-chunk-16-1.png)
 
     PrintFileSize(gg_box_rast, 'Raster')
-    #> Raster: 107.665 Kb.
+    #> Raster: 121.6504 Kb.
     PrintFileSize(gg_box_vec, 'Vector')
-    #> Vector: 203.7881 Kb.
+    #> Vector: 229.9463 Kb.
 
 #### Beeswarm-style plots: geom\_beeswarm\_rast and geom\_quasirandom
 

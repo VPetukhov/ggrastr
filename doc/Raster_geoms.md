@@ -8,7 +8,7 @@ is very slow to work with in graphic editors. On the other hand,
 completely rasterizing the plot distorts important text content and
 prevents readers from editing and copying. The solution provided here
 within the package `ggrastr` is to rasterize layers that have a lot of
-data points, keeping all the rest as vector.
+data points, keeping all the rest in vector format.
 
 The simplest way to rasterize some of your layers is to call `rasterize`
 on the plot object:
@@ -181,7 +181,7 @@ function instead.
     plot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
 
 For more details, see the vignettes detailing these legacy functions
-[here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/main/doc/Legacy_functions.html)
-(for the Markdown version) and
 [here](https://github.com/VPetukhov/ggrastr/blob/main/vignettes/Legacy_functions.md)
+(for the Markdown version) and
+[here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/main/doc/Legacy_functions.html)
 (for the HTML version).
