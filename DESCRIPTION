@@ -15,7 +15,7 @@ Imports:
     ragg
 Depends:
   R (>= 3.2.2)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Suggests:
     knitr,
     maps, 

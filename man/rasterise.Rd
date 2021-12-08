@@ -5,36 +5,37 @@
 \alias{rasterise.Layer}
 \alias{rasterise.list}
 \alias{rasterise.ggplot}
+\alias{rasterize}
 \title{Rasterise ggplot layers
 Takes a ggplot object or a layer as input and renders their graphical output as a raster.}
 \usage{
 rasterise(input, ...)
 
-\method{rasterise}{Layer}(layer, dpi = NULL, dev = "cairo", scale = 1)
+\method{rasterise}{Layer}(input, dpi = NULL, dev = "cairo", scale = 1, ...)
 
-\method{rasterise}{list}(input, dpi = NULL, dev = "cairo", scale = 1)
+\method{rasterise}{list}(input, dpi = NULL, dev = "cairo", scale = 1, ...)
 
 \method{rasterise}{ggplot}(
-  gg,
+  input,
   layers = c("Point", "Tile"),
   dpi = NULL,
   dev = "cairo",
-  scale = 1
+  scale = 1,
+  ...
 )
+
+rasterize(input, ...)
 }
 \arguments{
-\item{input}{input list with rasterizable ggplot objects}
+\item{input}{ggplot plot object to rasterize}
 
-\item{layer}{A \code{Layer} object, typically constructed with a call to a
-\code{geom_*()} or \code{stat_*()} function.}
+\item{...}{other arguments}
 
 \item{dpi}{integer Sets the desired resolution in dots per inch (default=NULL).}
 
 \item{dev}{string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"} (default="cairo").}
 
 \item{scale}{numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.}
-
-\item{gg}{ggplot plot object to rasterize}
 
 \item{layers}{list of layer types that should be rasterized}
 }
