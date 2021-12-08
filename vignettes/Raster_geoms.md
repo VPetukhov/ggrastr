@@ -181,7 +181,7 @@ function instead.
     plot](https://github.com/eclarke/ggbeeswarm#geom_quasirandom)
 
 For more details, see the vignettes detailing these legacy functions
-[here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/main/doc/Legacy_functions.html)
-(for the Markdown version) and
 [here](https://github.com/VPetukhov/ggrastr/blob/main/vignettes/Legacy_functions.md)
+(for the Markdown version) and
+[here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/VPetukhov/ggrastr/main/doc/Legacy_functions.html)
 (for the HTML version).
