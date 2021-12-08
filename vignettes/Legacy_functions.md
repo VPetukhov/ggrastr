@@ -1,3 +1,5 @@
+# Legacy (outdated) wrapper functions
+
 For historic reasons, `ggrastr` used to be solely composed of the
 following functions:
 
