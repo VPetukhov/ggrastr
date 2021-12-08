@@ -1,5 +1,3 @@
-# ggrastr
-
 ## Rasterizing ggplot objects with `rasterize`
 
 When you need to plot data with many observations, storing plots

@@ -1,5 +1,3 @@
-# Legacy (outdated) wrapper functions
-
 For historic reasons, `ggrastr` used to be solely composed of the
 following functions:
 
@@ -65,9 +63,9 @@ time to produce such plots:
       unlink('tmp.pdf')
     }
     PrintFileSize(gg_rast, 'Raster')
-    #> Raster: 327.1904 Kb.
+    #> Raster: 274.4658 Kb.
     PrintFileSize(gg_vec, 'Vector')
-    #> Vector: 557.2764 Kb.
+    #> Vector: 555.8945 Kb.
 
 As expected, the difference becomes larger with growth of number of
 points:
@@ -78,9 +76,9 @@ points:
     gg_vec <- gg + geom_point(size=0.5)
     gg_rast <- gg + geom_point_rast(size=0.5)
     PrintFileSize(gg_rast, 'Raster')
-    #> Raster: 361.4082 Kb.
+    #> Raster: 378.667 Kb.
     PrintFileSize(gg_vec, 'Vector')
-    #> Vector: 54818.25 Kb.
+    #> Vector: 54878.79 Kb.
 
 #### Jitter: Rasterize jittered scatter plots with geom\_jitter\_rast()
 
@@ -205,9 +203,9 @@ And this geom can be rasterized as well:
 ![](Legacy_functions_files/figure-markdown_strict/unnamed-chunk-16-1.png)
 
     PrintFileSize(gg_box_rast, 'Raster')
-    #> Raster: 116.998 Kb.
+    #> Raster: 110.1172 Kb.
     PrintFileSize(gg_box_vec, 'Vector')
-    #> Vector: 221.9131 Kb.
+    #> Vector: 208.2891 Kb.
 
 #### Beeswarm-style plots: geom\_beeswarm\_rast and geom\_quasirandom
 

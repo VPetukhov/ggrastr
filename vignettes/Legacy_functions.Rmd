@@ -15,8 +15,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Legacy (outdated) wrapper functions
-
 For historic reasons, `ggrastr` used to be solely composed of the following functions:
 
 * `geom_point_rast`: raster scatter plots
