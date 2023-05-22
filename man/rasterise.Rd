@@ -30,7 +30,7 @@ rasterise(input, ...)
 
 \item{dpi}{integer Sets the desired resolution in dots per inch (default=NULL).}
 
-\item{dev}{string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"} (default="cairo").}
+\item{dev}{string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"}, \code{"ragg_png"} or \code{"cairo_png"} (default="cairo").}
 
 \item{scale}{numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.}
 
