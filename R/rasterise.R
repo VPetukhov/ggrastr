@@ -50,14 +50,17 @@ rasterise.Layer <- function(layer, dpi=NULL, dev="cairo", scale=1) {
     # Let the new geom inherit from the old geom
     geom = ggproto(
       NULL, old.geom,
-      # draw_panel draws like old geom, but appends info to graphical object
-      draw_panel = function(...) {
-        grob <- old.geom$draw_panel(...)
-        class(grob) <- c("rasteriser", class(grob))
-        grob$dpi <- dpi
-        grob$dev <- dev
-        grob$scale <- scale
-        return(grob)
+      # draw_layer draws like old geom, but appends info to list of graphical
+      # objects
+      draw_layer = function(...) {
+        grobs <- old.geom$draw_layer(...)
+        lapply(grobs, function(grob) {
+          class(grob) <- c("rasteriser", class(grob))
+          grob$dpi <- dpi
+          grob$dev <- dev
+          grob$scale <- scale
+          return(grob)
+        })
       }
     )
   )
