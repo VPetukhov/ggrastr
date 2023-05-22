@@ -5,7 +5,7 @@ NULL
 #' Takes a ggplot object or a layer as input and renders their graphical output as a raster.
 #'
 #' @param dpi integer Sets the desired resolution in dots per inch (default=NULL).
-#' @param dev string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"} or \code{"ragg_png"} (default="cairo").
+#' @param dev string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"}, \code{"ragg_png"} or \code{"cairo_png"} (default="cairo").
 #' @param scale numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.
 #' @details The default \code{dpi} (\code{NULL} (i.e. let the device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{options("ggrastr.default.dpi" = 30)} for drafting).
 #' @return A modified \code{Layer} object.
@@ -37,7 +37,7 @@ rasterise <- function(input, ...) UseMethod("rasterise", input)
 #' @author Teun van den Brand <t.vd.brand@nki.nl>
 #' @export
 rasterise.Layer <- function(layer, dpi=NULL, dev="cairo", scale=1) {
-  dev <- match.arg(dev, c("cairo", "ragg", "ragg_png"))
+  dev <- match.arg(dev, c("cairo", "ragg", "ragg_png", "cairo_png"))
   if (is.null(dpi)) {
     dpi <- getOption("ggrastr.default.dpi")
   }
@@ -159,12 +159,21 @@ makeContext.rasteriser <- function(x) {
     file <- tempfile(fileext = ".png")
     # Destroy temporary file upon function exit
     on.exit(unlink(file), add = TRUE)
-    ragg::agg_png(
-      file,
-      width = width, height = height,
-      units = "in", res = dpi,
-      background = NA
-    )
+    if (dev == "cairo_png") {
+      grDevices::png(
+        file,
+        width = width, height = height,
+        units = "in", res = dpi, bg = NA,
+        type = "cairo"
+      )
+    } else {
+      ragg::agg_png(
+        file,
+        width = width, height = height,
+        units = "in", res = dpi,
+        background = NA
+      )
+    }
   }
 
   # Render layer
@@ -173,12 +182,12 @@ makeContext.rasteriser <- function(x) {
   grid::popViewport()
 
   # Capture raster
-  if (dev != "ragg_png") {
+  if (!dev %in% c("ragg_png", "cairo_png")) {
     cap <- grid::grid.cap()
   }
   grDevices::dev.off()
 
-  if (dev == "ragg_png") {
+  if (dev %in% c("ragg_png", "cairo_png")) {
     # Read in the png file
     cap <- png::readPNG(file, native = FALSE)
     dim <- dim(cap)
