@@ -41,25 +41,23 @@ rasterise.Layer <- function(layer, dpi=NULL, dev="cairo", scale=1) {
   if (is.null(dpi)) {
     dpi <- getOption("ggrastr.default.dpi")
   }
+  force(layer)
 
-  # Take geom from input layer
-  old.geom <- layer$geom
-  # Reconstruct input layer
   ggproto(
     NULL, layer,
-    # Let the new geom inherit from the old geom
-    geom = ggproto(
-      NULL, old.geom,
-      # draw_panel draws like old geom, but appends info to graphical object
-      draw_panel = function(...) {
-        grob <- old.geom$draw_panel(...)
+    draw_geom = function(self, data, layout) {
+      grobs <- ggplot2::ggproto_parent(layer, self)$draw_geom(data, layout)
+      lapply(grobs, function(grob) {
+        if (inherits(grob, "zeroGrob")) {
+          return(grob)
+        }
         class(grob) <- c("rasteriser", class(grob))
         grob$dpi <- dpi
         grob$dev <- dev
         grob$scale <- scale
         return(grob)
-      }
-    )
+      })
+    }
   )
 }
 
