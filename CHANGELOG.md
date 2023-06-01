@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.2] - 2023-May-22
+
+* The `rasterise.Layer` method appends rasterisation information at the layer level, rather than at the geom level.
+
 ## [1.0.1] - 2021-12-07
 
 * `rasterise` function now can work with whole ggplot objects

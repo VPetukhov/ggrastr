@@ -41,7 +41,7 @@ This geom is similar to \code{\link[ggplot2]{geom_violin}}, but creates a raster
 \item \code{fill}
 \item \code{group}
 \item \code{linetype}
-\item \code{size}
+\item \code{linewidth}
 \item \code{weight}
 }
 Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
