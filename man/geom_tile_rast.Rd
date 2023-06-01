@@ -42,9 +42,11 @@ This geom is similar to \code{\link[ggplot2]{geom_tile}}, but creates a raster l
 \item \code{group}
 \item \code{height}
 \item \code{linetype}
-\item \code{size}
+\item \code{linewidth}
 \item \code{width}
 }
+Note that \code{geom_raster()} ignores \code{colour}.
+
 Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 
 }

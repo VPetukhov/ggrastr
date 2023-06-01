@@ -7,6 +7,7 @@ NULL
 #' @param dpi integer Sets the desired resolution in dots per inch (default=NULL).
 #' @param dev string Specifies the device used, which can be one of: \code{"cairo"}, \code{"ragg"}, \code{"ragg_png"} or \code{"cairo_png"} (default="cairo").
 #' @param scale numeric Scaling factor to modify the raster object size (default=1). The parameter 'scale=1' results in an object size that is unchanged, 'scale'>1 increase the size, and 'scale'<1 decreases the size. These parameters are passed to 'height' and 'width' of grid::grid.raster(). Please refer to 'rasterise()' and 'grid::grid.raster()' for more details.
+#' @param ... ignored
 #' @details The default \code{dpi} (\code{NULL} (i.e. let the device decide)) can conveniently be controlled by setting the option \code{"ggrastr.default.dpi"} (e.g. \code{options("ggrastr.default.dpi" = 30)} for drafting).
 #' @return A modified \code{Layer} object.
 #' @examples
@@ -31,22 +32,23 @@ NULL
 #' @export
 rasterise <- function(input, ...) UseMethod("rasterise", input)
 
-#' @rdname rasterise
-#' @param layer A \code{Layer} object, typically constructed with a call to a
+
+#' @param input A \code{Layer} object, typically constructed with a call to a
 #'   \code{geom_*()} or \code{stat_*()} function.
 #' @author Teun van den Brand <t.vd.brand@nki.nl>
+#' @rdname rasterise
 #' @export
-rasterise.Layer <- function(layer, dpi=NULL, dev="cairo", scale=1) {
+rasterise.Layer <- function(input, ..., dpi=NULL, dev="cairo", scale=1) {
   dev <- match.arg(dev, c("cairo", "ragg", "ragg_png", "cairo_png"))
   if (is.null(dpi)) {
     dpi <- getOption("ggrastr.default.dpi")
   }
-  force(layer)
+  force(input)
 
   ggproto(
-    NULL, layer,
+    NULL, input,
     draw_geom = function(self, data, layout) {
-      grobs <- ggplot2::ggproto_parent(layer, self)$draw_geom(data, layout)
+      grobs <- ggplot2::ggproto_parent(input, self)$draw_geom(data, layout)
       lapply(grobs, function(grob) {
         if (inherits(grob, "zeroGrob")) {
           return(grob)
@@ -64,7 +66,7 @@ rasterise.Layer <- function(layer, dpi=NULL, dev="cairo", scale=1) {
 #' @param input input list with rasterizable ggplot objects
 #' @rdname rasterise
 #' @export
-rasterise.list <- function(input, dpi=NULL, dev="cairo", scale=1) {
+rasterise.list <- function(input,  ...,  dpi=NULL, dev="cairo", scale=1) {
   # geom_sf returns a list and requires extra logic here to handle gracefully
   # Check if list contains layers
   has.layer <- rapply(input, is.layer, how = "list")
@@ -78,22 +80,23 @@ rasterise.list <- function(input, dpi=NULL, dev="cairo", scale=1) {
   return(input)
 }
 
-#' @param gg ggplot plot object to rasterize
+#' @param input ggplot plot object to rasterize
 #' @param layers list of layer types that should be rasterized
 #' @rdname rasterise
 #' @export
-rasterise.ggplot <- function(gg, layers=c('Point', 'Tile'), dpi=NULL, dev="cairo", scale=1) {
-  gg$layers <- lapply(gg$layers, function(lay) {
+rasterise.ggplot <- function(input,  ...,  layers=c('Point', 'Tile'), dpi=NULL, dev="cairo", scale=1) {
+  input$layers <- lapply(input$layers, function(lay) {
     if (inherits(lay$geom, paste0('Geom', layers))) {
       rasterise(lay, dpi=dpi, dev=dev, scale=scale)
     } else{
       lay
     }
   })
-  return(gg)
+  return(input)
 }
 
 
+#' @inherit rasterise
 #' @export rasterize
 rasterize <- rasterise
 

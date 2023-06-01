@@ -31,13 +31,17 @@ to the paired geom/stat.}
 \item{bandwidth}{the bandwidth adjustment to use when calculating density
 Smaller numbers (< 1) produce a tighter "fit". (default: 0.5)}
 
-\item{nbins}{the number of bins used when calculating density (has little effect with quasirandom/random distribution)}
+\item{nbins}{the number of bins used when calculating density
+(has little effect with quasirandom/random distribution)}
 
-\item{method}{the method used for distributing points (quasirandom, pseudorandom, smiley or frowney)}
+\item{method}{the method used for distributing points
+(quasirandom, pseudorandom, smiley, maxout, frowney, minout, tukey, tukeyDense).
+See \code{\link[vipor:offsetX]{vipor::offsetSingleGroup()}} for the details of each method.}
 
-\item{groupOnX}{if TRUE then jitter is added to the x axis and if FALSE jitter is added to the y axis. Prior to v0.6.0, the default NULL causes the function to guess which axis is the categorical one based on the number of unique entries in each. This could result in unexpected results when the x variable has few unique values and so in v0.6.0 the default was changed to always jitter on the x axis unless groupOnX=FALSE. Also consider \code{\link[ggplot2]{coord_flip}}.}
+\item{groupOnX}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} No longer needed.}
 
-\item{dodge.width}{Amount by which points from different aesthetic groups will be dodged. This requires that one of the aesthetics is a factor.}
+\item{dodge.width}{Amount by which points from different aesthetic groups
+will be dodged. This requires that one of the aesthetics is a factor.}
 
 \item{raster.dpi}{integer Resolution of the rastered image in dots per inch (default=300).}
 
