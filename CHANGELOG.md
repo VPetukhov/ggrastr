@@ -1,5 +1,9 @@
 # Changelog
 
+## [Unreleased]
+
+* Rasters are now kept as compact `nativeRaster` objects which uses less memory and time.
+
 ## [1.0.2] - 2023-May-22
 
 * The `rasterise.Layer` method appends rasterisation information at the layer level, rather than at the geom level.
