@@ -58,7 +58,7 @@ To ensure that Cairo works, try running `Cairo::Cairo(type='raster'); dev.off()`
 If you find `ggrastr` useful for your publication, please cite:
 
 ```
-Viktor Petukhov, Teun van den Brand and Evan Biederstedt (2021).
-ggrastr: Raster Layers for 'ggplot2'. R package version 1.0.2.
+Viktor Petukhov, Teun van den Brand, Trevor L. Davis and Evan Biederstedt (2026).
+ggrastr: Raster Layers for 'ggplot2'. R package version 1.0.3.
 https://CRAN.R-project.org/package=ggrastr
 ```

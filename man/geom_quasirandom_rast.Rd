@@ -19,14 +19,37 @@ geom_quasirandom_rast(
 )
 }
 \arguments{
-\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
-often aesthetics, used to set an aesthetic to a fixed value, like
-\code{colour = "red"} or \code{size = 3}. They may also be parameters
-to the paired geom/stat.}
+\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}'s \code{params} argument. These
+arguments broadly fall into one of 4 categories below. Notably, further
+arguments to the \code{position} argument, or aesthetics that are required
+can \emph{not} be passed through \code{...}. Unknown arguments that are not part
+of the 4 categories below are ignored.
+\itemize{
+\item Static aesthetics that are not mapped to a scale, but are at a fixed
+value and apply to the layer as a whole. For example, \code{colour = "red"}
+or \code{linewidth = 3}. The geom's documentation has an \strong{Aesthetics}
+section that lists the available options. The 'required' aesthetics
+cannot be passed on to the \code{params}. Please note that while passing
+unmapped aesthetics as vectors is technically possible, the order and
+required length is not guaranteed to be parallel to the input data.
+\item When constructing a layer using
+a \verb{stat_*()} function, the \code{...} argument can be used to pass on
+parameters to the \code{geom} part of the layer. An example of this is
+\code{stat_density(geom = "area", outline.type = "both")}. The geom's
+documentation lists which parameters it can accept.
+\item Inversely, when constructing a layer using a
+\verb{geom_*()} function, the \code{...} argument can be used to pass on parameters
+to the \code{stat} part of the layer. An example of this is
+\code{geom_area(stat = "density", adjust = 0.5)}. The stat's documentation
+lists which parameters it can accept.
+\item The \code{key_glyph} argument of \code{\link[ggplot2:layer]{layer()}} may also be passed on through
+\code{...}. This can be one of the functions described as
+\link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
+}}
 
-\item{width}{the maximum amount of spread (default: 0.4)}
+\item{width}{Maximum amount of spread (default: 0.4)}
 
-\item{varwidth}{vary the width by the relative size of each group}
+\item{varwidth}{Vary the width by the relative size of each group. (default: \code{FALSE})}
 
 \item{bandwidth}{the bandwidth adjustment to use when calculating density
 Smaller numbers (< 1) produce a tighter "fit". (default: 0.5)}
@@ -34,14 +57,15 @@ Smaller numbers (< 1) produce a tighter "fit". (default: 0.5)}
 \item{nbins}{the number of bins used when calculating density
 (has little effect with quasirandom/random distribution)}
 
-\item{method}{the method used for distributing points
-(quasirandom, pseudorandom, smiley, maxout, frowney, minout, tukey, tukeyDense).
+\item{method}{Method used for distributing points.
+Options are \code{"quasirandom"} (default), \code{"pseudorandom"}, \code{"smiley"}, \code{"maxout"}, \code{"frowney"}, \code{"minout"}, \code{"tukey"}, \code{"tukeyDense"}.
 See \code{\link[vipor:offsetX]{vipor::offsetSingleGroup()}} for the details of each method.}
 
-\item{groupOnX}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} No longer needed.}
+\item{groupOnX}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}} See \code{orientation}.}
 
 \item{dodge.width}{Amount by which points from different aesthetic groups
-will be dodged. This requires that one of the aesthetics is a factor.}
+will be dodged. This requires that one of the aesthetics is a factor.
+To disable dodging between groups, set this to NULL. (default: 0)}
 
 \item{raster.dpi}{integer Resolution of the rastered image in dots per inch (default=300).}
 
@@ -58,18 +82,20 @@ This geom is similar to \code{\link[ggbeeswarm]{geom_quasirandom}}, but creates 
 \section{Aesthetics}{
 
 
-\code{geom_point()} understands the following aesthetics (required aesthetics are in bold):
-\itemize{
-\item \strong{\code{x}}
-\item \strong{\code{y}}
-\item \code{alpha}
-\item \code{colour}
-\item \code{fill}
-\item \code{group}
-\item \code{shape}
-\item \code{size}
-\item \code{stroke}
+\code{geom_point()} understands the following aesthetics. Required aesthetics are displayed in bold and defaults are displayed for optional aesthetics:
+\tabular{rll}{
+ • \tab \strong{\code{\link[ggplot2:aes_position]{x}}} \tab   \cr
+ • \tab \strong{\code{\link[ggplot2:aes_position]{y}}} \tab   \cr
+ • \tab \code{\link[ggplot2:aes_colour_fill_alpha]{alpha}} \tab → \code{NA} \cr
+ • \tab \code{\link[ggplot2:aes_colour_fill_alpha]{colour}} \tab → via \code{theme()} \cr
+ • \tab \code{\link[ggplot2:aes_colour_fill_alpha]{fill}} \tab → via \code{theme()} \cr
+ • \tab \code{\link[ggplot2:aes_group_order]{group}} \tab → inferred \cr
+ • \tab \code{\link[ggplot2:aes_linetype_size_shape]{shape}} \tab → via \code{theme()} \cr
+ • \tab \code{\link[ggplot2:aes_linetype_size_shape]{size}} \tab → via \code{theme()} \cr
+ • \tab \code{stroke} \tab → via \code{theme()} \cr
 }
+The \code{fill} aesthetic only applies to shapes 21-25.
+
 Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 
 }
