@@ -184,23 +184,13 @@ makeContext.rasteriser <- function(x) {
 
   # Capture raster
   if (!dev %in% c("ragg_png", "cairo_png")) {
-    cap <- grid::grid.cap()
+    cap <- grDevices::dev.capture(native = TRUE)
   }
   grDevices::dev.off()
 
   if (dev %in% c("ragg_png", "cairo_png")) {
     # Read in the png file
-    cap <- png::readPNG(file, native = FALSE)
-    dim <- dim(cap)
-    cap <- matrix(
-      grDevices::rgb(
-        red   = as.vector(cap[, , 1]),
-        green = as.vector(cap[, , 2]),
-        blue  = as.vector(cap[, , 3]),
-        alpha = as.vector(cap[, , 4])
-      ),
-      dim[1], dim[2]
-    )
+    cap <- png::readPNG(file, native = TRUE)
   }
 
   # Forward raster grob
