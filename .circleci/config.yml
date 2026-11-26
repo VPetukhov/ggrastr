@@ -1,8 +1,8 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      - image: rocker/verse:4.1.2
+      - image: rocker/verse:4.5.1
     environment:
             _R_CHECK_FORCE_SUGGESTS_: false
     steps:
