@@ -3,7 +3,7 @@
 
 ## [1.0.3] - 2026-November-25
 
-* Function calls to `grid::grid.cap()` replaced by identical `grDevices::dev.capture(native = TRUE)`, returning a C-level 32-bit RBGA integer matrix. As a result, rasters are now kept as `nativeRaster` objects which uses approximately half as much memory at high DPI values (e.g. 600). Refer to discuss in PR#41.
+* Function calls to `grid::grid.cap()` replaced by identical `grDevices::dev.capture(native = TRUE)`, returning a C-level 32-bit RBGA integer matrix. As a result, rasters are now kept as `nativeRaster` objects which uses approximately half as much memory at high DPI values (e.g. 600). Refer to discussion in PR#41.
 
 ## [1.0.2] - 2023-May-22
 
